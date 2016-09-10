@@ -11,6 +11,7 @@
     "apollo-client": "^0.3.30",
     "apollo-server": "^0.1.5",
     "babel-cli": "^6.6.5",
+    "babel-eslint": "^6.0.4",
     "graphql": "^0.6.2",
     "graphql-tools": "^0.5.0",
     "immutable": "^3.7.6",
@@ -30,7 +31,10 @@
   },
   "devDependencies": {
     "babel-polyfill": "~6.7.2",
-    "eslint": "^1.10.3",
-    "eslint-config-airbnb": "^11.0.0"
+    "eslint": "^2.9.0",
+    "eslint-config-airbnb": "^8.0.0",
+    "eslint-plugin-import": "^1.6.1",
+    "eslint-plugin-jsx-a11y": "^1.0.4",
+    "eslint-plugin-react": "^5.0.1"
   }
 }
