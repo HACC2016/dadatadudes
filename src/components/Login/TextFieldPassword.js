@@ -11,9 +11,9 @@ const styles = Object.assign({}, StyleSheet.create({
 }));
 
 export default mdl.Textfield.textfieldWithFloatingLabel()
-  .withPassword(true)
+  .withSecureTextEntry(true)
   .withPlaceholder('Password')
-  .withHighlightColor(MKColor.Lime)
+  .withHighlightColor(MKColor.Pink)
   .withStyle(styles.textfieldWithFloatingLabel)
   .withOnFocus(() => console.log('Focus'))
   .withOnBlur(() => console.log('Blur'))

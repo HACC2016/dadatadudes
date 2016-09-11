@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { MKTextField } from 'react-native-material-kit';
+import { MKColor, mdl } from 'react-native-material-kit';
 
 const styles = Object.assign({}, StyleSheet.create({
 
@@ -10,12 +10,13 @@ const styles = Object.assign({}, StyleSheet.create({
 
 }));
 
-export default MKTextField.textfieldWithFloatingLabel()
-  .withPlaceholder('Username')
+export default mdl.Textfield.textfieldWithFloatingLabel()
+  .withPlaceholder('Passwords')
+  .withHighlightColor(MKColor.Pink)
   .withStyle(styles.textfieldWithFloatingLabel)
-  .withFloatingLabelFont({
-    fontSize: 10,
-    fontStyle: 'normal',
-    fontWeight: '200'
-  })
+  // .withFloatingLabelFont({
+  //   fontSize: 10,
+  //   fontStyle: 'normal',
+  //   fontWeight: '200'
+  // })
   .build();
