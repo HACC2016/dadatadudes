@@ -5,8 +5,6 @@ import App from './app.js';
 import apollo from './store/apollo';
 import configureStore from './store/configureStore';
 
-const RouterWithRedux = connect()(Router);
-
 export default () => {
   class Root extends Component {
     constructor() {
