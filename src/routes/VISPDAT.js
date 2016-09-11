@@ -1,23 +1,52 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import {
   View,
+  Image,
   Text,
-  TouchableHighlight,
+  TouchableHighlight
 } from 'react-native';
-import {
-  Actions
-} from 'react-native-router-flux';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as FormActions from '../actions/Form/index.js';
 
 class Vispdat extends Component {
 
+  static propTypes = {
+    submitForm: PropTypes.func
+  }
+
+  constructor(props) {
+    super(props);
+    this.onSubmit = this._onSubmit.bind(this);
+  }
+
+  _onSubmit() {
+    this.props.submitForm('hello');
+  }
+
   render() {
     return (
-      <TouchableHighlight onPress={Actions.home}>
+      <TouchableHighlight onPress={this.onSubmit}>
         <View>
-          <Text> ...like if someone has a boa constrictor on person, it would say that they are risky?  </Text>
+          <Text> Damn kid </Text>
+          <Image
+            style={{ width: 50, height: 50 }}
+            source={{ uri: 'https://avatars2.githubusercontent.com/u/11851392?v=3&s=400' }}
+          />
         </View>
       </TouchableHighlight>
     );
   }
 }
-export default Vispdat;
+
+const mapStateToProps = (state) => {
+  return {};
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+    ...FormActions
+  }, dispatch);
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Vispdat);
