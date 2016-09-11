@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import {
+  Animated
   View,
   Text,
   Image,
-  TouchableOpacity,
-  TouchableHighlight,
   Navigator
 } from 'react-native';
+import TextField
 import {
   Actions
 } from 'react-native-router-flux';
