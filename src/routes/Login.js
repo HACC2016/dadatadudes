@@ -1,25 +1,24 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import {
-  Animated
   View,
-  Text,
-  Image,
-  Navigator
+  Text
 } from 'react-native';
-import TextField
 import {
   Actions
 } from 'react-native-router-flux';
+import TextField from '../components/Login/TextFields.js';
+import Password from '../components/Login/TextFieldPassword.js';
+
 
 class Login extends Component {
 
   render() {
     return (
-      <TouchableHighlight onPress={Actions.home}>
-        <View>
-          <Text> E komo mai my sistah </Text>
-        </View>
-      </TouchableHighlight>
+      <View>
+        <Text>Login</Text>
+        <TextField />
+        <Password />
+      </View>
     );
   }
 }

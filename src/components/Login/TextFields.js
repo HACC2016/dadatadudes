@@ -2,6 +2,10 @@ import { StyleSheet } from 'react-native';
 import { MKTextField } from 'react-native-material-kit';
 
 const styles = Object.assign({}, StyleSheet.create({
+  textfield: {
+    height: 28,
+    marginTop: 32
+  },
 
   textfieldWithFloatingLabel: {
     height: 48,
