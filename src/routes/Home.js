@@ -9,7 +9,7 @@ import {
 import {
   Actions
 } from 'react-native-router-flux';
-// Components
+
 const styles = StyleSheet.create({
   base: {
     flex: 1,
