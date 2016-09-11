@@ -8,6 +8,7 @@ import {
 } from 'react-native-router-flux';
 import TextField from '../components/Login/TextFields.js';
 import Password from '../components/Login/TextFieldPassword.js';
+import Button from '../components/Button.js';
 
 
 class Login extends Component {
@@ -17,7 +18,10 @@ class Login extends Component {
       <View>
         <Text>Login</Text>
         <TextField />
-        <Password />
+        <View>
+          <Password />
+        </View>
+        <Button />
       </View>
     );
   }
