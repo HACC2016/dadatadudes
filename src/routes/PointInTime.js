@@ -2,10 +2,7 @@ import React, { Component } from 'react';
 import {
   View,
   Text,
-  Image,
-  TouchableOpacity,
   TouchableHighlight,
-  Navigator
 } from 'react-native';
 import {
   Actions
