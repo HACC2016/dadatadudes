@@ -12,6 +12,7 @@ import {
 import TextField from '../components/Login/TextFields.js';
 import Checkbox from '../components/Checkbox.js';
 import RadioButton from '../components/RadioButton.js';
+import Dropdown from '../components/DropDown.js';
 
 class PointInTime extends Component {
 
@@ -41,6 +42,7 @@ class PointInTime extends Component {
     return (
       <TouchableHighlight onPress={this.onSubmit}>
         <View>
+          <Dropdown />
           <TextField onChangeText={this.onChangeText}> Damn kid </TextField>
           <TextField> 2 </TextField>
           <TextField> 3 </TextField>
