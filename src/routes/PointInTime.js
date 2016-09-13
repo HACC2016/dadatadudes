@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import TextField from '../components/Login/TextFields.js';
 import Checkbox from '../components/Checkbox.js';
-import RadioButton from '../components/RadioButton.js';
+import RadioOptions from '../components/RadioButton.js';
 import Dropdown from '../components/DropDown.js';
 
 class PointInTime extends Component {
@@ -25,6 +25,12 @@ class PointInTime extends Component {
     super(props);
     this.onSubmit = this._onSubmit.bind(this);
     this.onChangeText = this._onChangeText.bind(this);
+    this.persons = [
+      { name: 'Boots' },
+      { name: 'Alex' },
+      { name: 'Kawika' },
+      { name: 'Brock' }
+    ];
   }
 
   _onChangeText(value) {
@@ -42,7 +48,7 @@ class PointInTime extends Component {
     return (
       <TouchableHighlight onPress={this.onSubmit}>
         <View>
-          <Dropdown />
+          <Dropdown items={this.persons} text="Who is your daddy?" />
           <TextField onChangeText={this.onChangeText}> Damn kid </TextField>
           <TextField> 2 </TextField>
           <TextField> 3 </TextField>
@@ -51,14 +57,7 @@ class PointInTime extends Component {
           <TextField> 6 </TextField>
           <Checkbox text="Hello!" />
           <View>
-            <View>
-              <RadioButton />
-              <Text> Yes </Text>
-            </View>
-            <View>
-              <RadioButton />
-              <Text> No </Text>
-            </View>
+            <RadioOptions />
           </View>
         </View>
       </TouchableHighlight>

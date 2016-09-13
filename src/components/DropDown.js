@@ -1,17 +1,29 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { View, Text } from 'react-native';
 import { Select, Option, OptionList } from 'react-native-selectme';
 
 class Dropdown extends Component {
 
+  static propTypes = {
+    items: PropTypes.array.isRequired,
+    text: PropTypes.string.isRequired
+  };
+
   constructor(props) {
     super(props);
     this.person = this._person.bind(this);
     this.getOptionList = this._getOptionList.bind(this);
+    this.renderOptionItems = this._renderOptionItems.bind(this);
 
     this.state = {
       person: ''
     };
+  }
+
+  _renderOptionItems() {
+    return this.props.items.map((item, key) => {
+      return <Option key={key} value={item.name}> {item.name} </Option>;
+    });
   }
 
   _person(dude) {
@@ -28,6 +40,7 @@ class Dropdown extends Component {
   render() {
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <Text> {this.props.text} </Text>
         <Select
           width={250}
           ref="Select1"
@@ -35,13 +48,9 @@ class Dropdown extends Component {
           defaultValue="Select Something"
           onSelect={this.person}
         >
-          <Option value={{ id: 'Boots' }}>Boots</Option>
-          <Option value={{ id: 'Kawika' }}>Kawika</Option>
-          <Option value={{ id: 'Alex' }}>Alex</Option>
-          <Option value={{ id: 'Brock' }}>Brock</Option>
+          {this.renderOptionItems()}
         </Select>
 
-        <Text>Select a person: {this.state.person} </Text>
         <OptionList ref="OPTIONLIST" />
 
       </View>
