@@ -1,6 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import { StyleSheet, Text } from 'react-native';
 import { MKButton, MKColor } from 'react-native-material-kit';
 import { Actions } from 'react-native-router-flux';
@@ -13,14 +11,15 @@ const styles = Object.assign({}, StyleSheet.create({
   }
 }));
 
-const buttonType = {
-  login: 'Login',
-  form: 'Submit'
-};
-
 class Button extends Component {
 
-  static propTypes = {}
+  static propTypes = {
+    text: PropTypes.string.isRequired
+  };
+
+  constructor(props) {
+    super(props);
+  }
 
   render() {
     return (
@@ -33,7 +32,7 @@ class Button extends Component {
         <Text
           style={styles.buttonText}
         >
-        {buttonType.login}
+        {this.props.text}
         </Text>
       </MKButton>
     );

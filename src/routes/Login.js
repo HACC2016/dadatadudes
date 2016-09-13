@@ -13,6 +13,16 @@ import Button from '../components/Button.js';
 
 class Login extends Component {
 
+  constructor(props) {
+    super(props);
+    this.onClickHandler = this._onClickHandler.bind(this);
+  }
+
+  _onClickHandler() {
+    // dispatch redux actions.
+    console.log('hello');
+  }
+
   render() {
     return (
       <View>
@@ -21,7 +31,7 @@ class Login extends Component {
         <View>
           <Password />
         </View>
-        <Button />
+        <Button text="Login!" onClick={Actions.home} />
       </View>
     );
   }

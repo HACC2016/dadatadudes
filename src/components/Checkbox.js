@@ -1,13 +1,12 @@
 import React, { Component, PropTypes } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import { MKCheckbox, MKColor } from 'react-native-material-kit';
-import { Actions } from 'react-native-router-flux';
 
 class Checkbox extends Component {
 
-  static propTypes = {}
+  static propTypes = {
+    text: PropTypes.string.isRequired
+  };
 
   constructor(props) {
     super(props);
@@ -15,13 +14,16 @@ class Checkbox extends Component {
 
   render() {
     return (
-      <MKCheckbox
-        checked={true}
-        fillColor={MKColor.Teal}
-        borderOnColor={MKColor.Pink}
-        borderOffColor={MKColor.Green}
-        rippleColor={MKColor.Blue}
-      />
+      <View>
+        <MKCheckbox
+          checked={true}
+          fillColor={MKColor.Teal}
+          borderOnColor={MKColor.Pink}
+          borderOffColor={MKColor.Green}
+          rippleColor={MKColor.Blue}
+        />
+        <Text>{this.props.text}</Text>
+      </View>
     );
   }
 }
