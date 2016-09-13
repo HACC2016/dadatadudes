@@ -6,9 +6,11 @@ import * as FormActions from '../actions/Form/index.js';
 // Components
 import {
   View,
+  Text,
   TouchableHighlight
 } from 'react-native';
 import TextField from '../components/Login/TextFields.js';
+import Checkbox from '../components/Checkbox.js';
 
 class PointInTime extends Component {
 
@@ -44,6 +46,8 @@ class PointInTime extends Component {
           <TextField> 4 </TextField>
           <TextField> 5 </TextField>
           <TextField> 6 </TextField>
+          <Checkbox />
+          <Text> Hello </Text>
         </View>
       </TouchableHighlight>
     );
