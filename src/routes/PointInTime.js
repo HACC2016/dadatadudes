@@ -25,6 +25,12 @@ class PointInTime extends Component {
     super(props);
     this.onSubmit = this._onSubmit.bind(this);
     this.onChangeText = this._onChangeText.bind(this);
+    this.persons = [
+      { name: 'Boots' },
+      { name: 'Alex' },
+      { name: 'Kawika' },
+      { name: 'Brock' }
+    ];
   }
 
   _onChangeText(value) {
@@ -42,7 +48,7 @@ class PointInTime extends Component {
     return (
       <TouchableHighlight onPress={this.onSubmit}>
         <View>
-          <Dropdown />
+          <Dropdown items={this.persons} text="Who is your daddy?" />
           <TextField onChangeText={this.onChangeText}> Damn kid </TextField>
           <TextField> 2 </TextField>
           <TextField> 3 </TextField>
