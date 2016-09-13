@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import TextField from '../components/Login/TextFields.js';
 import Checkbox from '../components/Checkbox.js';
-import RadioButton from '../components/RadioButton.js';
+import RadioOptions from '../components/RadioButton.js';
 import Dropdown from '../components/DropDown.js';
 
 class PointInTime extends Component {
@@ -57,14 +57,7 @@ class PointInTime extends Component {
           <TextField> 6 </TextField>
           <Checkbox text="Hello!" />
           <View>
-            <View>
-              <RadioButton />
-              <Text> Yes </Text>
-            </View>
-            <View>
-              <RadioButton />
-              <Text> No </Text>
-            </View>
+            <RadioOptions />
           </View>
         </View>
       </TouchableHighlight>

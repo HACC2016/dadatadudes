@@ -1,15 +1,14 @@
 // ***NEED TO FIGURE OUT HOW TO SWITCH ON AND OFF AFTER SELECTION***
 
 import React, { Component, PropTypes } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { StyleSheet } from 'react-native';
+import { View, Text } from 'react-native';
 import { MKRadioButton, MKColor } from 'react-native-material-kit';
-import { Actions } from 'react-native-router-flux';
 
-class RadioButton extends Component {
+class RadioOptions extends Component {
 
-  static propTypes = {}
+  static propTypes = {
+    text: PropTypes.string.isRequired
+  }
 
   constructor(props) {
     super(props);
@@ -18,16 +17,35 @@ class RadioButton extends Component {
 
   render() {
     return (
-      <MKRadioButton
-        // checked={true}
-        group={this.radioGroup}
-        fillColor={MKColor.Teal}
-        borderOnColor={MKColor.Pink}
-        borderOffColor={MKColor.Green}
-        rippleColor={MKColor.Blue}
-      />
+      <View>
+        <MKRadioButton
+          checked={true}
+          group={this.radioGroup}
+          fillColor={MKColor.Teal}
+          borderOnColor={MKColor.Pink}
+          borderOffColor={MKColor.Green}
+          rippleColor={MKColor.Blue}
+        />
+        <Text>Yes</Text>
+        <MKRadioButton
+          group={this.radioGroup}
+          fillColor={MKColor.Teal}
+          borderOnColor={MKColor.Pink}
+          borderOffColor={MKColor.Green}
+          rippleColor={MKColor.Blue}
+        />
+        <Text>No</Text>
+        <MKRadioButton
+          group={this.radioGroup}
+          fillColor={MKColor.Teal}
+          borderOnColor={MKColor.Pink}
+          borderOffColor={MKColor.Green}
+          rippleColor={MKColor.Blue}
+        />
+        <Text>Refuse</Text>
+      </View>
     );
   }
 }
 
-export default RadioButton;
+export default RadioOptions;
