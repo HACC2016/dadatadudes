@@ -49,8 +49,7 @@ class PointInTime extends Component {
           <TextField> 4 </TextField>
           <TextField> 5 </TextField>
           <TextField> 6 </TextField>
-          <Checkbox />
-          <Text> Hello </Text>
+          <Checkbox text="Hello!" />
           <View>
             <View>
               <RadioButton />
