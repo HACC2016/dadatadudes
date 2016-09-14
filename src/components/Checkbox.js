@@ -5,24 +5,28 @@ import { MKCheckbox, MKColor } from 'react-native-material-kit';
 class Checkbox extends Component {
 
   static propTypes = {
-    checkOption: PropTypes.string.isRequired
+    text: PropTypes.string.isRequired
   };
 
   constructor(props) {
     super(props);
   }
 
+  shouldComponentUpdate(nextProps) {
+    console.log('CHECKBOX next props', nextProps);
+    return false;
+  }
+
   render() {
     return (
       <View>
         <MKCheckbox
-          // checked={true}
           fillColor={MKColor.Teal}
           borderOnColor={MKColor.Pink}
           borderOffColor={MKColor.Green}
           rippleColor={MKColor.Blue}
         />
-        <Text>{this.props.checkOption}</Text>
+        <Text>{this.props.text}</Text>
       </View>
     );
   }

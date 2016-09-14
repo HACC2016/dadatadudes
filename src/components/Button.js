@@ -21,6 +21,11 @@ class Button extends Component {
     super(props);
   }
 
+  shouldComponentUpdate(nextProps) {
+    console.log('BUTTON next props', nextProps);
+    return false;
+  }
+
   render() {
     return (
       <MKButton

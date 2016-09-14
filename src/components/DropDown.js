@@ -20,9 +20,14 @@ class Dropdown extends Component {
     };
   }
 
+  shouldComponentUpdate(nextProps) {
+    console.log('DROP DOWN next props', nextProps);
+    return false;
+  }
+
   _renderOptionItems() {
     return this.props.items.map((item, key) => {
-      return <Option key={key} value={item.name}> {item.name} </Option>;
+      return <Option key={key} value={item.text}> {item.text} </Option>;
     });
   }
 
