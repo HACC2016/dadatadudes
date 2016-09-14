@@ -12,11 +12,15 @@ class Checkbox extends Component {
     super(props);
   }
 
+  shouldComponentUpdate(nextProps) {
+    console.log('CHECKBOX next props', nextProps);
+    return false;
+  }
+
   render() {
     return (
       <View>
         <MKCheckbox
-          checked={true}
           fillColor={MKColor.Teal}
           borderOnColor={MKColor.Pink}
           borderOffColor={MKColor.Green}

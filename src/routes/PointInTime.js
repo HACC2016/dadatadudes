@@ -4,15 +4,13 @@ import { bindActionCreators } from 'redux';
 // Actions
 import * as FormActions from '../actions/Form/index.js';
 // Components
+import FormQuestion from '../components/FormQuestion.js';
 import {
-  View,
-  Text,
-  TouchableHighlight
+  ScrollView,
+  Text
 } from 'react-native';
-import TextField from '../components/Login/TextFields.js';
-import Checkbox from '../components/Checkbox.js';
-import RadioOptions from '../components/RadioButton.js';
-import Dropdown from '../components/DropDown.js';
+// Utilities
+import { questions } from '../utilities/questions.js';
 
 class PointInTime extends Component {
 
@@ -25,12 +23,7 @@ class PointInTime extends Component {
     super(props);
     this.onSubmit = this._onSubmit.bind(this);
     this.onChangeText = this._onChangeText.bind(this);
-    this.persons = [
-      { name: 'Boots' },
-      { name: 'Alex' },
-      { name: 'Kawika' },
-      { name: 'Brock' }
-    ];
+    this.renderQuestions = this._renderQuestions.bind(this);
   }
 
   _onChangeText(value) {
@@ -40,34 +33,41 @@ class PointInTime extends Component {
     });
   }
 
+  _renderQuestions() {
+    return questions.map(({ question, type, answers }, key) => (
+      <FormQuestion
+        key={key}
+        question={question}
+        type={type}
+        answers={answers}
+      />
+    ));
+  }
+
   _onSubmit() {
     this.props.submitForm('good-bye');
   }
 
+
   render() {
+    if (!questions) {
+      return (
+        <ScrollView>
+          <Text>Loading...</Text>
+        </ScrollView>
+      );
+    }
     return (
-      <TouchableHighlight onPress={this.onSubmit}>
-        <View>
-          <Dropdown items={this.persons} text="Who is your daddy?" />
-          <TextField onChangeText={this.onChangeText}> Damn kid </TextField>
-          <TextField> 2 </TextField>
-          <TextField> 3 </TextField>
-          <TextField> 4 </TextField>
-          <TextField> 5 </TextField>
-          <TextField> 6 </TextField>
-          <Checkbox text="Hello!" />
-          <View>
-            <RadioOptions />
-          </View>
-        </View>
-      </TouchableHighlight>
+      <ScrollView>
+        {this.renderQuestions()}
+      </ScrollView>
     );
   }
 }
 
-const mapStateToProps = (state) => {
-  return {};
-};
+// const mapStateToProps = (state) => {
+//   return {};
+// };
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
@@ -75,4 +75,4 @@ const mapDispatchToProps = (dispatch) => {
   }, dispatch);
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(PointInTime);
+export default connect(null, mapDispatchToProps)(PointInTime);

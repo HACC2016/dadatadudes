@@ -27,7 +27,6 @@ class Login extends Component {
     return (
       <View>
         <Text>Login</Text>
-        <TextField />
         <View>
           <Password />
         </View>
