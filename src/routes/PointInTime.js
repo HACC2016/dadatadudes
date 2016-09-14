@@ -48,7 +48,7 @@ class PointInTime extends Component {
     return (
       <TouchableHighlight onPress={this.onSubmit}>
         <View>
-          <Dropdown items={this.persons} text="Who is your daddy?" />
+          <Dropdown items={this.persons} dropDownTitle="Who is your daddy?" />
           <TextField onChangeText={this.onChangeText}> Damn kid </TextField>
           <TextField> 2 </TextField>
           <TextField> 3 </TextField>

@@ -1,10 +1,19 @@
 import React, { Component, PropTypes } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
+
+const styles = Object.assign({}, StyleSheet.create({
+
+  titleText: {
+    fontSize: 25,
+    fontWeight: 'bold'
+  }
+
+}));
 
 class SectionHeader extends Component {
 
   static propTypes = {
-    text: PropTypes.string.isRequired
+    sectionTitle: PropTypes.string.isRequired
   };
 
   constructor(props) {
@@ -14,7 +23,9 @@ class SectionHeader extends Component {
   render() {
     return (
       <View>
-        <Text>{this.props.text}</Text>
+        <Text style={styles.titleText}>
+        {this.props.sectionTitle}
+        </Text>
       </View>
     );
   }

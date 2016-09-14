@@ -13,7 +13,7 @@ import { MKColor, MKTextField } from 'react-native-material-kit';
 const styles = Object.assign({}, StyleSheet.create({
 
   titleText: {
-    fontSize: 20,
+    fontSize: 15,
     fontWeight: 'bold'
   }
 
@@ -22,7 +22,7 @@ const styles = Object.assign({}, StyleSheet.create({
 class TextField extends Component {
 
   static propTypes = {
-    question: PropTypes.string.isRequired,
+    question: PropTypes.string,
     addFormField: PropTypes.func.isRequired,
     field: PropTypes.string.isRequired,
     submitForm: PropTypes.func.isRequired

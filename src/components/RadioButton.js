@@ -14,11 +14,11 @@ const styles = Object.assign({}, StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     alignItems: 'center',
-    marginLeft: 7, marginRight: 7
+    marginLeft: 20, marginRight: 20
   },
 
   titleText: {
-    fontSize: 20,
+    fontSize: 15,
     fontWeight: 'bold'
   }
 
