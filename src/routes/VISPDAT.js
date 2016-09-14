@@ -8,6 +8,9 @@ import {
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as FormActions from '../actions/Form/index.js';
+import SectionHeader from '../components/VISPDAT/SectionHeader.js';
+import TextFields from '../components/Login/TextFields.js';
+import RadioButton from '../components/RadioButton.js';
 
 class Vispdat extends Component {
 
@@ -26,15 +29,33 @@ class Vispdat extends Component {
 
   render() {
     return (
-      <TouchableHighlight onPress={this.onSubmit}>
-        <View>
-          <Text> Damn kid </Text>
-          <Image
-            style={{ width: 50, height: 50 }}
-            source={{ uri: 'https://avatars2.githubusercontent.com/u/11851392?v=3&s=400' }}
-          />
-        </View>
-      </TouchableHighlight>
+      <View>
+        <SectionHeader text="Basic Information" />
+        <TextFields
+          question="Fist Name"
+        />
+        <TextFields
+          question="Nickname"
+        />
+        <TextFields
+          question="Last Name"
+        />
+        <TextFields
+          question="In what language do you feel best able to express yourself?"
+        />
+        <TextFields
+          question="Date of Birth"
+        />
+        <TextFields
+          question="Age"
+        />
+        <TextFields
+          question="Social Security Number"
+        />
+        <RadioButton
+          radioTitle="Consent to participate"
+        />
+      </View>
     );
   }
 }

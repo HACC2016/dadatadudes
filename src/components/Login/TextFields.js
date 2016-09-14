@@ -1,13 +1,28 @@
 import React, { Component, PropTypes } from 'react';
+import {
+  View,
+  Text,
+  StyleSheet
+} from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 // Actions
 import * as FormActions from '../../actions/Form/index.js';
 import { MKColor, MKTextField } from 'react-native-material-kit';
 
+const styles = Object.assign({}, StyleSheet.create({
+
+  titleText: {
+    fontSize: 20,
+    fontWeight: 'bold'
+  }
+
+}));
+
 class TextField extends Component {
 
   static propTypes = {
+    question: PropTypes.string.isRequired,
     addFormField: PropTypes.func.isRequired,
     field: PropTypes.string.isRequired,
     submitForm: PropTypes.func.isRequired
@@ -28,11 +43,16 @@ class TextField extends Component {
 
   render() {
     return (
-      <MKTextField
-        onChangeText={this.onChangeText}
-        tintColor={MKColor.Lime}
-        textInputStyle={{ color: MKColor.Orange }}
-      />
+      <View>
+        <Text style={styles.titleText}>
+        {this.props.question}
+        </Text>
+        <MKTextField
+          onChangeText={this.onChangeText}
+          tintColor={MKColor.Lime}
+          textInputStyle={{ color: MKColor.Orange }}
+        />
+      </View>
     );
   }
 }
