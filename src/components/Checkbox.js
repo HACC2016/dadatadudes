@@ -4,6 +4,14 @@ import { MKCheckbox, MKColor } from 'react-native-material-kit';
 import TextField from '../components/Login/TextFields.js';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 
+const styles = Object.assign({}, StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center'
+  }
+}));
+
 class Checkbox extends Component {
   static propTypes = {
     text: PropTypes.string.isRequired,
@@ -43,15 +51,17 @@ class Checkbox extends Component {
   render() {
     return (
       <View>
-        <MKCheckbox
-          checked={this.state.checked}
-          onCheckedChange={this.handleChange}
-          fillColor={MKColor.Teal}
-          borderOnColor={MKColor.Pink}
-          borderOffColor={MKColor.Green}
-          rippleColor={MKColor.Blue}
-        />
-        <Text>{this.props.text}</Text>
+        <View style={styles.container}>
+          <MKCheckbox
+            checked={this.state.checked}
+            onCheckedChange={this.handleChange}
+            fillColor={MKColor.Teal}
+            borderOnColor={MKColor.Pink}
+            borderOffColor={MKColor.Green}
+            rippleColor={MKColor.Blue}
+          />
+          <Text>{this.props.text}</Text>
+        </View>
         {this.showInput()}
       </View>
     );

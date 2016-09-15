@@ -1,14 +1,23 @@
 import React, { Component, PropTypes } from 'react';
 // Compoonents
-import { View } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { MKRadioButton } from 'react-native-material-kit';
 import RadioButton from './RadioButton.js';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+
+const styles = Object.assign({}, StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: 'column'
+  }
+}));
 
 class RadioOptions extends Component {
-
   static propTypes = {
     items: PropTypes.array.isRequired
   }
+
+  mixins: [PureRenderMixin];
 
   constructor(props) {
     super(props);
@@ -36,7 +45,7 @@ class RadioOptions extends Component {
 
   render() {
     return (
-      <View>
+      <View style={styles.container}>
         {this.renderRadioGroupItems()}
       </View>
     );
