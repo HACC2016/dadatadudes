@@ -1,13 +1,22 @@
 import React, { Component, PropTypes } from 'react';
 // Compoonents
-import { View } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import Checkbox from './Checkbox.js';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+
+const styles = Object.assign({}, StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: 'column'
+  }
+}));
 
 class CheckboxGroup extends Component {
-
   static propTypes = {
     items: PropTypes.array.isRequired
   }
+
+  mixins: [PureRenderMixin];
 
   constructor(props) {
     super(props);
@@ -26,6 +35,7 @@ class CheckboxGroup extends Component {
         <Checkbox
           key={key}
           text={item.text}
+          type={item.type}
         />
       );
     });
@@ -33,7 +43,7 @@ class CheckboxGroup extends Component {
 
   render() {
     return (
-      <View>
+      <View style={styles.container}>
         {this.renderCheckboxItems()}
       </View>
     );
