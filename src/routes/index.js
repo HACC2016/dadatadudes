@@ -26,8 +26,8 @@ const hideNavBar = true;
 export default Actions.create(
   <Scene key="root" defaultRoute="home">
     <Scene key="login" component={Login} hideNavBar={hideNavBar} />
-    <Scene key="home" type={ActionConst.RESET} component={Home} hideNavBar={hideNavBar} />
-    <Scene key="pointInTime" component={PointInTime} hideNavBar={hideNavBar} initial={hideNavBar} />
+    <Scene key="home" type={ActionConst.RESET} component={Home} hideNavBar={hideNavBar} initial={hideNavBar} />
+    <Scene key="pointInTime" component={PointInTime} hideNavBar={hideNavBar} />
     <Scene key="vispdat" component={Vispdat} hideNavBar={hideNavBar} />
     <Scene key="refuse" component={Refuse} hideNavBar={hideNavBar} />
   </Scene>

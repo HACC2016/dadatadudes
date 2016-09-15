@@ -197,3 +197,29 @@ export const benefits = [
     text: 'SSI'
   }
 ];
+export const sleeping = [
+  {
+    value: 'shelters',
+    text: 'Shelters'
+  },
+  {
+    value: 'transitionalHousing',
+    text: 'Transitional Housing'
+  },
+  {
+    value: 'safeHaven',
+    text: 'Safe Haven'
+  },
+  {
+    value: 'outdoors',
+    text: 'Outdoors'
+  },
+  {
+    value: 'other',
+    text: 'Other'
+  },
+  {
+    value: 'refused',
+    text: 'Refused'
+  }
+];

@@ -6,7 +6,7 @@ class Dropdown extends Component {
 
   static propTypes = {
     items: PropTypes.array.isRequired,
-    dropDownTitle: PropTypes.string.isRequired
+    text: PropTypes.string.isRequired
   };
 
   constructor(props) {
@@ -20,14 +20,9 @@ class Dropdown extends Component {
     };
   }
 
-  shouldComponentUpdate(nextProps) {
-    console.log('DROP DOWN next props', nextProps);
-    return false;
-  }
-
   _renderOptionItems() {
     return this.props.items.map((item, key) => {
-      return <Option key={key} value={item.text}> {item.text} </Option>;
+      return <Option key={key} value={item.name}> {item.name} </Option>;
     });
   }
 
@@ -45,7 +40,7 @@ class Dropdown extends Component {
   render() {
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text> {this.props.dropDownTitle} </Text>
+        <Text> {this.props.text} </Text>
         <Select
           width={250}
           ref="Select1"
