@@ -26,6 +26,7 @@ class CheckboxGroup extends Component {
         <Checkbox
           key={key}
           text={item.text}
+          type={item.type}
         />
       );
     });
