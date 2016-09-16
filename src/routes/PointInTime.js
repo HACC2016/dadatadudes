@@ -7,7 +7,9 @@ import * as FormActions from '../actions/Form/index.js';
 import FormQuestion from '../components/FormQuestion.js';
 import {
   ScrollView,
-  Text
+  Text,
+  Image,
+  View
 } from 'react-native';
 // Utilities
 import { questions } from '../utilities/questions.js';
@@ -40,7 +42,12 @@ class PointInTime extends Component {
         question={question}
         type={type}
         answers={answers}
-      />
+      >
+        <Image
+          style={{ width: 50, height: 50 }}
+          source={{ uri: 'http://placekitten.com/250/250' }}
+        />
+      </FormQuestion>
     ));
   }
 

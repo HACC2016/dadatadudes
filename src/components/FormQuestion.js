@@ -17,6 +17,7 @@ const RENDER_TYPES = {
 class FormQuestion extends Component {
 
   static propTypes = {
+    children: PropTypes.node,
     question: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
     answers: PropTypes.string
@@ -71,6 +72,7 @@ class FormQuestion extends Component {
     return (
       <View>
         <Text> {this.props.question} </Text>
+        {this.props.children}
         {this.renderAnswerOptions()}
       </View>
     );
