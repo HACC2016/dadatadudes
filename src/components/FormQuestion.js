@@ -4,6 +4,7 @@ import { View, StyleSheet, Text } from 'react-native';
 import CheckboxGroup from './CheckboxGroup';
 import RadioGroup from './RadioGroup.js';
 import DropDown from './DropDown';
+import TextField from './Login/TextFields.js';
 // Utils
 import * as options from '../utilities/answerOptions.js';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
@@ -61,7 +62,7 @@ class FormQuestion extends Component {
       return <DropDown items={this.state.items} />;
     }
     case RENDER_TYPES.INPUT: {
-      return <DropDown items={this.state.items} />;
+      return <TextField />;
     }
     case RENDER_TYPES.CHECKBOX: {
       return <CheckboxGroup items={this.state.items} />;
