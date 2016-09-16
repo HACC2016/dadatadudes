@@ -5,12 +5,17 @@ import { bindActionCreators } from 'redux';
 import * as FormActions from '../actions/Form/index.js';
 // Components
 import FormQuestion from '../components/FormQuestion.js';
+import Button from '../components/Button.js';
 import {
   ScrollView,
   Text,
   Image,
   View
 } from 'react-native';
+// Selectors
+import {
+  pointInTimeFieldsSelector
+} from '../selectors/PointInTime/index.js';
 // Utilities
 import { questions } from '../utilities/questions.js';
 
@@ -26,6 +31,7 @@ class PointInTime extends Component {
     this.onSubmit = this._onSubmit.bind(this);
     this.onChangeText = this._onChangeText.bind(this);
     this.renderQuestions = this._renderQuestions.bind(this);
+    this.submitDatasheet = this._submitDatasheet.bind(this);
   }
 
   _onChangeText(value) {
@@ -51,10 +57,8 @@ class PointInTime extends Component {
     ));
   }
 
-  _onSubmit() {
-    this.props.submitForm('good-bye');
+  _submitDatasheet() {
   }
-
 
   render() {
     if (!questions) {
@@ -67,14 +71,17 @@ class PointInTime extends Component {
     return (
       <ScrollView>
         {this.renderQuestions()}
+        <Button onClickHandler={this.submitDatasheet} text={"Submit"} />
       </ScrollView>
     );
   }
 }
 
-// const mapStateToProps = (state) => {
-//   return {};
-// };
+const mapStateToProps = (state) => {
+  return {
+    formFields: pointInTimeFieldsSelector(state)
+  };
+};
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
@@ -82,4 +89,4 @@ const mapDispatchToProps = (dispatch) => {
   }, dispatch);
 };
 
-export default connect(null, mapDispatchToProps)(PointInTime);
+export default connect(mapStateToProps, mapDispatchToProps)(PointInTime);
