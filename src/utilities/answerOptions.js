@@ -34,6 +34,11 @@ export const ethnicity = [
   {
     value: 'unknown',
     text: 'Unknown'
+  },
+  {
+    value: 'other',
+    text: 'Other',
+    type: 'input'
   }
 ];
 
@@ -61,6 +66,11 @@ export const gender = [
   {
     value: 'refused',
     text: 'Refused'
+  },
+  {
+    value: 'other',
+    text: 'Other',
+    type: 'input'
   }
 ];
 export const yesNo = [
@@ -71,6 +81,11 @@ export const yesNo = [
   {
     value: 'no',
     text: 'No'
+  },
+  {
+    value: 'other',
+    text: 'Other',
+    type: 'input'
   }
 ];
 export const number = [
@@ -89,6 +104,11 @@ export const number = [
   {
     value: 'max',
     text: '7+'
+  },
+  {
+    value: 'other',
+    text: 'Other',
+    type: 'input'
   }
 ];
 export const general = [
@@ -107,6 +127,11 @@ export const general = [
   {
     value: 'refused',
     text: 'Refused'
+  },
+  {
+    value: 'other',
+    text: 'Other',
+    type: 'input'
   }
 ];
 export const education = [
@@ -133,6 +158,11 @@ export const education = [
   {
     value: 'masters',
     text: 'Masters'
+  },
+  {
+    value: 'other',
+    text: 'Other',
+    type: 'input'
   }
 ];
 export const homelessDate = [
@@ -151,6 +181,11 @@ export const homelessDate = [
   {
     value: 'refused',
     text: 'Refused'
+  },
+  {
+    value: 'other',
+    text: 'Other',
+    type: 'input'
   }
 ];
 export const homelessCount = [
@@ -169,6 +204,11 @@ export const homelessCount = [
   {
     value: 'refused',
     text: 'Refused'
+  },
+  {
+    value: 'other',
+    text: 'Other',
+    type: 'input'
   }
 ];
 export const benefits = [
@@ -195,6 +235,11 @@ export const benefits = [
   {
     value: 'benefitSsi',
     text: 'SSI'
+  },
+  {
+    value: 'other',
+    text: 'Other',
+    type: 'input'
   }
 ];
 export const sleeping = [

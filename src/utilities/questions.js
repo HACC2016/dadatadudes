@@ -12,7 +12,7 @@ export const questions = [
   { question: 'Do you have a physical, developmental, or other disability that limits your ability to work or perform activities of daily living?', type: 'dropdown', answers: 'general' }
 ];
 
-export const vispdat = [
+export const vispdatQuestions = [
   { question: 'Where do you sleep most frequently?', type: 'checkbox', answers: 'sleeping' },
   { question: 'How long has it been since you lived in permanent stable housing?', type: 'dropdown', answers: 'number' },
   { question: 'In the last three years, how many times have you been homeless?', type: 'dropdown', answers: 'number' },

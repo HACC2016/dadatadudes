@@ -1,7 +1,7 @@
 // ***NEED TO FIGURE OUT HOW TO SWITCH ON AND OFF AFTER SELECTION***
 
 import React, { Component, PropTypes } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text } from 'react-native';
 import { MKRadioButton, MKColor } from 'react-native-material-kit';
 
 // const styles = Object.assign({}, StyleSheet.create({
@@ -37,13 +37,16 @@ class RadioOptions extends Component {
 
   render() {
     return (
-      <MKRadioButton
-        group={this.radioGroup}
-        fillColor={MKColor.Teal}
-        borderOnColor={MKColor.Pink}
-        borderOffColor={MKColor.Green}
-        rippleColor={MKColor.Blue}
-      />
+      <View>
+        <MKRadioButton
+          group={this.radioGroup}
+          fillColor={MKColor.Teal}
+          borderOnColor={MKColor.Pink}
+          borderOffColor={MKColor.Green}
+          rippleColor={MKColor.Blue}
+        />
+        <Text>{this.props.text}</Text>
+      </View>
     );
     // return (
     //   <View style={styles.row}>

@@ -8,7 +8,7 @@ import {
   ScrollView,
   Text
 } from 'react-native';
-import { vispdat } from '../utilities/questions.js';
+import { vispdatQuestions } from '../utilities/questions.js';
 
 // const styles = Object.assign({}, StyleSheet.create({
 
@@ -58,7 +58,7 @@ class Vispdat extends Component {
   }
 
   _renderQuestions() {
-    return vispdat.map(({ question, type, answers }, key) => (
+    return vispdatQuestions.map(({ question, type, answers }, key) => (
       <FormQuestion
         key={key}
         question={question}
@@ -73,7 +73,7 @@ class Vispdat extends Component {
   }
 
   render() {
-    if (!vispdat) {
+    if (!vispdatQuestions) {
       return (
         <ScrollView>
           <Text>Loading...</Text>

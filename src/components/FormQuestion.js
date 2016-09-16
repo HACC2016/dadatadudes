@@ -5,7 +5,6 @@ import CheckboxGroup from './CheckboxGroup';
 import RadioGroup from './RadioGroup.js';
 import DropDown from './DropDown';
 import TextField from './Login/TextFields.js';
-// import SectionHeader from './SectionHeader.js';
 // Utils
 import * as options from '../utilities/answerOptions.js';
 
@@ -13,8 +12,7 @@ const RENDER_TYPES = {
   CHECKBOX: 'checkbox',
   DROPDOWN: 'dropdown',
   INPUT: 'input',
-  RADIO: 'radio',
-  TITLE: 'sectionTitle'
+  RADIO: 'radio'
 };
 
 class FormQuestion extends Component {
