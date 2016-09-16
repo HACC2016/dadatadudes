@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { StyleSheet, Text } from 'react-native';
 import { MKButton, MKColor } from 'react-native-material-kit';
-import { Actions } from 'react-native-router-flux';
 
 const styles = Object.assign({}, StyleSheet.create({
   buttonText: {
@@ -14,7 +13,8 @@ const styles = Object.assign({}, StyleSheet.create({
 class Button extends Component {
 
   static propTypes = {
-    text: PropTypes.string.isRequired
+    text: PropTypes.string.isRequired,
+    onClickHandler: PropTypes.func.isRequired
   };
 
   constructor(props) {
@@ -27,17 +27,18 @@ class Button extends Component {
   }
 
   render() {
+    const { text, onClickHandler } = this.props;
     return (
       <MKButton
         backgroundColor={MKColor.Pink}
         textStyle={styles.buttonText}
-        onPress={Actions.home}
+        onPress={onClickHandler}
         rippleColor={MKColor.Blue}
       >
         <Text
           style={styles.buttonText}
         >
-        {this.props.text}
+        {text}
         </Text>
       </MKButton>
     );
