@@ -23,6 +23,7 @@ class PointInTime extends Component {
 
   static propTypes = {
     addFormField: PropTypes.func,
+    formFields: PropTypes.array,
     submitForm: PropTypes.func
   }
 
@@ -31,7 +32,7 @@ class PointInTime extends Component {
     this.onSubmit = this._onSubmit.bind(this);
     this.onChangeText = this._onChangeText.bind(this);
     this.renderQuestions = this._renderQuestions.bind(this);
-    this.submitDatasheet = this._submitDatasheet.bind(this);
+    this.onPressHandler = this._onPressHandler.bind(this);
   }
 
   _onChangeText(value) {
@@ -57,7 +58,14 @@ class PointInTime extends Component {
     ));
   }
 
-  _submitDatasheet() {
+  /**
+   * Grabs all of the fields from the redux store and dispatches them to the database.
+   */
+  _onPressHandler() {
+    const { formFields, submitForm } = this.props;
+    console.log('formFields', formFields);
+    submitForm(formFields);
+    console.log('form submitted!');
   }
 
   render() {
@@ -71,7 +79,7 @@ class PointInTime extends Component {
     return (
       <ScrollView>
         {this.renderQuestions()}
-        <Button onClickHandler={this.submitDatasheet} text={"Submit"} />
+        <Button onPressHandler={this.onPressHandler} text={"Submit"} />
       </ScrollView>
     );
   }
