@@ -5,8 +5,7 @@ import { Select, Option, OptionList } from 'react-native-selectme';
 class Dropdown extends Component {
 
   static propTypes = {
-    items: PropTypes.array.isRequired,
-    dropDownTitle: PropTypes.string.isRequired
+    items: PropTypes.array.isRequired
   };
 
   constructor(props) {
@@ -18,11 +17,6 @@ class Dropdown extends Component {
     this.state = {
       person: ''
     };
-  }
-
-  shouldComponentUpdate(nextProps) {
-    console.log('DROP DOWN next props', nextProps);
-    return false;
   }
 
   _renderOptionItems() {
@@ -45,7 +39,6 @@ class Dropdown extends Component {
   render() {
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text> {this.props.dropDownTitle} </Text>
         <Select
           width={250}
           ref="Select1"
