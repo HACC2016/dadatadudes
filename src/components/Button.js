@@ -14,7 +14,7 @@ class Button extends Component {
 
   static propTypes = {
     text: PropTypes.string.isRequired,
-    onClickHandler: PropTypes.func.isRequired
+    onPressHandler: PropTypes.func.isRequired
   };
 
   constructor(props) {
@@ -27,12 +27,12 @@ class Button extends Component {
   }
 
   render() {
-    const { text, onClickHandler } = this.props;
+    const { text, onPressHandler } = this.props;
     return (
       <MKButton
         backgroundColor={MKColor.Pink}
         textStyle={styles.buttonText}
-        onPress={onClickHandler}
+        onPress={onPressHandler}
         rippleColor={MKColor.Blue}
       >
         <Text
