@@ -10,26 +10,31 @@ import {
   ScrollView,
   Text,
   Image,
-  View
+  StyleSheet
 } from 'react-native';
 // Selectors
 import {
-  pointInTimeFieldsSelector
+  formInputsSelector
 } from '../selectors/PointInTime/index.js';
 // Utilities
 import { questions } from '../utilities/questions.js';
+
+const styles = Object.assign({}, StyleSheet.create({
+  container: {
+    flex: 1
+  }
+}));
 
 class PointInTime extends Component {
 
   static propTypes = {
     addFormField: PropTypes.func,
-    formFields: PropTypes.array,
+    formFields: PropTypes.object,
     submitForm: PropTypes.func
   }
 
   constructor(props) {
     super(props);
-    this.onSubmit = this._onSubmit.bind(this);
     this.onChangeText = this._onChangeText.bind(this);
     this.renderQuestions = this._renderQuestions.bind(this);
     this.onPressHandler = this._onPressHandler.bind(this);
@@ -77,7 +82,9 @@ class PointInTime extends Component {
       );
     }
     return (
-      <ScrollView>
+      <ScrollView
+        contentContainerStyle={styles.container}
+      >
         {this.renderQuestions()}
         <Button onPressHandler={this.onPressHandler} text={"Submit"} />
       </ScrollView>
@@ -87,7 +94,7 @@ class PointInTime extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    formFields: pointInTimeFieldsSelector(state)
+    formFields: formInputsSelector(state)
   };
 };
 

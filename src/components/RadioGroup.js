@@ -25,11 +25,6 @@ class RadioOptions extends Component {
     this.renderRadioGroupItems = this._renderRadioGroupItems.bind(this);
   }
 
-  shouldComponentUpdate(nextProps) {
-    console.log('RADIO GROUP next props', nextProps);
-    return false;
-  }
-
   _renderRadioGroupItems() {
     const { items } = this.props;
     return items.map((item, key) => {

@@ -23,11 +23,6 @@ class CheckboxGroup extends Component {
     this.renderCheckboxItems = this._renderCheckboxItems.bind(this);
   }
 
-  shouldComponentUpdate(nextProps) {
-    console.log('CHECKBOX GROUP next props', nextProps);
-    return false;
-  }
-
   _renderCheckboxItems() {
     const { items } = this.props;
     return items.map((item, key) => {

@@ -6,6 +6,7 @@ import { actions } from '../../actions/Form/index.js';
  * to the server.
  */
 const addFormField = (state, data) => {
+  console.log('state', state);
   const { field, value } = data;
   const newState = {
     ...state,

@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { StyleSheet, Text } from 'react-native';
 import { MKButton, MKColor } from 'react-native-material-kit';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
 
 const styles = Object.assign({}, StyleSheet.create({
   buttonText: {
@@ -11,21 +12,17 @@ const styles = Object.assign({}, StyleSheet.create({
 }));
 
 class Button extends Component {
-
   static propTypes = {
     text: PropTypes.string.isRequired,
     onPressHandler: PropTypes.func.isRequired
   };
 
+  mixins: [PureRenderMixin];
+
   constructor(props) {
     super(props);
   }
-
-  shouldComponentUpdate(nextProps) {
-    console.log('BUTTON next props', nextProps);
-    return false;
-  }
-
+  
   render() {
     const { text, onPressHandler } = this.props;
     return (
