@@ -28,7 +28,6 @@ class RadioOptions extends Component {
   _renderRadioGroupItems() {
     const { items } = this.props;
     return items.map((item, key) => {
-      console.log('item', item);
       return (
         <RadioButton
           key={key}
