@@ -1,4 +1,4 @@
-export const questions = [
+export const PointInTimeQuestions = [
   { question: 'How many ADULTS are in your household?', type: 'radio', answers: 'number' },
   { question: 'How many CHILDREN UNDER 18?', type: 'radio', answers: 'number' },
   { question: 'What Race do you most identify with? (SELECT ONLY ONE)', type: 'radio', answers: 'ethnicity' },
