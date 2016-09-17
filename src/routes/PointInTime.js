@@ -17,7 +17,7 @@ import {
   formInputsSelector
 } from '../selectors/index.js';
 // Utilities
-import { questions } from '../utilities/questions.js';
+import { pitQuestions } from '../utilities/questions.js';
 
 class PointInTime extends Component {
 
@@ -42,7 +42,7 @@ class PointInTime extends Component {
   }
 
   _renderQuestions() {
-    return questions.map(({ question, type, answers }, key) => (
+    return pitQuestions.map(({ question, type, answers }, key) => (
       <FormQuestion
         key={key}
         question={question}
@@ -68,7 +68,7 @@ class PointInTime extends Component {
   }
 
   render() {
-    if (!questions) {
+    if (!pitQuestions) {
       return (
         <ScrollView>
           <Text>Loading...</Text>

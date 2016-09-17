@@ -121,17 +121,8 @@ export const general = [
     text: 'No'
   },
   {
-    value: 'unknown',
-    text: 'Unknown'
-  },
-  {
     value: 'refused',
     text: 'Refused'
-  },
-  {
-    value: 'other',
-    text: 'Other',
-    type: 'input'
   }
 ];
 export const education = [
