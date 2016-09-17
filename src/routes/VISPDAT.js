@@ -2,39 +2,13 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 // Actions
-import * as FormActions from '../actions/Form/index.js';
-import FormQuestion from '../components/FormQuestion.js';
+import * as FormActions from '../actions/Form';
+import FormQuestion from '../components/FormQuestion';
 import {
   ScrollView,
   Text
 } from 'react-native';
-import { vispdatQuestions } from '../utilities/questions.js';
-
-// const styles = Object.assign({}, StyleSheet.create({
-
-//   row: {
-//     flexDirection: 'row'
-//   },
-
-//   col1: {
-//     flex: 1,
-//     flexDirection: 'row',
-//     alignItems: 'center',
-//     marginLeft: 20, marginRight: 20
-//   },
-
-//   col2: {
-//     flex: 2,
-//     flexDirection: 'column',
-//     marginLeft: 20, marginRight: 20
-//   },
-
-//   titleText: {
-//     fontSize: 15,
-//     fontWeight: 'bold'
-//   }
-
-// }));
+import { vispdatQuestions } from '../utilities/questions';
 
 class Vispdat extends Component {
 
@@ -87,10 +61,6 @@ class Vispdat extends Component {
     );
   }
 }
-
-// const mapStateToProps = (state) => {
-//   return {};
-// };
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
