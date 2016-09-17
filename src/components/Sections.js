@@ -20,7 +20,7 @@ class Section extends Component {
   constructor(props) {
     super(props);
     this.onChangeText = this._onChangeText.bind(this);
-    this.renderQuestions = this._renderQustions.bind(this);
+    this.renderQuestions = this._renderQuestions.bind(this);
   }
 
   _onChangeText(value) {
@@ -29,8 +29,6 @@ class Section extends Component {
       value
     });
   }
-
-  _grabDakSectionLaddat() {}
 
   _renderQustions() {
     return this.props.questions.map(({ question, type, answers }, key) => (

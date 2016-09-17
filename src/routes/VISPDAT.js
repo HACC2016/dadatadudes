@@ -63,29 +63,3 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(null, mapDispatchToProps)(Vispdat);
-
-// const styles = Object.assign({}, StyleSheet.create({
-
-//   row: {
-//     flexDirection: 'row'
-//   },
-
-//   col1: {
-//     flex: 1,
-//     flexDirection: 'row',
-//     alignItems: 'center',
-//     marginLeft: 20, marginRight: 20
-//   },
-
-//   col2: {
-//     flex: 2,
-//     flexDirection: 'column',
-//     marginLeft: 20, marginRight: 20
-//   },
-
-//   titleText: {
-//     fontSize: 15,
-//     fontWeight: 'bold'
-//   }
-
-// }));
