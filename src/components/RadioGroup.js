@@ -1,16 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 // Compoonents
-import { View, StyleSheet } from 'react-native';
-import { MKRadioButton } from 'react-native-material-kit';
+import { ListView, InteractionManager, View, Text } from 'react-native';
+import { MKRadioButton, MKSpinner } from 'react-native-material-kit';
 import RadioButton from './RadioButton.js';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-
-const styles = Object.assign({}, StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: 'column'
-  }
-}));
 
 class RadioOptions extends Component {
   static propTypes = {
@@ -23,26 +16,44 @@ class RadioOptions extends Component {
     super(props);
     this.radioGroup = new MKRadioButton.Group();
     this.renderRadioGroupItems = this._renderRadioGroupItems.bind(this);
+    this.state = {
+      dataSource: false
+    };
   }
 
-  _renderRadioGroupItems() {
-    const { items } = this.props;
-    return items.map((item, key) => {
-      return (
-        <RadioButton
-          key={key}
-          text={item.text}
-          group={this.radioGroup}
-        />
-      );
+  componentDidMount() {
+    InteractionManager.runAfterInteractions(() => {
+      const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
+      this.setState({
+        dataSource: ds.cloneWithRows(this.props.items)
+      });
     });
   }
 
-  render() {
+  _renderRadioGroupItems(item) {
     return (
-      <View style={styles.container}>
-        {this.renderRadioGroupItems()}
-      </View>
+      <RadioButton
+        text={item.text}
+        group={this.radioGroup}
+      />
+    );
+  }
+
+  render() {
+    if (!this.state.dataSource) {
+      return (
+        <View>
+          <MKSpinner />
+        </View>
+      );
+    }
+    return (
+      <ListView
+        initialListSize={this.props.items.length}
+        dataSource={this.state.dataSource}
+        scrollRenderAhead={100}
+        renderRow={this.renderRadioGroupItems}
+      />
     );
   }
 }
