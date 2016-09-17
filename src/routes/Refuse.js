@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as FormActions from '../actions/Form/index.js';
+import * as FormActions from '../actions/Form';
 
 class Refuse extends Component {
 
