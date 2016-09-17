@@ -5,10 +5,17 @@ import { bindActionCreators } from 'redux';
 import * as FormActions from '../actions/Form/index.js';
 // Components
 import FormQuestion from '../components/FormQuestion.js';
+import Button from '../components/Button.js';
 import {
   ScrollView,
-  Text
+  Text,
+  Image,
+  StyleSheet
 } from 'react-native';
+// Selectors
+import {
+  formInputsSelector
+} from '../selectors/index.js';
 // Utilities
 import { questions } from '../utilities/questions.js';
 
@@ -16,14 +23,15 @@ class PointInTime extends Component {
 
   static propTypes = {
     addFormField: PropTypes.func,
+    formFields: PropTypes.object,
     submitForm: PropTypes.func
   }
 
   constructor(props) {
     super(props);
-    this.onSubmit = this._onSubmit.bind(this);
     this.onChangeText = this._onChangeText.bind(this);
     this.renderQuestions = this._renderQuestions.bind(this);
+    this.onPressHandler = this._onPressHandler.bind(this);
   }
 
   _onChangeText(value) {
@@ -40,14 +48,24 @@ class PointInTime extends Component {
         question={question}
         type={type}
         answers={answers}
-      />
+      >
+        <Image
+          style={{ width: 50, height: 50 }}
+          source={{ uri: 'http://placekitten.com/250/250' }}
+        />
+      </FormQuestion>
     ));
   }
 
-  _onSubmit() {
-    this.props.submitForm('good-bye');
+  /**
+   * Grabs all of the fields from the redux store and dispatches them to the database.
+   */
+  _onPressHandler() {
+    const { formFields, submitForm } = this.props;
+    console.log('formFields', formFields);
+    submitForm(formFields);
+    console.log('form submitted!');
   }
-
 
   render() {
     if (!questions) {
@@ -60,14 +78,17 @@ class PointInTime extends Component {
     return (
       <ScrollView>
         {this.renderQuestions()}
+        <Button onPressHandler={this.onPressHandler} text={"Submit"} />
       </ScrollView>
     );
   }
 }
 
-// const mapStateToProps = (state) => {
-//   return {};
-// };
+const mapStateToProps = (state) => {
+  return {
+    formFields: formInputsSelector(state)
+  };
+};
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
@@ -75,4 +96,4 @@ const mapDispatchToProps = (dispatch) => {
   }, dispatch);
 };
 
-export default connect(null, mapDispatchToProps)(PointInTime);
+export default connect(mapStateToProps, mapDispatchToProps)(PointInTime);

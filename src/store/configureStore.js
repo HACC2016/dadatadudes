@@ -5,10 +5,10 @@ import { persistStore, autoRehydrate } from 'redux-persist';
 import { AsyncStorage } from 'react-native';
 
 const createAppStore = applyMiddleware(thunk)(createStore);
-
+console.ignoredYellowBox = ['Warning: ReactNative.createElement'];
 const configureStore = (onComplete) => {
   const store = autoRehydrate()(createAppStore)(reducers);
-  persistStore(store, { storage: AsyncStorage }, onComplete);
+  const persist = persistStore(store, { storage: AsyncStorage }, onComplete);
   return store;
 };
 

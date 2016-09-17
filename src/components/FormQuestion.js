@@ -1,12 +1,13 @@
 import React, { Component, PropTypes } from 'react';
 // Components
-import { View, Text } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
 import CheckboxGroup from './CheckboxGroup';
 import RadioGroup from './RadioGroup.js';
 import DropDown from './DropDown';
 import TextField from './Login/TextFields.js';
 // Utils
 import * as options from '../utilities/answerOptions.js';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
 
 const RENDER_TYPES = {
   CHECKBOX: 'checkbox',
@@ -15,13 +16,21 @@ const RENDER_TYPES = {
   RADIO: 'radio'
 };
 
+const styles = Object.assign({}, StyleSheet.create({
+  container: {
+  }
+}));
+
 class FormQuestion extends Component {
 
   static propTypes = {
+    children: PropTypes.node,
     question: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
     answers: PropTypes.string
-  }
+  };
+
+  mixins: [PureRenderMixin];
 
   constructor(props) {
     super(props);
@@ -34,11 +43,6 @@ class FormQuestion extends Component {
 
   componentWillMount() {
     this.getAnswersCollection();
-  }
-
-  shouldComponentUpdate(nextProps) {
-    console.log('FORM QUESTION next props', nextProps);
-    return false;
   }
 
   _getAnswersCollection() {
@@ -70,8 +74,9 @@ class FormQuestion extends Component {
 
   render() {
     return (
-      <View>
+      <View style={styles.container}>
         <Text> {this.props.question} </Text>
+        {this.props.children}
         {this.renderAnswerOptions()}
       </View>
     );
