@@ -26,7 +26,6 @@ class FormQuestion extends Component {
   static propTypes = {
     children: PropTypes.node,
     question: PropTypes.string.isRequired,
-    section: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
     answers: PropTypes.string
   };

@@ -1,7 +1,6 @@
-export const questions = [
+export const pitQuestions = [
   { question: 'How many ADULTS are in your household?', type: 'radio', answers: 'number' },
   { question: 'How many CHILDREN UNDER 18?', type: 'radio', answers: 'number' },
-  { question: 'What Race do you most identify with? (SELECT ONLY ONE)', type: 'radio', answers: 'ethnicity' },
   { question: 'Have you served in the U.S. Armed Forces?', type: 'radio', answers: 'general' },
   { question: 'How long have you been continuously homeless this time?', type: 'radio', answers: 'number' },
   { question: 'How many times have you been homeless in the past 3 years?', type: 'radio', answers: 'homelessDate' },
@@ -13,6 +12,15 @@ export const questions = [
 ];
 
 export const basic = [
+  { question: 'First Name', type: 'input' },
+  { question: 'Last Name', type: 'input' },
+  { question: 'Nickname', type: 'input' },
+  { question: 'Social Security Number', type: 'input' },
+  { question: 'Gender', type: 'radio', answers: 'gender' },
+  // { question: 'Date of birth', type: 'datePicker' },
+  { question: 'Age', type: 'input' },
+  { question: 'What Race do you most identify with? (SELECT ONLY ONE)', type: 'radio', answers: 'ethnicity' },
+  { question: 'In what language do you feel best able to exprees yourself?', type: 'input' }
 
 ];
 

@@ -8,11 +8,11 @@ import {
   View,
   Text
 } from 'react-native';
-import { vispdatQuestions } from '../utilities/questions.js';
 
 class Section extends Component {
 
   static propTypes = {
+    addFormField: PropTypes.func,
     title: PropTypes.string.isRequired,
     questions: PropTypes.array.isRequired
   }
@@ -20,7 +20,7 @@ class Section extends Component {
   constructor(props) {
     super(props);
     this.onChangeText = this._onChangeText.bind(this);
-    this.rednerQuestions = this._renderQustions.bind(this);
+    this.renderQuestions = this._renderQustions.bind(this);
   }
 
   _onChangeText(value) {
@@ -33,10 +33,10 @@ class Section extends Component {
   _grabDakSectionLaddat() {}
 
   _renderQustions() {
-    return this.propos.questions.map(({ question, type, answers }, key) => (
+    return this.props.questions.map(({ question, type, answers }, key) => (
       <FormQuestion
         key={key}
-        quesion={question}
+        question={question}
         type={type}
         answers={answers}
       />
@@ -46,8 +46,8 @@ class Section extends Component {
   render() {
     return (
       <View>
-        <Text>{this.props.title}</Text>
-        {this.rednerQuestions()}
+        <Text> {this.props.title} </Text>
+        {this.renderQuestions()}
       </View>
     );
   }

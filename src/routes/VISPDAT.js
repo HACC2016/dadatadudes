@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 // Actions
 import * as FormActions from '../actions/Form/index.js';
-import { View } from 'react-native';
-import Section from '../components/Section.js';
+import { ScrollView } from 'react-native';
+import Section from '../components/Sections.js';
 import { vispdatQuestions } from '../utilities/questions.js';
 
 
@@ -19,7 +19,7 @@ class Vispdat extends Component {
     super(props);
     this.onSubmit = this._onSubmit.bind(this);
     this.onChangeText = this._onChangeText.bind(this);
-    this.renderQuestions = this._renderQuestions.bind(this);
+    this.renderSections = this._renderSections.bind(this);
   }
 
   _onChangeText(value) {
@@ -30,11 +30,11 @@ class Vispdat extends Component {
   }
 
   _renderSections() {
-    return vispdatQuestions.map(({ title, questions }, key) => (
+    return vispdatQuestions.map(({ title, items }, key) => (
       <Section
         key={key}
         title={title}
-        questions={questions}
+        questions={items}
       />
     ));
   }
@@ -45,10 +45,10 @@ class Vispdat extends Component {
 
   render() {
     return (
-      <View>
+      <ScrollView>
         {this.renderSections()}
-      </View>
-    )
+      </ScrollView>
+    );
   }
 }
 
