@@ -15,15 +15,9 @@ import {
 // Selectors
 import {
   formInputsSelector
-} from '../selectors/PointInTime/index.js';
+} from '../selectors/index.js';
 // Utilities
 import { questions } from '../utilities/questions.js';
-
-const styles = Object.assign({}, StyleSheet.create({
-  container: {
-    flex: 1
-  }
-}));
 
 class PointInTime extends Component {
 
@@ -82,9 +76,7 @@ class PointInTime extends Component {
       );
     }
     return (
-      <ScrollView
-        contentContainerStyle={styles.container}
-      >
+      <ScrollView>
         {this.renderQuestions()}
         <Button onPressHandler={this.onPressHandler} text={"Submit"} />
       </ScrollView>
