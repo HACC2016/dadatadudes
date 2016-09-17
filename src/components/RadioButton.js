@@ -23,11 +23,6 @@ class RadioButton extends Component {
     super(props);
   }
 
-  shouldComponentUpdate(nextProps) {
-    console.log('RADIO BUTTON next props', nextProps);
-    return false;
-  }
-
   render() {
     const { text, group } = this.props;
     return (

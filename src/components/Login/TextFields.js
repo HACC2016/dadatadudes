@@ -44,9 +44,6 @@ class TextField extends Component {
   render() {
     return (
       <View>
-        <Text style={styles.titleText}>
-        {this.props.question}
-        </Text>
         <MKTextField
           onChangeText={this.onChangeText}
           tintColor={MKColor.Lime}
