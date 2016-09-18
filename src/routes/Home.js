@@ -51,7 +51,8 @@ class Home extends Component {
   componentWillMount() {
     this.props.loadAnswerOptions({
       field: 'PointInTime',
-      value: PointInTimeQuestions
+      prefaceText: PointInTimeQuestions.prefaceText,
+      value: PointInTimeQuestions.questions
     });
   }
 

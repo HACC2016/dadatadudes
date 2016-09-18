@@ -8,11 +8,13 @@ import FormQuestion from '../components/FormQuestion';
 import {
   ScrollView,
   Text,
-  ListView
+  ListView,
+  View
 } from 'react-native';
 // Selectors
 import {
   formInputsSelector,
+  pointInTimePrefaceTextSelector,
   pointInTimeAnswersSelector
 } from '../selectors';
 
@@ -21,14 +23,16 @@ class PointInTime extends Component {
     addFormField: PropTypes.func,
     formFields: PropTypes.object,
     submitForm: PropTypes.func,
+    prefaceText: PropTypes.string,
     pointInTimeAnswers: PropTypes.object
   };
 
   constructor(props) {
     super(props);
     this.onChangeText = this._onChangeText.bind(this);
-    this.renderQuestions = this._renderQuestions.bind(this);
     this.onPressHandler = this._onPressHandler.bind(this);
+    this.renderQuestions = this._renderQuestions.bind(this);
+    this.renderPrefaceText = this._renderPrefaceText.bind(this);
   }
 
   _onChangeText(value) {
@@ -37,10 +41,18 @@ class PointInTime extends Component {
       value
     });
   }
+  /**
+   * Grabs all of the fields from the redux store and dispatches them to the database.
+   */
+  _onPressHandler() {
+    const { formFields, submitForm } = this.props;
+    submitForm(formFields);
+  }
 
   _renderQuestions({ question, type, answers }) {
     return (
       <FormQuestion
+        prefaceText={this.props.prefaceText}
         question={question}
         type={type}
         answers={answers}
@@ -48,12 +60,12 @@ class PointInTime extends Component {
     );
   }
 
-  /**
-   * Grabs all of the fields from the redux store and dispatches them to the database.
-   */
-  _onPressHandler() {
-    const { formFields, submitForm } = this.props;
-    submitForm(formFields);
+  _renderPrefaceText() {
+    const { prefaceText } = this.props;
+    if (!prefaceText) {
+      return null;
+    }
+    return <Text>{prefaceText}</Text>;
   }
 
   render() {
@@ -66,12 +78,15 @@ class PointInTime extends Component {
       );
     }
     return (
-      <ListView
-        initialListSize={pointInTimeAnswers.length}
-        dataSource={pointInTimeAnswers}
-        scrollRenderAhead={250}
-        renderRow={this.renderQuestions}
-      />
+      <View>
+        {this.renderPrefaceText()}
+        <ListView
+          initialListSize={pointInTimeAnswers.length}
+          dataSource={pointInTimeAnswers}
+          scrollRenderAhead={250}
+          renderRow={this.renderQuestions}
+        />
+      </View>
     );
   }
 }
@@ -80,7 +95,8 @@ class PointInTime extends Component {
 const mapStateToProps = (state) => {
   return {
     formFields: formInputsSelector(state),
-    pointInTimeAnswers: pointInTimeAnswersSelector(state)
+    pointInTimeAnswers: pointInTimeAnswersSelector(state),
+    prefaceText: pointInTimePrefaceTextSelector(state)
   };
 };
 
