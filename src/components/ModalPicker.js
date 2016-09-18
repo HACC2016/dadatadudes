@@ -10,24 +10,19 @@ class Dropdown extends Component {
 
   constructor(props) {
     super(props);
-    this.convertOptionList = this._convertOptionList.bind(this);
-
     this.state = {
-      textInputValue: ''
+      textInputValue: '',
+      data: this.props.items.map(({ text: label }, key) => {
+        return { label, key: key++ };
+      })
     };
-  }
-
-  _convertOptionList() {
-    return this.props.items.map(({ text: label }, key) => {
-      return { label, key: key++ };
-    });
   }
 
   render() {
     return (
       <View style={{ flex: 1, justifyContent: 'space-around', padding: 50 }}>
         <ModalPicker
-          data={this.convertOptionList()}
+          data={this.state.data}
           initValue="Options"
         />
       </View>

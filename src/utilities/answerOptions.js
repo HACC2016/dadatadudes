@@ -1,39 +1,115 @@
 export const district = [
   {
-    value: 'oahu-District1',
-    text: 'Oahu - District1'
+    value: 'Honolulu-01',
+    text: 'Oahu - District01'
   },
   {
-    value: 'oahu-District2',
-    text: 'Oahu - District2'
+    value: 'Honolulu-02',
+    text: 'Oahu - District02'
   },
   {
-    value: 'oahu-District3',
-    text: 'Oahu - District3'
+    value: 'Honolulu-03',
+    text: 'Oahu - District03'
   },
   {
-    value: 'oahu-District4',
-    text: 'Oahu - District4'
+    value: 'Honolulu-04',
+    text: 'Oahu - District04'
   },
   {
-    value: 'oahu-District5',
-    text: 'Oahu - District5'
+    value: 'Honolulu-05',
+    text: 'Oahu - District05'
   },
   {
-    value: 'oahu-District6',
-    text: 'Oahu - District6'
+    value: 'Honolulu-06',
+    text: 'Oahu - District06'
   },
   {
-    value: 'oahu-District7',
-    text: 'Oahu - District7'
+    value: 'Honolulu-07',
+    text: 'Oahu - District07'
   },
   {
-    value: 'oahu-District8',
-    text: 'Oahu - District8'
+    value: 'Honolulu-08',
+    text: 'Oahu - District08'
   },
   {
-    value: 'oahu-District9',
-    text: 'Oahu - District9'
+    value: 'Honolulu-09',
+    text: 'Oahu - District09'
+  },
+  {
+    value: 'Maui-01',
+    text: 'Maui - District01'
+  },
+  {
+    value: 'Maui-02',
+    text: 'Maui - District02'
+  },
+  {
+    value: 'Maui-03',
+    text: 'Maui - District03'
+  },
+  {
+    value: 'Maui-04',
+    text: 'Maui - District04'
+  },
+  {
+    value: 'Maui-05',
+    text: 'Maui - District05'
+  },
+  {
+    value: 'Maui-06',
+    text: 'Maui - District06'
+  },
+  {
+    value: 'Maui-07',
+    text: 'Maui - District07'
+  },
+  {
+    value: 'Maui-08',
+    text: 'Maui - District08'
+  },
+  {
+    value: 'Maui-09',
+    text: 'Maui - District09'
+  },
+  {
+    value: 'Hawai\'i-01',
+    text: 'Hawai\'i - District01'
+  },
+  {
+    value: 'Hawai\'i-02',
+    text: 'Hawai\'i - District02'
+  },
+  {
+    value: 'Hawai\'i-03',
+    text: 'Hawai\'i - District03'
+  },
+  {
+    value: 'Hawai\'i-04',
+    text: 'Hawai\'i - District04'
+  },
+  {
+    value: 'Hawai\'i-05',
+    text: 'Hawai\'i - District05'
+  },
+  {
+    value: 'Hawai\'i-06',
+    text: 'Hawai\'i - District06'
+  },
+  {
+    value: 'Hawai\'i-07',
+    text: 'Hawai\'i - District07'
+  },
+  {
+    value: 'Hawai\'i-08',
+    text: 'Hawai\'i - District08'
+  },
+  {
+    value: 'Hawai\'i-09',
+    text: 'Hawai\'i - District09'
+  },
+  {
+    value: 'Kaua\'i-01',
+    text: 'Kaua\'i - District01'
   }
 ];
 export const ethnicity = [

@@ -1,26 +1,28 @@
 import React, { Component, PropTypes } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-// Actions
-import * as FormActions from '../actions/Form/index.js';
-import FormQuestion from '../components/FormQuestion.js';
+import FormQuestion from '../components/FormQuestion';
 import {
   View,
-  Text
+  Text,
+  ListView
 } from 'react-native';
+// Selectors
+import {
+  processQuestions
+} from '../utilities/helpers';
 
 class Section extends Component {
 
   static propTypes = {
     addFormField: PropTypes.func,
-    title: PropTypes.string.isRequired,
-    questions: PropTypes.array.isRequired
-  }
+    items: PropTypes.object,
+    title: PropTypes.string.isRequired
+  };
 
   constructor(props) {
     super(props);
     this.onChangeText = this._onChangeText.bind(this);
     this.renderQuestions = this._renderQuestions.bind(this);
+    this.renderPrefaceText = this._renderPrefaceText.bind(this);
   }
 
   _onChangeText(value) {
@@ -30,22 +32,36 @@ class Section extends Component {
     });
   }
 
-  _renderQuestions() {
-    return this.props.questions.map(({ question, type, answers }, key) => (
+  _renderQuestions({ question, type, answers }) {
+    return (
       <FormQuestion
-        key={key}
         question={question}
         type={type}
         answers={answers}
       />
-    ));
+    );
+  }
+
+  _renderPrefaceText() {
+    const prefaceText = this.props.items.prefaceText;
+    if (!prefaceText) {
+      return null;
+    }
+    return <Text>{prefaceText}</Text>;
   }
 
   render() {
+    const { title } = this.props;
     return (
       <View>
-        <Text> {this.props.title} </Text>
-        {this.renderQuestions()}
+        <Text> {title} </Text>
+        {this.renderPrefaceText()}
+        <ListView
+          initialListSize={1}
+          dataSource={processQuestions(this.props.items.questions)}
+          scrollRenderAhead={250}
+          renderRow={this.renderQuestions}
+        />
       </View>
     );
   }

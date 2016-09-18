@@ -1,5 +1,4 @@
 import { actions } from '../../actions/Form/index.js';
-
 /**
  * Dynamically adds form fields to the redux store.
  * This will be necessary when we want to submit dynamic fields
