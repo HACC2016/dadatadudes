@@ -1,9 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-// Actions
-import * as FormActions from '../actions/Form/index.js';
-import FormQuestion from '../components/FormQuestion.js';
+import FormQuestion from '../components/FormQuestion';
 import {
   View,
   Text
