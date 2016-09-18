@@ -4,8 +4,7 @@ import { bindActionCreators } from 'redux';
 // Actions
 import * as FormActions from '../actions/Form';
 import {
-  ScrollView,
-  Text
+  ScrollView
 } from 'react-native';
 import { VispdatQuestions } from '../utilities/questions';
 import Section from '../components/Sections.js';

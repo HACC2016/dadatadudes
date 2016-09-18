@@ -3,7 +3,7 @@ import React, { Component, PropTypes } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import CheckboxGroup from './CheckboxGroup';
 import RadioGroup from './RadioGroup.js';
-import DropDown from './DropDown';
+import DropDown from './ModalPicker.js';
 import TextField from './Login/TextFields.js';
 // Utils
 import * as options from '../utilities/answerOptions.js';

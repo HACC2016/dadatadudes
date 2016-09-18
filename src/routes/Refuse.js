@@ -1,47 +1,58 @@
 import React, { Component, PropTypes } from 'react';
-import {
-  View,
-  Image,
-  Text,
-  TouchableHighlight
-} from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+// Actions
 import * as FormActions from '../actions/Form';
+import FormQuestion from '../components/FormQuestion';
+import {
+  ScrollView
+} from 'react-native';
+import { RefusedQuestions } from '../utilities/questions';
+import Section from '../components/Sections.js';
 
 class Refuse extends Component {
 
   static propTypes = {
+    addFormField: PropTypes.func,
     submitForm: PropTypes.func
   }
 
   constructor(props) {
     super(props);
     this.onSubmit = this._onSubmit.bind(this);
+    this.onChangeText = this._onChangeText.bind(this);
+    this.renderSections = this._renderSections.bind(this);
+  }
+
+  _onChangeText(value) {
+    this.props.addFormField({
+      field: 'username',
+      value
+    });
+  }
+
+  _renderSections() {
+    return RefusedQuestions.map(({ title, items }, key) => (
+      <Section
+        key={key}
+        title={title}
+        questions={items}
+      />
+    ));
   }
 
   _onSubmit() {
-    this.props.submitForm('thank you');
+    this.props.submitForm('hello');
   }
 
   render() {
     return (
-      <TouchableHighlight onPress={this.onSubmit}>
-        <View>
-          <Text> Damn kid </Text>
-          <Image
-            style={{ width: 50, height: 50 }}
-            source={{ uri: 'https://avatars2.githubusercontent.com/u/11851392?v=3&s=400' }}
-          />
-        </View>
-      </TouchableHighlight>
+      <ScrollView>
+        {this.renderSections()}
+      </ScrollView>
     );
   }
 }
-
-const mapStateToProps = (state) => {
-  return {};
-};
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
@@ -49,4 +60,4 @@ const mapDispatchToProps = (dispatch) => {
   }, dispatch);
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Refuse);
+export default connect(null, mapDispatchToProps)(Refuse);

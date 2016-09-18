@@ -1,3 +1,41 @@
+export const district = [
+  {
+    value: 'oahu-District1',
+    text: 'Oahu - District1'
+  },
+  {
+    value: 'oahu-District2',
+    text: 'Oahu - District2'
+  },
+  {
+    value: 'oahu-District3',
+    text: 'Oahu - District3'
+  },
+  {
+    value: 'oahu-District4',
+    text: 'Oahu - District4'
+  },
+  {
+    value: 'oahu-District5',
+    text: 'Oahu - District5'
+  },
+  {
+    value: 'oahu-District6',
+    text: 'Oahu - District6'
+  },
+  {
+    value: 'oahu-District7',
+    text: 'Oahu - District7'
+  },
+  {
+    value: 'oahu-District8',
+    text: 'Oahu - District8'
+  },
+  {
+    value: 'oahu-District9',
+    text: 'Oahu - District9'
+  }
+];
 export const ethnicity = [
   {
     value: 'hawaiian',
