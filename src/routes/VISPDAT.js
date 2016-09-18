@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 // Actions
 import * as FormActions from '../actions/Form';
-import FormQuestion from '../components/FormQuestion';
 import {
   ScrollView
 } from 'react-native';

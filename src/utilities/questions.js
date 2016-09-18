@@ -28,7 +28,6 @@ export const basic = [
   { question: 'Nickname', type: 'input' },
   { question: 'Social Security Number', type: 'input' },
   { question: 'Gender', type: 'radio', answers: 'gender' },
-  // { question: 'Date of birth', type: 'datePicker' },
   { question: 'Age', type: 'input' },
   { question: 'What Race do you most identify with? (SELECT ONLY ONE)', type: 'radio', answers: 'ethnicity' },
   { question: 'In what language do you feel best able to exprees yourself?', type: 'input' },
