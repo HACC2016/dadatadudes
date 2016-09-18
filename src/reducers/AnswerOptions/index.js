@@ -8,11 +8,14 @@ import {
  * This will be necessary when we want to submit dynamic fields
  * to the server.
  */
-const loadAnswerOptions = (state, { field, value }) => {
+const loadAnswerOptions = (state, { field, value, prefaceText }) => {
   const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
   return {
     ...state,
-    [ field ]: ds.cloneWithRows(value)
+    [ field ]: {
+      questions: ds.cloneWithRows(value),
+      prefaceText
+    }
   };
 };
 
