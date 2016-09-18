@@ -1,5 +1,5 @@
 export const PointInTimeQuestions = {
-  prefaceText: 'In the past year, how much times have you...',
+  prefaceText: '',
   questions: [
     { question: 'How many ADULTS are in your household?', type: 'radio', answers: 'number' },
     { question: 'How many CHILDREN UNDER 18?', type: 'radio', answers: 'number' },
@@ -14,7 +14,7 @@ export const PointInTimeQuestions = {
   ]
 };
 
-export const basic = {
+export const Basic = {
   prefaceText: '',
   questions: [
     { question: 'First Name', type: 'input' },
@@ -29,7 +29,7 @@ export const basic = {
   ]
 };
 
-export const vispdatHousingHistory = {
+export const VispdatHousingHistory = {
   prefaceText: '',
   questions: [
     { question: 'Where do you sleep most frequently?', type: 'checkbox', answers: 'sleeping' },
@@ -38,8 +38,8 @@ export const vispdatHousingHistory = {
   ]
 };
 
-export const vispdatRisks = {
-  prefaceText: '',
+export const VispdatRisks = {
+  prefaceText: 'In the past six months, how many times have you...',
   questions: [
     { question: 'Received health care at an emergency department / room?', type: 'dropdown', answers: 'number' },
     { question: 'Taken an ambulance to the hospital?', type: 'dropdown', answers: 'number' },
@@ -55,7 +55,7 @@ export const vispdatRisks = {
   ]
 };
 
-export const vispdatSocialization = {
+export const VispdatSocialization = {
   prefaceText: '',
   questions: [
     { question: 'Is there any person, past landlord, business, bookie, dealer, or government group like the IRS that things you owe them money?', type: 'radio', answers: 'general' },
@@ -66,7 +66,7 @@ export const vispdatSocialization = {
   ]
 };
 
-export const vispdatWellness = {
+export const VispdatWellness = {
   prefaceText: '',
   questions: [
     { question: 'Have you ever had to leave an apartment, shelter program, or other place you were staying because of your physical health?', type: 'radio', answers: 'general' },
@@ -87,7 +87,7 @@ export const vispdatWellness = {
   ]
 };
 
-export const vispdatFollowUp = {
+export const VispdatFollowUp = {
   prefaceText: '',
   questions: [
     { question: 'On a regular day, where is it easiest to find you and what time of day is easiest to do so?', type: 'input' },
@@ -96,12 +96,21 @@ export const vispdatFollowUp = {
   ]
 };
 
-export const vispdatQuestions = [
-  { title: 'Basic Information', items: basic },
-  { title: 'History of Housing and Homelessness', items: vispdatHousingHistory },
-  { title: 'Risks', items: vispdatRisks },
-  { title: 'Socialization & Daily Functioning', items: vispdatSocialization },
-  { title: 'Wellness', items: vispdatWellness },
-  { title: 'Follow-Up Questions', items: vispdatFollowUp }
+export const VispdatQuestions = [
+  { title: 'Basic Information', items: Basic },
+  { title: 'History of Housing and Homelessness', items: VispdatHousingHistory },
+  { title: 'Risks', items: VispdatRisks },
+  { title: 'Socialization & Daily Functioning', items: VispdatSocialization },
+  { title: 'Wellness', items: VispdatWellness },
+  { title: 'Follow-Up Questions', items: VispdatFollowUp }
 ];
 
+export default {
+  PointInTimeQuestions,
+  Basic,
+  VispdatHousingHistory,
+  VispdatRisks,
+  VispdatSocialization,
+  VispdatWellness,
+  VispdatFollowUp
+};
