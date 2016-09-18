@@ -1,8 +1,14 @@
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import React, { Component, PropTypes } from 'react';
 import FormQuestion from '../components/FormQuestion';
 import {
+  vispdatQuestionsSelector
+} from '../selectors';
+import {
   View,
-  Text
+  Text,
+  ListView
 } from 'react-native';
 
 class Section extends Component {
@@ -10,7 +16,8 @@ class Section extends Component {
   static propTypes = {
     addFormField: PropTypes.func,
     title: PropTypes.string.isRequired,
-    questions: PropTypes.array.isRequired
+    questions: PropTypes.array.isRequired,
+    prefaceText: PropTypes.string
   }
 
   constructor(props) {
@@ -26,7 +33,7 @@ class Section extends Component {
     });
   }
 
-  _renderQustions() {
+  _renderQuestions() {
     return this.props.questions.map(({ question, type, answers }, key) => (
       <FormQuestion
         key={key}
@@ -37,14 +44,29 @@ class Section extends Component {
     ));
   }
 
+  _renderPrefaceText() {
+    const { prefaceText } = this.props;
+    if (!prefaceText) {
+      return null;
+    }
+    return <Text>{prefaceText}</Text>;
+  }
+
   render() {
     return (
       <View>
         <Text> {this.props.title} </Text>
+        {this.renderPrefaceText()}
         {this.renderQuestions()}
       </View>
     );
   }
 }
 
-export default Section;
+const mapStateToProps = (state) => {
+  return {
+    vispdatQuestions: vispdatQuestionsSelector(state)
+  };
+};
+
+export default connect(mapStateToProps)(Section);
