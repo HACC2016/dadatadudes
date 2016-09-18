@@ -1,13 +1,8 @@
 import React, { Component, PropTypes } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 // Actions
 import {
   Actions
 } from 'react-native-router-flux';
-import {
-  loadAnswerOptions
-} from '../actions/AnswerOptions';
 import {
   Image,
   StyleSheet,
@@ -15,8 +10,6 @@ import {
   TouchableHighlight,
   View
 } from 'react-native';
-// Utilities
-import { PointInTimeQuestions } from '../utilities/questions';
 
 const styles = StyleSheet.create({
   base: {
@@ -46,14 +39,6 @@ class Home extends Component {
 
   constructor(props) {
     super(props);
-  }
-
-  componentWillMount() {
-    this.props.loadAnswerOptions({
-      field: 'PointInTime',
-      prefaceText: PointInTimeQuestions.prefaceText,
-      value: PointInTimeQuestions.questions
-    });
   }
 
   render() {
@@ -91,10 +76,4 @@ class Home extends Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({
-    loadAnswerOptions
-  }, dispatch);
-};
-
-export default connect(null, mapDispatchToProps)(Home);
+export default Home;
