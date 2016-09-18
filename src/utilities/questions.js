@@ -11,17 +11,27 @@ export const PointInTimeQuestions = [
   { question: 'Do you have a physical, developmental, or other disability that limits your ability to work or perform activities of daily living?', type: 'radio', answers: 'general' }
 ];
 
+export const RefusedInfo = [
+  { question: 'Gender', type: 'radio', answers: 'gender' },
+  { question: 'Age Range', type: 'input' },
+  { question: 'What Race do you think this person might be?', type: 'radio', answers: 'ethnicity' },
+  { question: 'What district are they current living in?', type: 'dropdown', answers: 'district' }
+];
+
+export const RefusedQuestions = [
+  { title: 'Description of Person if they Refused to be Surveyed', items: RefusedInfo }
+];
+
 export const basic = [
   { question: 'First Name', type: 'input' },
   { question: 'Last Name', type: 'input' },
   { question: 'Nickname', type: 'input' },
   { question: 'Social Security Number', type: 'input' },
   { question: 'Gender', type: 'radio', answers: 'gender' },
-  // { question: 'Date of birth', type: 'datePicker' },
   { question: 'Age', type: 'input' },
   { question: 'What Race do you most identify with? (SELECT ONLY ONE)', type: 'radio', answers: 'ethnicity' },
-  { question: 'In what language do you feel best able to exprees yourself?', type: 'input' }
-
+  { question: 'In what language do you feel best able to exprees yourself?', type: 'input' },
+  { question: 'What district are you currently living in?', type: 'dropdown', answers: 'district' }
 ];
 
 export const vispdatHousingHistory = [
