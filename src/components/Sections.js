@@ -30,7 +30,7 @@ class Section extends Component {
     });
   }
 
-  _renderQustions() {
+  _renderQuestions() {
     return this.props.questions.map(({ question, type, answers }, key) => (
       <FormQuestion
         key={key}
