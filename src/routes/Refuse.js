@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 // Actions
 import * as FormActions from '../actions/Form';
-import FormQuestion from '../components/FormQuestion';
 import {
   ScrollView
 } from 'react-native';
@@ -20,15 +19,7 @@ class Refuse extends Component {
   constructor(props) {
     super(props);
     this.onSubmit = this._onSubmit.bind(this);
-    this.onChangeText = this._onChangeText.bind(this);
     this.renderSections = this._renderSections.bind(this);
-  }
-
-  _onChangeText(value) {
-    this.props.addFormField({
-      field: 'username',
-      value
-    });
   }
 
   _renderSections() {
@@ -36,7 +27,7 @@ class Refuse extends Component {
       <Section
         key={key}
         title={title}
-        questions={items}
+        items={items}
       />
     ));
   }
