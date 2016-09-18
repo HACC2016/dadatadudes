@@ -1,4 +1,4 @@
-export const pitQuestions = [
+export const PointInTimeQuestions = [
   { question: 'How many ADULTS are in your household?', type: 'radio', answers: 'number' },
   { question: 'How many CHILDREN UNDER 18?', type: 'radio', answers: 'number' },
   { question: 'Have you served in the U.S. Armed Forces?', type: 'radio', answers: 'general' },

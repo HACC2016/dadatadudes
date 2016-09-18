@@ -1,9 +1,9 @@
 import React from 'react';
-import Home from './Home.js';
-import Login from './Login.js';
-import PointInTime from './PointInTime.js';
-import Vispdat from './VISPDAT.js';
-import Refuse from './Refuse.js';
+import Home from './Home';
+import Login from './Login';
+import PointInTime from './PointInTime';
+import Vispdat from './VISPDAT';
+import Refuse from './Refuse';
 import {
   Actions,
   Scene,

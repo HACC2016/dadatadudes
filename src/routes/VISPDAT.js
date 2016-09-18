@@ -2,11 +2,14 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 // Actions
-import * as FormActions from '../actions/Form/index.js';
-import { ScrollView } from 'react-native';
+import * as FormActions from '../actions/Form';
+import FormQuestion from '../components/FormQuestion';
+import {
+  ScrollView,
+  Text
+} from 'react-native';
+import { vispdatQuestions } from '../utilities/questions';
 import Section from '../components/Sections.js';
-import { vispdatQuestions } from '../utilities/questions.js';
-
 
 class Vispdat extends Component {
 
@@ -51,10 +54,6 @@ class Vispdat extends Component {
     );
   }
 }
-
-// const mapStateToProps = (state) => {
-//   return {};
-// };
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({

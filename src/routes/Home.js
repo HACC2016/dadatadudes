@@ -1,4 +1,13 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+// Actions
+import {
+  Actions
+} from 'react-native-router-flux';
+import {
+  loadAnswerOptions
+} from '../actions/AnswerOptions';
 import {
   Image,
   StyleSheet,
@@ -6,9 +15,8 @@ import {
   TouchableHighlight,
   View
 } from 'react-native';
-import {
-  Actions
-} from 'react-native-router-flux';
+// Utilities
+import { PointInTimeQuestions } from '../utilities/questions';
 
 const styles = StyleSheet.create({
   base: {
@@ -32,6 +40,20 @@ const styles = StyleSheet.create({
 });
 
 class Home extends Component {
+  static propTypes = {
+    loadAnswerOptions: PropTypes.func
+  };
+
+  constructor(props) {
+    super(props);
+  }
+
+  componentWillMount() {
+    this.props.loadAnswerOptions({
+      field: 'PointInTime',
+      value: PointInTimeQuestions
+    });
+  }
 
   render() {
     return (
@@ -41,7 +63,7 @@ class Home extends Component {
             <Text style={styles.centerText}> Point In Time </Text>
             <Image
               style={styles.image}
-              source={{ uri:'https://avatars2.githubusercontent.com/u/11851392?v=3&s=400' }}
+              source={{ uri: 'https://avatars2.githubusercontent.com/u/11851392?v=3&s=400' }}
             />
           </View>
         </TouchableHighlight>
@@ -50,7 +72,7 @@ class Home extends Component {
             <Text style={styles.centerText}> VISPDAT </Text>
             <Image
               style={styles.image}
-              source={{ uri:'https://avatars3.githubusercontent.com/u/11274285?v=3&s=400' }}
+              source={{ uri: 'https://avatars3.githubusercontent.com/u/11274285?v=3&s=400' }}
             />
           </View>
         </TouchableHighlight>
@@ -59,7 +81,7 @@ class Home extends Component {
             <Text style={styles.centerText}> Refuse </Text>
             <Image
               style={styles.image}
-              source={{ uri:'https://avatars0.githubusercontent.com/u/13359917?v=3&s=400' }}
+              source={{ uri: 'https://avatars0.githubusercontent.com/u/13359917?v=3&s=400' }}
             />
           </View>
         </TouchableHighlight>
@@ -67,4 +89,11 @@ class Home extends Component {
     );
   }
 }
-export default Home;
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+    loadAnswerOptions
+  }, dispatch);
+};
+
+export default connect(null, mapDispatchToProps)(Home);

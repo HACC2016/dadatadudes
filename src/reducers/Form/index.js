@@ -5,20 +5,19 @@ import { actions } from '../../actions/Form/index.js';
  * This will be necessary when we want to submit dynamic fields
  * to the server.
  */
-const addFormField = (state, data) => {
-  console.log('state', state);
-  const { field, value } = data;
+const addFormField = (state, { field, value }) => {
   const newState = {
     ...state,
     [ field ]: value
   };
-  /**
-   * Helps with Logging
-   * Instantites newState to a vriable
-   * so we can log the item before changing state.
-   */
-  console.log('newState', newState);
   return newState;
+};
+
+const loadFormAnswers = (state, { field, value }) => {
+  return {
+    ...state,
+    [ field ]: value
+  };
 };
 
 const submitForm = (state, data) => {
@@ -26,12 +25,14 @@ const submitForm = (state, data) => {
   return state;
 };
 
-export default function reducer(state = {}, action = {}) {
-  switch (action.type) {
+export default function reducer(state = {}, { data, type }) {
+  switch (type) {
   case actions.ADD_FORM_FIELD:
-    return addFormField(state, action.data);
+    return addFormField(state, data);
+  case actions.LOAD_FORM_ANSWERS:
+    return loadFormAnswers(state, data);
   case actions.SUBMIT_FORM:
-    return submitForm(state, action.data);
+    return submitForm(state, data);
   default:
     return state;
   }
