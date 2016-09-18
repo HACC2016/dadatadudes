@@ -6,7 +6,7 @@ import { AsyncStorage } from 'react-native';
 const createAppStore = applyMiddleware(thunk)(createStore);
 console.disableYellowBox = true;
 const configureStore = (onComplete) => {
-  const store = autoRehydrate()(createAppStore)(reducers);
+  const store = (createAppStore)(reducers);
   const persist = persistStore(store, { storage: AsyncStorage }, onComplete);
   return store;
 };

@@ -3,20 +3,19 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 // Actions
 import * as FormActions from '../actions/Form';
-import FormQuestion from '../components/FormQuestion';
 import {
   ScrollView,
   Text
 } from 'react-native';
-import { vispdatQuestions } from '../utilities/questions';
+import { VispdatQuestions } from '../utilities/questions';
 import Section from '../components/Sections.js';
 
 class Vispdat extends Component {
-
   static propTypes = {
     addFormField: PropTypes.func,
+    prefaceText: PropTypes.string,
     submitForm: PropTypes.func
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -32,18 +31,26 @@ class Vispdat extends Component {
     });
   }
 
+  _onSubmit() {
+    this.props.submitForm('hello');
+  }
+
+  _renderPrefaceText() {
+    const { prefaceText } = this.props;
+    if (!prefaceText) {
+      return null;
+    }
+    return <Text>{prefaceText}</Text>;
+  }
+
   _renderSections() {
-    return vispdatQuestions.map(({ title, items }, key) => (
+    return VispdatQuestions.map(({ title, items }, key) => (
       <Section
         key={key}
         title={title}
-        questions={items}
+        items={items}
       />
     ));
-  }
-
-  _onSubmit() {
-    this.props.submitForm('hello');
   }
 
   render() {
