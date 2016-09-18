@@ -7,7 +7,7 @@ import {
   ScrollView
 } from 'react-native';
 import { VispdatQuestions } from '../utilities/questions';
-import Section from '../components/Sections.js';
+import Carousel from '../components/Carousel.js';
 
 class Vispdat extends Component {
   static propTypes = {
@@ -43,13 +43,11 @@ class Vispdat extends Component {
   }
 
   _renderSections() {
-    return VispdatQuestions.map(({ title, items }, key) => (
-      <Section
-        key={key}
-        title={title}
-        items={items}
-      />
-    ));
+    <Carousel
+      key={key}
+      title={title}
+      items={items}
+    />;
   }
 
   render() {
@@ -61,10 +59,4 @@ class Vispdat extends Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({
-    ...FormActions
-  }, dispatch);
-};
-
-export default connect(null, mapDispatchToProps)(Vispdat);
+export default Vispdat;

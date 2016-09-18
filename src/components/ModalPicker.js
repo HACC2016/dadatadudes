@@ -1,6 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import ModalPicker from 'react-native-modal-picker';
-import { View } from 'react-native';
+import {
+  View,
+  InteractionManager
+} from 'react-native';
 
 class Dropdown extends Component {
 
@@ -12,10 +15,20 @@ class Dropdown extends Component {
     super(props);
     this.state = {
       textInputValue: '',
-      data: this.props.items.map(({ text: label }, key) => {
-        return { label, key: key++ };
-      })
+      data: []
     };
+  }
+
+  componentDidMount() {
+    InteractionManager.runAfterInteractions(() => {
+      if (this.props.items) {
+        this.setState({
+          data: this.props.items.map(({ text: label }, key) => {
+            return { label, key: key++ };
+          })
+        });
+      }
+    });
   }
 
   render() {
