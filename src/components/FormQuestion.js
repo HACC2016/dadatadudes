@@ -22,12 +22,11 @@ const styles = Object.assign({}, StyleSheet.create({
 }));
 
 class FormQuestion extends Component {
-
   static propTypes = {
+    answers: PropTypes.string,
     children: PropTypes.node,
     question: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-    answers: PropTypes.string
+    type: PropTypes.string.isRequired
   };
 
   mixins: [PureRenderMixin];
