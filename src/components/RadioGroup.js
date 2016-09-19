@@ -1,12 +1,33 @@
 import React, { Component, PropTypes } from 'react';
 // Compoonents
-import { ListView, InteractionManager, View } from 'react-native';
+import {
+  ListView,
+  InteractionManager,
+  View,
+  StyleSheet
+} from 'react-native';
 import { MKRadioButton, MKSpinner } from 'react-native-material-kit';
 import RadioButton from './RadioButton.js';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import {
   processQuestions
 } from '../utilities/helpers';
+
+const styles = Object.assign({}, StyleSheet.create({
+
+  listView: {
+    flex: 1,
+    flexDirection: 'row',
+  },
+  row: {
+    flexDirection: 'row'
+  },
+  col: {
+    flex: 0,
+    flexDirection: 'column'
+  }
+
+}));
 
 class RadioOptions extends Component {
   static propTypes = {
@@ -34,10 +55,12 @@ class RadioOptions extends Component {
 
   _renderRadioGroupItems(item) {
     return (
-      <RadioButton
-        text={item.text}
-        group={this.radioGroup}
-      />
+      <View style={styles.col}>
+        <RadioButton
+          text={item.text}
+          group={this.radioGroup}
+        />
+      </View>
     );
   }
 
@@ -55,6 +78,8 @@ class RadioOptions extends Component {
         dataSource={this.state.dataSource}
         scrollRenderAhead={100}
         renderRow={this.renderRadioGroupItems}
+        horizontal={true}
+        style={styles.listView}
       />
     );
   }

@@ -26,7 +26,7 @@ export const Basic = {
     { question: 'Age', type: 'input' },
     { question: 'What Race do you most identify with? (SELECT ONLY ONE)', type: 'radio', answers: 'ethnicity' },
     { question: 'In what language do you feel best able to exprees yourself?', type: 'input' },
-    { question: 'What district are you currently living in?', type: 'dropdown', answers: '  district' }
+    { question: 'What district are you currently living in?', type: 'dropdown', answers: 'district' }
   ]
 };
 
