@@ -1,58 +1,62 @@
 import React, { Component, PropTypes } from 'react';
 import {
- View,
- InteractionManager
+ ScrollView
 } from 'react-native';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+// Components
 import CarouselSwitch from './CarouselSwitch.js';
-import Section from '../components/Sections.js';
-import { VispdatQuestions } from '../utilities/questions';
-import find from 'lodash/find';
-// Actions
-import * as SectionActions from '../actions/Section/';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+import Section from './Sections';
 
 class Carousel extends Component {
-
   static propTypes = {
-    toggleSection: PropTypes.func.isRequired,
-    title: PropTypes.string.isRequired
+    items: PropTypes.array.isRequired
   }
+
+  mixins: [PureRenderMixin];
 
   constructor(props) {
     super(props);
-
     this.state = {
-      currentTemplate: find(VispdatQuestions, ({ title }) => {
-        return title === this.props.title;
-      })
+      index: 0,
+      currentTemplate: this.props.items
     };
+    this.backPage = this._backPage.bind(this);
+    this.nextPage = this._nextPage.bind(this);
+  }
+
+  _backPage() {
+    const index = this.state.index - 1;
+    this.setState({
+      index
+    });
+  }
+
+  _nextPage() {
+    const index = this.state.index + 1;
+    this.setState({
+      index
+    });
   }
 
   render() {
+    console.log('this.state.currentTemplate[ this.state.index ]', this.state.currentTemplate[ this.state.index ]);
     return (
-      <View>
+      <ScrollView>
         <Section
-          title={this.state.currentTemplate.title}
-          items={this.state.currentTemplate.items}
+          items={this.state.currentTemplate[ this.state.index ].items}
+          title={this.state.currentTemplate[ this.state.index ].title}
         />
         <CarouselSwitch
           image={'../assets/Left.png'}
-          onClick={this.props.toggleSection}
+          onClickHandler={this.backPage}
         />
         <CarouselSwitch
-          image={'../assets/Right.png'}
-          onClick={this.props.toggleSection}
+          image={'../assets/right.png'}
+          onClickHandler={this.nextPage}
         />
-      </View>
+      </ScrollView>
     );
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({
-    ...SectionActions
-  }, dispatch);
-};
-
-export default connect(null, mapDispatchToProps)(Carousel);
+export default Carousel;

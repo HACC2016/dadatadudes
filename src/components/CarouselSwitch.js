@@ -1,15 +1,19 @@
 import React, { Component, PropTypes } from 'react';
 import {
   TouchableHighlight,
-  Image
+  Image,
+  Text
 } from 'react-native';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
 
 class CarouselSwitch extends Component {
 
   static propTypes = {
     image: PropTypes.string.isRequired,
-    toggleSection: PropTypes.func.isRequired
+    onClickHandler: PropTypes.func
   };
+
+  mixins: [PureRenderMixin];
 
   constructor(props) {
     super(props);
@@ -17,9 +21,10 @@ class CarouselSwitch extends Component {
 
   render() {
     return (
-      <TouchableHighlight onPress={this.props.toggleSection}>
+      <TouchableHighlight onPress={this.props.onClickHandler}>
         <Image
-          source={this.props.image}
+          style={{ width: 50, height: 50 }}
+          source={{ uri: 'http://placekitten.com/250/250' }}
         />
       </TouchableHighlight>
     );

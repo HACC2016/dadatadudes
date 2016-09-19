@@ -21,19 +21,19 @@ export const Basic = {
     { question: 'Last Name', type: 'input' },
     { question: 'Nickname', type: 'input' },
     { question: 'Social Security Number', type: 'input' },
-    { question: 'Gender', type: 'radio', answers: 'gender' },
+    { question: 'Gender', type: 'checkbox', answers: 'gender' },
     // { question: 'Date of birth', type: 'datePicker' },
     { question: 'Age', type: 'input' },
     { question: 'What Race do you most identify with? (SELECT ONLY ONE)', type: 'radio', answers: 'ethnicity' },
     { question: 'In what language do you feel best able to exprees yourself?', type: 'input' },
-    { question: 'What district are you currently living in?', type: 'dropdown', answers: '  district' }
+    { question: 'What district are you currently living in?', type: 'dropdown', answers: 'district' }
   ]
 };
 
 export const VispdatHousingHistory = {
   prefaceText: '',
   questions: [
-    { question: 'Where do you sleep most frequently?', type: 'checkbox', answers: 'sleeping' },
+    { question: 'Where do you sleep most frequently', type: 'checkbox', answers: 'sleeping' },
     { question: 'How long has it been since you lived in permanent stable housing?', type: 'dropdown', answers: 'number' },
     { question: 'In the last three years, how many times have you been homeless?', type: 'dropdown', answers: 'number' }
   ]

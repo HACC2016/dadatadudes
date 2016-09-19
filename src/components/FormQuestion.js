@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 // Components
-import { View, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet, Text, InteractionManager } from 'react-native';
 import CheckboxGroup from './CheckboxGroup';
 import RadioGroup from './RadioGroup.js';
 import DropDown from './ModalPicker.js';
@@ -34,21 +34,9 @@ class FormQuestion extends Component {
   constructor(props) {
     super(props);
     this.renderAnswerOptions = this._renderAnswerOptions.bind(this);
-    this.getAnswersCollection = this._getAnswersCollection.bind(this);
     this.state = {
-      items: []
+      items: options[ this.props.answers ]
     };
-  }
-
-  componentWillMount() {
-    this.getAnswersCollection();
-  }
-
-  _getAnswersCollection() {
-    const { answers } = this.props;
-    return this.setState({
-      items: options[ answers ]
-    });
   }
 
   _renderAnswerOptions() {
@@ -75,7 +63,6 @@ class FormQuestion extends Component {
     return (
       <View style={styles.container}>
         <Text> {this.props.question} </Text>
-        {this.props.children}
         {this.renderAnswerOptions()}
       </View>
     );

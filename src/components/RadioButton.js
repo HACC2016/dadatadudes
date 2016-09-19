@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { MKRadioButton, MKColor } from 'react-native-material-kit';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
 
 const styles = Object.assign({}, StyleSheet.create({
 
@@ -18,6 +19,8 @@ class RadioButton extends Component {
     group: PropTypes.object.isRequired,
     text: PropTypes.string.isRequired
   }
+
+  mixins: [PureRenderMixin];
 
   constructor(props) {
     super(props);

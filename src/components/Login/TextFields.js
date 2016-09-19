@@ -24,7 +24,7 @@ class TextField extends Component {
   static propTypes = {
     question: PropTypes.string,
     addFormField: PropTypes.func.isRequired,
-    field: PropTypes.string.isRequired,
+    field: PropTypes.string,
     submitForm: PropTypes.func.isRequired
   }
 

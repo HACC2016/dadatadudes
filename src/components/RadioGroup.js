@@ -25,11 +25,13 @@ class RadioOptions extends Component {
   }
 
   componentDidMount() {
-    InteractionManager.runAfterInteractions(() => {
-      this.setState({
-        dataSource: processQuestions(this.props.items)
+    if (this.props.items) {
+      InteractionManager.runAfterInteractions(() => {
+        this.setState({
+          dataSource: processQuestions(this.props.items)
+        });
       });
-    });
+    }
   }
 
   _renderRadioGroupItems(item) {

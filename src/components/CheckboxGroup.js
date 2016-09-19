@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 // Compoonents
+import { MKSpinner } from 'react-native-material-kit';
 import { View, StyleSheet } from 'react-native';
 import Checkbox from './Checkbox.js';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
@@ -37,6 +38,13 @@ class CheckboxGroup extends Component {
   }
 
   render() {
+    if (!this.props.items) {
+      return (
+        <View>
+          <MKSpinner />
+        </View>
+      );
+    }
     return (
       <View style={styles.container}>
         {this.renderCheckboxItems()}

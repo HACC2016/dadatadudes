@@ -29,8 +29,8 @@ export default Actions.create(
     <Scene key="login" component={Login} hideNavBar={hideNavBar} />
     <Scene key="home" type={ActionConst.RESET} component={Home} hideNavBar={hideNavBar} />
     <Scene key="pointInTime" component={PointInTime} hideNavBar={hideNavBar} />
-    <Scene key="vispdat" component={Vispdat} hideNavBar={hideNavBar} />
+    <Scene key="vispdat" component={Vispdat} hideNavBar={hideNavBar} initial={true} />
     <Scene key="refuse" component={Refuse} hideNavBar={hideNavBar} />
-    <Scene key="sandbox" component={Sandbox} hideNavBar={hideNavBar} initial={true} />
+    <Scene key="sandbox" component={Sandbox} hideNavBar={hideNavBar} />
   </Scene>
 );

@@ -6,6 +6,7 @@ import {
   StyleSheet,
   TouchableWithoutFeedback
 } from 'react-native';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
 
 const styles = Object.assign({}, StyleSheet.create({
   text: {
@@ -19,6 +20,8 @@ class DatePicker extends Component {
   static propTypes = {
     text: PropTypes.string.isRequired
   };
+
+  mixins: [PureRenderMixin];
 
   constructor(props) {
     super(props);
