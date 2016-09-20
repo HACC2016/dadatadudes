@@ -20,13 +20,7 @@ const loadFormAnswers = (state, { field, value }) => {
   };
 };
 
-const loadSection = (state, data) => {
-  const {
-    allSections,
-    answerOptions,
-    currentIndex,
-    currentRoute
-  } = data;
+const loadSection = (state, { allSections, answerOptions, currentIndex, currentRoute }) => {
   return state.merge({
     allSections,
     answerOptions,

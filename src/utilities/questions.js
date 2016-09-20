@@ -3,16 +3,16 @@ import { fromJS } from 'immutable';
 export const PointInTimeQuestions = {
   prefaceText: '',
   questions: [
-    { question: 'How many ADULTS are in your household?', type: 'radio', answers: 'number' },
-    { question: 'How many CHILDREN UNDER 18?', type: 'radio', answers: 'number' },
-    { question: 'Have you served in the U.S. Armed Forces?', type: 'radio', answers: 'general' },
-    { question: 'How long have you been continuously homeless this time?', type: 'radio', answers: 'number' },
-    { question: 'How many times have you been homeless in the past 3 years?', type: 'radio', answers: 'homelessDate' },
-    { question: 'Were you on the street, beach, park, or in an emergency shelter each time?', type: 'radio', answers: 'homelessCount' },
-    { question: 'Do you have a mental health disability that limits your ability to work or perform activities of daily living?', type: 'radio', answers: 'general' },
-    { question: 'Do you have an alcohol or drug problem that limits your ability to work or perform activities of daily living?', type: 'radio', answers: 'general' },
-    { question: 'Select all Benefits that you are currently receiving:', type: 'checkbox', answers: 'benefits' },
-    { question: 'Do you have a physical, developmental, or other disability that limits your ability to work or perform activities of daily living?', type: 'radio', answers: 'general' }
+    { question: 'How many ADULTS are in your household?', type: 'dropdown', answers: 'number' },
+    { question: 'How many CHILDREN UNDER 18?', type: 'dropdown', answers: 'number' },
+    { question: 'Have you served in the U.S. Armed Forces?', type: 'dropdown', answers: 'general' },
+    { question: 'How long have you been continuously homeless this time?', type: 'dropdown', answers: 'number' },
+    { question: 'How many times have you been homeless in the past 3 years?', type: 'dropdown', answers: 'homelessDate' },
+    { question: 'Were you on the street, beach, park, or in an emergency shelter each time?', type: 'dropdown', answers: 'homelessCount' },
+    { question: 'Do you have a mental health disability that limits your ability to work or perform activities of daily living?', type: 'dropdown', answers: 'general' },
+    { question: 'Do you have an alcohol or drug problem that limits your ability to work or perform activities of daily living?', type: 'dropdown', answers: 'general' },
+    { question: 'Select all Benefits that you are currently receiving:', type: 'dropdown', answers: 'benefits' },
+    { question: 'Do you have a physical, developmental, or other disability that limits your ability to work or perform activities of daily living?', type: 'dropdown', answers: 'general' }
   ]
 };
 
@@ -118,12 +118,12 @@ export const RefusedInfo = {
   ]
 };
 
-export const RefusedQuestions = [
-  { title: 'Description of Person if they Refused to be Surveyed', items: RefusedInfo }
-];
+export const PointInTimeSections = fromJS([
+  { sectionTitle: 'Description of Person at the current Point in Time', section: PointInTimeQuestions }
+]);
 
 export const RefusedSections = fromJS([
-  { sectionTitle: 'Refused Information', section: RefusedInfo }
+  { sectionTitle: 'Description of Person if they Refused to be Surveyed', section: RefusedInfo }
 ]);
 
 export const VispdatSections = fromJS([
@@ -140,7 +140,6 @@ export default {
   PointInTimeQuestions,
   Basic,
   RefusedInfo,
-  RefusedQuestions,
   VispdatHousingHistory,
   VispdatRisks,
   VispdatSocialization,

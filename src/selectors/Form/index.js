@@ -1,8 +1,6 @@
 import { createSelector } from 'reselect';
-import { Map } from 'immutable';
 
 const allSectionsByRouteSelector = (state) => {
-  console.log('state', state);
   return state.form.get('allSections');
 };
 
@@ -49,6 +47,5 @@ export const currentPrefaceTextSelector = createSelector(
 export const currentRouteSelector = (state) => {
   return state.form.get('currentRoute');
 };
-
 
 export const formInputsSelector = (state) => state.form.formInputs;

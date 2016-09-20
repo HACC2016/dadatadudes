@@ -4,7 +4,6 @@ import { ListView } from 'react-native';
 import FormQuestion from './FormQuestion';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import * as options from '../utilities/answerOptions.js';
-console.log('options', options);
 
 class Question extends Component {
   static propTypes = {
@@ -32,7 +31,7 @@ class Question extends Component {
     return (
       <ListView
         dataSource={this.props.questions}
-        initialListSize={1}
+        initialListSize={this.props.questions.size}
         scrollRenderAhead={250}
         renderRow={this.renderQuestions}
       />

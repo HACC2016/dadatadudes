@@ -1,99 +1,72 @@
+// Need to attach current section to redux store.
 import React, { Component, PropTypes } from 'react';
-import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-// Actions
-import * as FormActions from '../actions/Form';
+import { connect } from 'react-redux';
 // Components
-import FormQuestion from '../components/FormQuestion';
 import {
-  ScrollView,
-  Text,
-  ListView
+  ScrollView
 } from 'react-native';
+import { MKSpinner } from 'react-native-material-kit';
+import Header from '../components/Header';
+import FormContainer from '../components/FormContainer';
+import ToggleBar from '../components/ToggleBar';
+// Actions
+import { loadSection } from '../actions/Form';
 // Selectors
 import {
-  formInputsSelector
-} from '../selectors';
-import {
-  PointInTimeQuestions
-} from '../utilities/questions';
-import {
-  processQuestions
-} from '../utilities/helpers';
+  currentRouteSelector
+} from '../selectors/Form';
+// Questions
+import { PointInTimeSections } from '../utilities/questions';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+import * as answerOptions from '../utilities/answerOptions.js';
 
 class PointInTime extends Component {
   static propTypes = {
-    addFormField: PropTypes.func,
-    formFields: PropTypes.object,
-    submitForm: PropTypes.func,
-    prefaceText: PropTypes.string,
-    answers: PropTypes.object
+    currentRoute: PropTypes.string,
+    loadSection: PropTypes.func
   };
+
+  mixins: [PureRenderMixin];
 
   constructor(props) {
     super(props);
-    this.onPressHandler = this._onPressHandler.bind(this);
-    this.renderQuestions = this._renderQuestions.bind(this);
-    this.renderPrefaceText = this._renderPrefaceText.bind(this);
-  }
-  /**
-   * Grabs all of the fields from the redux store and dispatches them to the database.
-   */
-  _onPressHandler() {
-    const { formFields, submitForm } = this.props;
-    submitForm(formFields);
   }
 
-  _renderQuestions({ question, type, answers }) {
-    return (
-      <FormQuestion
-        question={question}
-        type={type}
-        answers={answers}
-      />
-    );
-  }
-
-  _renderPrefaceText() {
-    const { prefaceText } = PointInTimeQuestions;
-    if (!prefaceText) {
-      return null;
-    }
-    return <Text>{prefaceText}</Text>;
+  componentWillMount() {
+    this.props.loadSection({
+      currentIndex: 0,
+      currentRoute: 'Point In Time',
+      allSections: PointInTimeSections,
+      answerOptions
+    });
   }
 
   render() {
-    if (!PointInTimeQuestions) {
-      return (
-        <ScrollView>
-          <Text>Loading...</Text>
-        </ScrollView>
-      );
+    if (!this.props.currentRoute) {
+      return <MKSpinner />;
     }
     return (
       <ScrollView>
-        {this.renderPrefaceText()}
-        <ListView
-          initialListSize={1}
-          dataSource={processQuestions(PointInTimeQuestions.questions)}
-          scrollRenderAhead={250}
-          renderRow={this.renderQuestions}
+        <Header
+          text={this.props.currentRoute}
         />
+        <FormContainer />
+        <ToggleBar />
       </ScrollView>
     );
   }
 }
 
-// Maps all of the Point In Time Answer options to the prop
 const mapStateToProps = (state) => {
   return {
-    formFields: formInputsSelector(state)
+    currentRoute: currentRouteSelector(state)
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    ...FormActions
+    loadSection
   }, dispatch);
 };
 
