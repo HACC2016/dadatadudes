@@ -1,3 +1,5 @@
+import { fromJS } from 'immutable';
+
 export const PointInTimeQuestions = {
   prefaceText: '',
   questions: [
@@ -119,6 +121,15 @@ export const RefusedInfo = {
 export const RefusedQuestions = [
   { title: 'Description of Person if they Refused to be Surveyed', items: RefusedInfo }
 ];
+
+export const VispdatSections = fromJS([
+  { sectionTitle: 'Basic Information', section: Basic },
+  { sectionTitle: 'Risks', section: VispdatRisks },
+  { sectionTitle: 'History of Housing and Homelessness', section: VispdatHousingHistory },
+  { sectionTitle: 'Socialization & Daily Functioning', section: VispdatSocialization },
+  { sectionTitle: 'Wellness', section: VispdatWellness },
+  { sectionTitle: 'Follow-Up Questions', section: VispdatFollowUp }
+]);
 
 
 export default {

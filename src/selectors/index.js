@@ -1,1 +1,1 @@
-export const formInputsSelector = (state) => state.formInputs;
+export const formInputsSelector = (state) => state.form.formInputs;
