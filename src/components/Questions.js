@@ -1,36 +1,27 @@
 import React, { Component, PropTypes } from 'react';
 // Components
-import { ListView, InteractionManager } from 'react-native';
+import { ListView } from 'react-native';
 import FormQuestion from './FormQuestion';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
 
 class Question extends Component {
   static propTypes = {
-    questions: PropTypes.array
+    questions: PropTypes.object
   };
+
+  mixins: [PureRenderMixin];
 
   constructor(props) {
     super(props);
-    this.state = {
-      dataSource: false
-    };
-    this.renderQuestions = this.renderQuestions.bind(this);
+    this.renderQuestions = this._renderQuestions.bind(this);
   }
 
-  componentDidMount() {
-    InteractionManager.runAfterInteractions(() => {
-      const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
-      this.setState({
-        dataSource: ds.cloneWithRows(this.props.questions)
-      });
-    });
-  }
-
-  _renderQuestions({ question, type, answers }) {
+  _renderQuestions(item) {
     return (
       <FormQuestion
-        question={question}
-        type={type}
-        answers={answers}
+        question={item.question}
+        type={item.type}
+        answers={item.answers}
       />
     );
   }
@@ -38,7 +29,7 @@ class Question extends Component {
   render() {
     return (
       <ListView
-        dataSource={this.state.dataSource}
+        dataSource={this.props.questions}
         initialListSize={1}
         scrollRenderAhead={250}
         renderRow={this.renderQuestions}
