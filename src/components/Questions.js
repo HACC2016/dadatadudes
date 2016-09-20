@@ -3,6 +3,8 @@ import React, { Component, PropTypes } from 'react';
 import { ListView } from 'react-native';
 import FormQuestion from './FormQuestion';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
+import * as options from '../utilities/answerOptions.js';
+console.log('options', options);
 
 class Question extends Component {
   static propTypes = {
