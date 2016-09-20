@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 // Components
-import { View, StyleSheet, Text, InteractionManager } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
 import CheckboxGroup from './CheckboxGroup';
 import RadioGroup from './RadioGroup.js';
 import DropDown from './ModalPicker.js';
