@@ -1,54 +1,73 @@
+// Need to attach current section to redux store.
 import React, { Component, PropTypes } from 'react';
-import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-// Actions
-import * as FormActions from '../actions/Form';
+import { connect } from 'react-redux';
+// Components
 import {
   ScrollView
 } from 'react-native';
-import { RefusedQuestions } from '../utilities/questions';
-import Section from '../components/Sections.js';
+import { MKSpinner } from 'react-native-material-kit';
+import Header from '../components/Header';
+import FormContainer from '../components/FormContainer';
+import ToggleBar from '../components/ToggleBar';
+// Actions
+import { loadSection } from '../actions/Form';
+// Selectors
+import {
+  currentRouteSelector
+} from '../selectors/Form';
+// Questions
+import { RefusedSections } from '../utilities/questions';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+import * as answerOptions from '../utilities/answerOptions.js';
 
-class Refuse extends Component {
-
+class TestRoute extends Component {
   static propTypes = {
-    addFormField: PropTypes.func,
-    submitForm: PropTypes.func
-  }
+    currentRoute: PropTypes.string,
+    loadSection: PropTypes.func
+  };
+
+  mixins: [PureRenderMixin];
 
   constructor(props) {
     super(props);
-    this.onSubmit = this._onSubmit.bind(this);
-    this.renderSections = this._renderSections.bind(this);
   }
 
-  _renderSections() {
-    return RefusedQuestions.map(({ title, items }, key) => (
-      <Section
-        key={key}
-        title={title}
-        items={items}
-      />
-    ));
-  }
-
-  _onSubmit() {
-    this.props.submitForm('hello');
+  componentWillMount() {
+    this.props.loadSection({
+      currentIndex: 0,
+      currentRoute: 'Refused',
+      allSections: RefusedSections,
+      answerOptions
+    });
   }
 
   render() {
+    if (!this.props.currentRoute) {
+      return <MKSpinner />;
+    }
     return (
       <ScrollView>
-        {this.renderSections()}
+        <Header
+          text={this.props.currentRoute}
+        />
+        <FormContainer />
+        <ToggleBar />
       </ScrollView>
     );
   }
 }
 
+const mapStateToProps = (state) => {
+  return {
+    currentRoute: currentRouteSelector(state)
+  };
+};
+
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    ...FormActions
+    loadSection
   }, dispatch);
 };
 
-export default connect(null, mapDispatchToProps)(Refuse);
+export default connect(mapStateToProps, mapDispatchToProps)(TestRoute);

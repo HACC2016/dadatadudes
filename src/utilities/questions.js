@@ -122,6 +122,10 @@ export const RefusedQuestions = [
   { title: 'Description of Person if they Refused to be Surveyed', items: RefusedInfo }
 ];
 
+export const RefusedSections = fromJS([
+  { sectionTitle: 'Refused Information', section: RefusedInfo }
+]);
+
 export const VispdatSections = fromJS([
   { sectionTitle: 'Basic Information', section: Basic },
   { sectionTitle: 'Risks', section: VispdatRisks },
