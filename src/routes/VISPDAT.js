@@ -31,11 +31,13 @@ class Vispdat extends Component {
   }
 
   _renderSections() {
-    return (
+    return VispdatQuestions.map(({ title, items }, key) => (
       <Carousel
-        items={VispdatQuestions}
+        key={key}
+        title={title}
+        items={items}
       />
-    );
+    ));
   }
 
   render() {

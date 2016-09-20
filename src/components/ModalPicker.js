@@ -2,10 +2,26 @@ import React, { Component, PropTypes } from 'react';
 import ModalPicker from 'react-native-modal-picker';
 import {
   View,
-  Text,
-  InteractionManager
+  InteractionManager,
+  StyleSheet
 } from 'react-native';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
+
+const styles = Object.assign({}, StyleSheet.create({
+
+  container: {
+    flex: 1,
+    flexDirection: 'row',
+    marginTop: 5,
+    marginLeft: 5,
+    marginBottom: 5
+  },
+  module: {
+    flex: 1,
+    position: 'relative'
+  }
+
+}));
 
 class Dropdown extends Component {
 
@@ -44,10 +60,13 @@ class Dropdown extends Component {
       );
     }
     return (
-      <View style={{ flex: 1, justifyContent: 'space-around', padding: 50 }}>
+      <View style={{ flex: 1, justifyContent: 'space-around' }}>
         <ModalPicker
           data={this.state.data}
           initValue="Options"
+          style={styles.container}
+          overlayStyle={styles.module}
+          sectionStyle={styles.module}
         />
       </View>
     );

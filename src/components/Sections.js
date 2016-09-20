@@ -3,8 +3,8 @@ import FormQuestion from '../components/FormQuestion';
 import {
   View,
   Text,
-  InteractionManager,
-  ListView
+  ListView,
+  StyleSheet
 } from 'react-native';
 import { MKSpinner } from 'react-native-material-kit';
 // Selectors
@@ -13,6 +13,30 @@ import {
 } from '../utilities/helpers';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 
+const styles = Object.assign({}, StyleSheet.create({
+
+  container: {
+    flex: 1,
+    flexDirection: 'row'
+  },
+  col: {
+    flex: 2,
+    flexDirection: 'column'
+  },
+  text: {
+    textAlign: 'center',
+    marginTop: 10,
+    marginBottom: 10,
+    fontSize: 30,
+    fontWeight: '300'
+  },
+  sectionHeader: {
+    borderBottomColor: 'black',
+    borderBottomWidth: 5,
+    margin: 10
+  }
+
+}));
 
 class Section extends Component {
   static propTypes = {
@@ -86,15 +110,19 @@ class Section extends Component {
     }
     const { title } = this.props;
     return (
-      <View>
-        <Text> {title} </Text>
-        {this.renderPrefaceText()}
-        <ListView
-          initialListSize={1}
-          dataSource={this.state.dataSource}
-          scrollRenderAhead={250}
-          renderRow={this.renderQuestions}
-        />
+      <View style={styles.container}>
+        <View style={styles.col}>
+          <View style={styles.sectionHeader}>
+            <Text style={styles.text}> {title} </Text>
+          </View>
+          {this.renderPrefaceText()}
+          <ListView
+            initialListSize={1}
+            dataSource={processQuestions(this.props.items.questions)}
+            scrollRenderAhead={250}
+            renderRow={this.renderQuestions}
+          />
+        </View>
       </View>
     );
   }
