@@ -2,9 +2,9 @@ import React, { Component, PropTypes } from 'react';
 // Components
 import { View, StyleSheet, Text } from 'react-native';
 import CheckboxGroup from './CheckboxGroup';
-import RadioGroup from './RadioGroup.js';
-import DropDown from './ModalPicker.js';
-import TextField from './Login/TextFields.js';
+import RadioGroup from './RadioGroup';
+import DropDown from './ModalPicker';
+import TextField from './TextFields';
 // Utils
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 

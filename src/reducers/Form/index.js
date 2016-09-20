@@ -1,4 +1,4 @@
-import { actions } from '../../actions/Form/index.js';
+import { actions } from '../../actions/Form';
 import { Map } from 'immutable';
 /**
  * Dynamically adds form fields to the redux store.

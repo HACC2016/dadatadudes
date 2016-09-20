@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import { MKCheckbox, MKColor } from 'react-native-material-kit';
-import TextField from '../components/Login/TextFields.js';
+import TextField from '../components/TextFields';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 
 const styles = Object.assign({}, StyleSheet.create({
