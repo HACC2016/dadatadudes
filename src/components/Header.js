@@ -1,17 +1,17 @@
 import React, { Component, PropTypes } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
 
-// const styles = Object.assign({}, StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     justifyContent: 'flex-start',
-//     backgroundColor: 'red'
-//   }
-// }));
+const styles = Object.assign({}, StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'flex-start',
+    backgroundColor: 'red'
+  }
+}));
 
 class Header extends Component {
   static propTypes = {
-    title: PropTypes.string
+    text: PropTypes.string
   };
 
   constructor(props) {
@@ -20,8 +20,8 @@ class Header extends Component {
 
   render() {
     return (
-      <View>
-        <h3>{this.props.title}</h3>
+      <View style={styles.container}>
+        <Text>{this.props.text}</Text>
       </View>
     );
   }
