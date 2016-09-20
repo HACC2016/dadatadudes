@@ -1,8 +1,13 @@
 import { createSelector } from 'reselect';
+import { Map } from 'immutable';
 
 const allSectionsByRouteSelector = (state) => {
   console.log('state', state);
   return state.form.get('allSections');
+};
+
+const answerOptionsSelector = (state) => {
+  return state.form.get('answerOptions');
 };
 
 export const currentIndexSelector = (state) => {
@@ -24,16 +29,19 @@ export const currentSectionTitleSelector = createSelector(
 );
 
 export const currentQuestionsSelector = createSelector(
-  [currentSectionSelector],
-  (currentSection) => {
-    debugger;
-    return currentSection.get('questions');
+  [currentSectionSelector, answerOptionsSelector],
+  (currentSection, answerOptions) => {
+    return currentSection.get('questions').map((question) => {
+      if (!question.has('answers')) {
+        return question;
+      }
+      return question.set('answers', answerOptions.get(question.get('answers')));
+    });
   }
 );
 export const currentPrefaceTextSelector = createSelector(
   [currentSectionSelector],
   (currentSection) => {
-    debugger;
     return currentSection.get('prefaceText');
   }
 );

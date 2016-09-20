@@ -19,6 +19,7 @@ import {
 // Questions
 import { VispdatSections } from '../utilities/questions';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
+import * as answerOptions from '../utilities/answerOptions.js';
 
 class TestRoute extends Component {
   static propTypes = {
@@ -36,7 +37,8 @@ class TestRoute extends Component {
     this.props.loadSection({
       currentIndex: 0,
       currentRoute: 'VISPDAT',
-      allSections: VispdatSections
+      allSections: VispdatSections,
+      answerOptions
     });
   }
 

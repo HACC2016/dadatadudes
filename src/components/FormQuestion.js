@@ -6,7 +6,6 @@ import RadioGroup from './RadioGroup.js';
 import DropDown from './ModalPicker.js';
 import TextField from './Login/TextFields.js';
 // Utils
-import * as options from '../utilities/answerOptions.js';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 
 const RENDER_TYPES = {
@@ -23,7 +22,7 @@ const styles = Object.assign({}, StyleSheet.create({
 
 class FormQuestion extends Component {
   static propTypes = {
-    answers: PropTypes.string,
+    answers: PropTypes.array,
     children: PropTypes.node,
     question: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired
@@ -34,25 +33,22 @@ class FormQuestion extends Component {
   constructor(props) {
     super(props);
     this.renderAnswerOptions = this._renderAnswerOptions.bind(this);
-    this.state = {
-      items: options[ this.props.answers ]
-    };
   }
 
   _renderAnswerOptions() {
     const { type } = this.props;
     switch (type) {
     case RENDER_TYPES.RADIO: {
-      return <RadioGroup items={this.state.items} />;
+      return <RadioGroup items={this.props.answers} />;
     }
     case RENDER_TYPES.DROPDOWN: {
-      return <DropDown items={this.state.items} />;
+      return <DropDown items={this.props.answers} />;
     }
     case RENDER_TYPES.INPUT: {
       return <TextField />;
     }
     case RENDER_TYPES.CHECKBOX: {
-      return <CheckboxGroup items={this.state.items} />;
+      return <CheckboxGroup items={this.props.answers} />;
     }
     default:
       return '';
