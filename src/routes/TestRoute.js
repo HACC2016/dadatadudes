@@ -1,33 +1,71 @@
+// Need to attach current section to redux store.
 import React, { Component, PropTypes } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+// Components
 import {
-  View
+  ScrollView
 } from 'react-native';
+import { MKSpinner } from 'react-native-material-kit';
 import Header from '../components/Header';
 import FormContainer from '../components/FormContainer';
+import ToggleBar from '../components/ToggleBar';
+// Actions
+import { loadSection } from '../actions/Form';
+// Selectors
+import {
+  currentRouteSelector
+} from '../selectors/Form';
+// Questions
+import { VispdatSections } from '../utilities/questions';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
 
 class TestRoute extends Component {
   static propTypes = {
-    routeName: PropTypes.string
+    currentRoute: PropTypes.string,
+    loadSection: PropTypes.func
   };
+
+  mixins: [PureRenderMixin];
 
   constructor(props) {
     super(props);
   }
 
-  _onClickHandler() {
-    // dispatch redux actions.
-    console.log('hello');
+  componentWillMount() {
+    this.props.loadSection({
+      currentIndex: 0,
+      currentRoute: 'VISPDAT',
+      allSections: VispdatSections
+    });
   }
 
   render() {
+    if (!this.props.currentRoute) {
+      return <MKSpinner />;
+    }
     return (
-      <View>
+      <ScrollView>
         <Header
-          name={this.props.routeName}
+          text={this.props.currentRoute}
         />
         <FormContainer />
-      </View>
+        <ToggleBar />
+      </ScrollView>
     );
   }
 }
-export default TestRoute;
+
+const mapStateToProps = (state) => {
+  return {
+    currentRoute: currentRouteSelector(state)
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+    loadSection
+  }, dispatch);
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(TestRoute);
