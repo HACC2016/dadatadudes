@@ -1,50 +1,73 @@
+// Need to attach current section to redux store.
 import React, { Component, PropTypes } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+// Components
 import {
   ScrollView
 } from 'react-native';
-import Carousel from '../components/Carousel.js';
-import { VispdatQuestions } from '../utilities/questions';
+import { MKSpinner } from 'react-native-material-kit';
+import Header from '../components/Header';
+import FormContainer from '../components/FormContainer';
+import ToggleBar from '../components/ToggleBar';
+// Actions
+import { loadSection } from '../actions/Form';
+// Selectors
+import {
+  currentRouteSelector
+} from '../selectors/Form';
+// Questions
+import { VispdatSections } from '../utilities/questions';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+import * as answerOptions from '../utilities/answerOptions.js';
 
 class Vispdat extends Component {
   static propTypes = {
-    addFormField: PropTypes.func,
-    prefaceText: PropTypes.string,
-    submitForm: PropTypes.func
+    currentRoute: PropTypes.string,
+    loadSection: PropTypes.func
   };
+
+  mixins: [PureRenderMixin];
 
   constructor(props) {
     super(props);
-    this.onSubmit = this._onSubmit.bind(this);
-    this.onChangeText = this._onChangeText.bind(this);
-    this.renderSections = this._renderSections.bind(this);
   }
 
-  _onChangeText(value) {
-    this.props.addFormField({
-      field: 'username',
-      value
+  componentWillMount() {
+    this.props.loadSection({
+      currentIndex: 0,
+      currentRoute: 'VISPDAT',
+      allSections: VispdatSections,
+      answerOptions
     });
   }
 
-  _onSubmit() {
-    this.props.submitForm('hello');
-  }
-
-  _renderSections() {
-    return (
-      <Carousel
-        items={VispdatQuestions}
-      />
-    );
-  }
-
   render() {
+    if (!this.props.currentRoute) {
+      return <MKSpinner />;
+    }
     return (
       <ScrollView>
-        {this.renderSections()}
+        <Header
+          text={this.props.currentRoute}
+        />
+        <FormContainer />
+        <ToggleBar />
       </ScrollView>
     );
   }
 }
 
-export default Vispdat;
+const mapStateToProps = (state) => {
+  return {
+    currentRoute: currentRouteSelector(state)
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+    loadSection
+  }, dispatch);
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Vispdat);
