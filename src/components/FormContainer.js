@@ -1,13 +1,21 @@
 import React, { Component, PropTypes } from 'react';
-import { bindAcitonCreators } from 'redux';
 import { connect } from 'react-redux';
 // Components
 import Form from './Form';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+import {
+  currentSectionTitleSelector
+} from '../selectors/Form';
 
 class FormContainer extends Component {
   static propTypes = {
-
+    prefaceText: PropTypes.string,
+    questions: PropTypes.object,
+    section: PropTypes.object,
+    sectionTitle: PropTypes.string
   };
+
+  mixins: [PureRenderMixin];
 
   constructor(props) {
     super(props);
@@ -16,11 +24,17 @@ class FormContainer extends Component {
   render() {
     return (
       <Form
-        section={"Route Name Placeholder"}
+        sectionTitle={this.props.sectionTitle}
       />
     );
   }
 
 }
 
-export default FormContainer;
+const mapStateToProps = (state) => {
+  return {
+    sectionTitle: currentSectionTitleSelector(state)
+  };
+};
+
+export default connect(mapStateToProps)(FormContainer);
