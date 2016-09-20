@@ -1,23 +1,54 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+// Actions
+import * as FormActions from '../actions/Form';
 import {
-  View,
-  Text,
-  TouchableHighlight,
+  ScrollView
 } from 'react-native';
-import {
-  Actions
-} from 'react-native-router-flux';
+import { RefusedQuestions } from '../utilities/questions';
+import Section from '../components/Sections.js';
 
 class Refuse extends Component {
 
+  static propTypes = {
+    addFormField: PropTypes.func,
+    submitForm: PropTypes.func
+  }
+
+  constructor(props) {
+    super(props);
+    this.onSubmit = this._onSubmit.bind(this);
+    this.renderSections = this._renderSections.bind(this);
+  }
+
+  _renderSections() {
+    return RefusedQuestions.map(({ title, items }, key) => (
+      <Section
+        key={key}
+        title={title}
+        items={items}
+      />
+    ));
+  }
+
+  _onSubmit() {
+    this.props.submitForm('hello');
+  }
+
   render() {
     return (
-      <TouchableHighlight onPress={Actions.home}>
-        <View>
-          <Text> MOM I NO LIKE! </Text>
-        </View>
-      </TouchableHighlight>
+      <ScrollView>
+        {this.renderSections()}
+      </ScrollView>
     );
   }
 }
-export default Refuse;
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+    ...FormActions
+  }, dispatch);
+};
+
+export default connect(null, mapDispatchToProps)(Refuse);

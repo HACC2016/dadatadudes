@@ -61,6 +61,7 @@ module.exports = {
     'new-cap': 'off',
     'prefer-stateless-function': 'off',
     'react/prefer-stateless-function': 'off',
-    'no-useless-constructor': 'off'
+    'no-useless-constructor': 'off',
+    'react/jsx-boolean-value': 0
   }
 };
