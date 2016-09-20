@@ -4,9 +4,6 @@ import { ListView, InteractionManager, View } from 'react-native';
 import { MKRadioButton, MKSpinner } from 'react-native-material-kit';
 import RadioButton from './RadioButton.js';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import {
-  processQuestions
-} from '../utilities/helpers';
 
 class RadioOptions extends Component {
   static propTypes = {
@@ -27,8 +24,9 @@ class RadioOptions extends Component {
   componentDidMount() {
     if (this.props.items) {
       InteractionManager.runAfterInteractions(() => {
+        const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
         this.setState({
-          dataSource: processQuestions(this.props.items)
+          dataSource: ds.cloneWithRows(this.props.items)
         });
       });
     }
