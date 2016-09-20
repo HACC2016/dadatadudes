@@ -4,27 +4,29 @@ import { View } from 'react-native';
 import QuestionsContainer from './QuestionsContainer';
 // import FormNavigation from './FormNavigation';
 import Header from './Header';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
 
 class Form extends Component {
   static propTypes = {
-    questions: PropTypes.array,
-    section: PropTypes.string
+    prefaceText: PropTypes.string,
+    questions: PropTypes.object,
+    section: PropTypes.object,
+    sectionTitle: PropTypes.string
   };
+
+  mixins: [PureRenderMixin];
 
   constructor(props) {
     super(props);
   }
         // <FormNavigation />
-
   render() {
     return (
       <View>
         <Header
-          name={this.props.section}
+          text={this.props.sectionTitle}
         />
-        <QuestionsContainer
-          questions={this.props.questions}
-        />
+        <QuestionsContainer />
       </View>
     );
   }
