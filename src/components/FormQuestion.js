@@ -2,11 +2,10 @@ import React, { Component, PropTypes } from 'react';
 // Components
 import { View, StyleSheet, Text } from 'react-native';
 import CheckboxGroup from './CheckboxGroup';
-import RadioGroup from './RadioGroup.js';
-import DropDown from './ModalPicker.js';
-import TextField from './Login/TextFields.js';
+import RadioGroup from './RadioGroup';
+import DropDown from './ModalPicker';
+import TextField from './TextFields';
 // Utils
-import * as options from '../utilities/answerOptions.js';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 
 const RENDER_TYPES = {
@@ -28,7 +27,7 @@ const styles = Object.assign({}, StyleSheet.create({
 
 class FormQuestion extends Component {
   static propTypes = {
-    answers: PropTypes.string,
+    answers: PropTypes.array,
     children: PropTypes.node,
     question: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired
@@ -39,37 +38,22 @@ class FormQuestion extends Component {
   constructor(props) {
     super(props);
     this.renderAnswerOptions = this._renderAnswerOptions.bind(this);
-    this.getAnswersCollection = this._getAnswersCollection.bind(this);
-    this.state = {
-      items: []
-    };
-  }
-
-  componentWillMount() {
-    this.getAnswersCollection();
-  }
-
-  _getAnswersCollection() {
-    const { answers } = this.props;
-    return this.setState({
-      items: options[ answers ]
-    });
   }
 
   _renderAnswerOptions() {
     const { type } = this.props;
     switch (type) {
     case RENDER_TYPES.RADIO: {
-      return <RadioGroup items={this.state.items} />;
+      return <RadioGroup items={this.props.answers} />;
     }
     case RENDER_TYPES.DROPDOWN: {
-      return <DropDown items={this.state.items} />;
+      return <DropDown items={this.props.answers} />;
     }
     case RENDER_TYPES.INPUT: {
       return <TextField />;
     }
     case RENDER_TYPES.CHECKBOX: {
-      return <CheckboxGroup items={this.state.items} />;
+      return <CheckboxGroup items={this.props.answers} />;
     }
     default:
       return '';
@@ -80,7 +64,6 @@ class FormQuestion extends Component {
     return (
       <View style={styles.container}>
         <Text> {this.props.question} </Text>
-        {this.props.children}
         {this.renderAnswerOptions()}
       </View>
     );

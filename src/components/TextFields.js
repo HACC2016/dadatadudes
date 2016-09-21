@@ -1,30 +1,19 @@
 import React, { Component, PropTypes } from 'react';
 import {
-  View,
-  Text,
-  StyleSheet
+  View
 } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 // Actions
-import * as FormActions from '../../actions/Form/index.js';
+import * as FormActions from '../actions/Form';
 import { MKColor, MKTextField } from 'react-native-material-kit';
-
-const styles = Object.assign({}, StyleSheet.create({
-
-  titleText: {
-    fontSize: 15,
-    fontWeight: 'bold'
-  }
-
-}));
 
 class TextField extends Component {
 
   static propTypes = {
     question: PropTypes.string,
     addFormField: PropTypes.func.isRequired,
-    field: PropTypes.string.isRequired,
+    field: PropTypes.string,
     submitForm: PropTypes.func.isRequired
   }
 

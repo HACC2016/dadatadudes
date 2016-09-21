@@ -6,10 +6,12 @@ import {
   ListView,
   StyleSheet
 } from 'react-native';
+import { MKSpinner } from 'react-native-material-kit';
 // Selectors
 import {
   processQuestions
 } from '../utilities/helpers';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
 
 const styles = Object.assign({}, StyleSheet.create({
 
@@ -37,18 +39,40 @@ const styles = Object.assign({}, StyleSheet.create({
 }));
 
 class Section extends Component {
-
   static propTypes = {
     addFormField: PropTypes.func,
     items: PropTypes.object,
-    title: PropTypes.string.isRequired
+    title: PropTypes.string
   };
+
+  mixins: [PureRenderMixin];
 
   constructor(props) {
     super(props);
     this.onChangeText = this._onChangeText.bind(this);
     this.renderQuestions = this._renderQuestions.bind(this);
     this.renderPrefaceText = this._renderPrefaceText.bind(this);
+    this.state = {
+      dataSource: false
+    };
+  }
+
+  componentDidMount() {
+    InteractionManager.runAfterInteractions(() => {
+      this.setState({
+        dataSource: processQuestions(this.props.items.questions)
+      });
+    });
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      dataSource: false
+    });
+    const dataSource = processQuestions(nextProps.items.questions);
+    this.setState({
+      dataSource
+    });
   }
 
   _onChangeText(value) {
@@ -77,6 +101,13 @@ class Section extends Component {
   }
 
   render() {
+    if (!this.state.dataSource) {
+      return (
+        <View>
+          <MKSpinner />
+        </View>
+      );
+    }
     const { title } = this.props;
     return (
       <View style={styles.container}>

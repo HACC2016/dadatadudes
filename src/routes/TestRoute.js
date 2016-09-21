@@ -17,7 +17,7 @@ import {
   currentRouteSelector
 } from '../selectors/Form';
 // Questions
-import { RefusedSections } from '../utilities/questions';
+import { VispdatSections } from '../utilities/questions';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import * as answerOptions from '../utilities/answerOptions.js';
 
@@ -36,8 +36,8 @@ class TestRoute extends Component {
   componentWillMount() {
     this.props.loadSection({
       currentIndex: 0,
-      currentRoute: 'Refused',
-      allSections: RefusedSections,
+      currentRoute: 'VISPDAT',
+      allSections: VispdatSections,
       answerOptions
     });
   }

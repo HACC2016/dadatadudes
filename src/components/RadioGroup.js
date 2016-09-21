@@ -1,23 +1,15 @@
 import React, { Component, PropTypes } from 'react';
 // Compoonents
-import {
-  ListView,
-  InteractionManager,
-  View,
-  StyleSheet
-} from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { MKRadioButton, MKSpinner } from 'react-native-material-kit';
 import RadioButton from './RadioButton.js';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import {
-  processQuestions
-} from '../utilities/helpers';
 
 const styles = Object.assign({}, StyleSheet.create({
 
   listView: {
     flex: 1,
-    flexDirection: 'row',
+    flexDirection: 'row'
   },
   row: {
     flexDirection: 'row'
@@ -39,33 +31,24 @@ class RadioOptions extends Component {
   constructor(props) {
     super(props);
     this.radioGroup = new MKRadioButton.Group();
-    this.renderRadioGroupItems = this._renderRadioGroupItems.bind(this);
-    this.state = {
-      dataSource: false
-    };
+    this.renderRadioButtons = this._renderRadioButtons.bind(this);
   }
 
-  componentDidMount() {
-    InteractionManager.runAfterInteractions(() => {
-      this.setState({
-        dataSource: processQuestions(this.props.items)
-      });
-    });
-  }
-
-  _renderRadioGroupItems(item) {
-    return (
-      <View style={styles.col}>
+  _renderRadioButtons() {
+    const { items } = this.props;
+    return items.map((item, key) => {
+      return (
         <RadioButton
           text={item.text}
           group={this.radioGroup}
+          key={key++}
         />
-      </View>
-    );
+      );
+    });
   }
 
   render() {
-    if (!this.state.dataSource) {
+    if (!this.props.items) {
       return (
         <View>
           <MKSpinner />
@@ -73,14 +56,9 @@ class RadioOptions extends Component {
       );
     }
     return (
-      <ListView
-        initialListSize={this.props.items.length}
-        dataSource={this.state.dataSource}
-        scrollRenderAhead={100}
-        renderRow={this.renderRadioGroupItems}
-        horizontal={true}
-        style={styles.listView}
-      />
+      <View style={styles.container}>
+        {this.renderRadioButtons()}
+      </View>
     );
   }
 }

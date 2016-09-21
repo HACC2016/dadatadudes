@@ -4,6 +4,8 @@ import Login from './Login';
 import PointInTime from './PointInTime';
 import Vispdat from './VISPDAT';
 import Refuse from './Refuse';
+import Sandbox from './Sandbox';
+import TestRoute from './TestRoute';
 import {
   Actions,
   Scene,
@@ -26,9 +28,11 @@ const hideNavBar = true;
 export default Actions.create(
   <Scene key="root" defaultRoute="home">
     <Scene key="login" component={Login} hideNavBar={hideNavBar} />
-    <Scene key="home" type={ActionConst.RESET} component={Home} hideNavBar={hideNavBar} initial={hideNavBar} />
+    <Scene key="home" type={ActionConst.RESET} component={Home} hideNavBar={hideNavBar} initial={true} />
     <Scene key="pointInTime" component={PointInTime} hideNavBar={hideNavBar} />
     <Scene key="vispdat" component={Vispdat} hideNavBar={hideNavBar} />
     <Scene key="refuse" component={Refuse} hideNavBar={hideNavBar} />
+    <Scene key="sandbox" component={Sandbox} hideNavBar={hideNavBar} />
+    <Scene key="testRoute" component={TestRoute} hideNavBar={true} />
   </Scene>
 );
