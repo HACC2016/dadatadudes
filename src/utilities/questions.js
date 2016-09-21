@@ -99,6 +99,15 @@ export const VispdatFollowUp = {
   ]
 };
 
+export const VispdatCategories = [
+  { title: 'Pre-Survey', base: '1' },
+  { title: 'History of Housing & Homelessness', base: '2' },
+  { title: 'Risks', base: '4' },
+  { title: 'Socialization & Daily Functions', base: '4' },
+  { title: 'Wellness', base: '6' },
+  { title: 'Risk Score', base: '17' }
+];
+
 export const VispdatQuestions = [
   { title: 'Basic Information', items: Basic },
   { title: 'History of Housing and Homelessness', items: VispdatHousingHistory },
@@ -136,7 +145,6 @@ export const VispdatSections = fromJS([
   { sectionTitle: 'Follow-Up Questions', section: VispdatFollowUp }
 ]);
 
-
 export default {
   PointInTimeQuestions,
   Basic,
@@ -145,5 +153,6 @@ export default {
   VispdatRisks,
   VispdatSocialization,
   VispdatWellness,
-  VispdatFollowUp
+  VispdatFollowUp,
+  VispdatCategories
 };

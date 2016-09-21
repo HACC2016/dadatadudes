@@ -48,7 +48,7 @@ class TestRoute extends Component {
     }
     return (
       <ScrollView>
-        <Header
+      <Header
           text={this.props.currentRoute}
         />
         <FormContainer />
