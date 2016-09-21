@@ -119,6 +119,7 @@ export const RefusedInfo = {
 };
 
 export const PointInTimeSections = fromJS([
+  { sectionTitle: 'Basic Information for Point in Time', section: Basic },
   { sectionTitle: 'Description of Person at the current Point in Time', section: PointInTimeQuestions }
 ]);
 
