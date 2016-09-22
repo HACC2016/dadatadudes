@@ -1,4 +1,8 @@
 import React, { Component, PropTypes } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+// Actions
+import { addFormField } from '../actions/Form';
 // Compoonents
 import { StyleSheet, View } from 'react-native';
 import { MKRadioButton, MKSpinner } from 'react-native-material-kit';
@@ -23,6 +27,8 @@ const styles = Object.assign({}, StyleSheet.create({
 
 class RadioOptions extends Component {
   static propTypes = {
+    addFormField: PropTypes.func,
+    field: PropTypes.string,
     items: PropTypes.array.isRequired
   }
 
@@ -39,9 +45,12 @@ class RadioOptions extends Component {
     return items.map((item, key) => {
       return (
         <RadioButton
+          key={key}
+          value={item.value}
           text={item.text}
+          field={this.props.field}
+          onPress={this.props.addFormField}
           group={this.radioGroup}
-          key={key++}
         />
       );
     });
@@ -63,4 +72,10 @@ class RadioOptions extends Component {
   }
 }
 
-export default RadioOptions;
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+    addFormField
+  }, dispatch);
+};
+
+export default connect(null, mapDispatchToProps)(RadioOptions);
