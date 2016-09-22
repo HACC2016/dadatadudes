@@ -48,4 +48,6 @@ export const currentRouteSelector = (state) => {
   return state.form.get('currentRoute');
 };
 
-export const formInputsSelector = (state) => state.form.formInputs;
+export const formInputsSelector = (state) => {
+  return state.form.get('formFields');
+};

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Provider, connect } from 'react-redux';
-import { Router } from 'react-native-router-flux';
+import { Provider } from 'react-redux';
 import App from './app.js';
 import apollo from './store/apollo';
 import configureStore from './store/configureStore';
