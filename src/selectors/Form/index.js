@@ -51,3 +51,15 @@ export const currentRouteSelector = (state) => {
 export const formInputsSelector = (state) => {
   return state.form.get('formFields');
 };
+
+export const pointInTimeMutationSelector = createSelector(
+  [formInputsSelector],
+  (formInputs) => {
+    if (formInputs) {
+      const inputs = formInputs.toJS();
+      console.log('inputs', inputs);
+      return inputs;
+    }
+    return null;
+  }
+);

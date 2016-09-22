@@ -14,7 +14,7 @@ class ToggleBar extends Component {
   static propTypes = {
     currentIndex: PropTypes.number,
     formInputs: PropTypes.object,
-    submitForm: PropTypes.func,
+    onClick: PropTypes.func,
     setCurrentIndex: PropTypes.func
   };
 
@@ -50,7 +50,7 @@ class ToggleBar extends Component {
             source={{ uri: 'http://placekitten.com/250/250' }}
           />
         </TouchableHighlight>
-        <Button text={"Submit"} onPress={this.props.submitForm} value={this.props.formInputs} />
+        <Button text={"Submit"} onPress={this.props.onClick} value={this.props.formInputs} />
       </View>
     );
   }
