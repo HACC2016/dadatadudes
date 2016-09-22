@@ -3,15 +3,18 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 // Components
 import { View, TouchableHighlight, Image } from 'react-native';
+import Button from './Button';
 // Actions
-import { setCurrentIndex } from '../actions/Form';
+import { setCurrentIndex, submitForm } from '../actions/Form';
 // Selectors
-import { currentIndexSelector } from '../selectors/Form';
+import { currentIndexSelector, formInputsSelector } from '../selectors/Form';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 
 class ToggleBar extends Component {
   static propTypes = {
     currentIndex: PropTypes.number,
+    formInputs: PropTypes.object,
+    submitForm: PropTypes.func,
     setCurrentIndex: PropTypes.func
   };
 
@@ -47,6 +50,7 @@ class ToggleBar extends Component {
             source={{ uri: 'http://placekitten.com/250/250' }}
           />
         </TouchableHighlight>
+        <Button text={"Submit"} onPress={this.props.submitForm} value={this.props.formInputs} />
       </View>
     );
   }
@@ -54,13 +58,15 @@ class ToggleBar extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    currentIndex: currentIndexSelector(state)
+    currentIndex: currentIndexSelector(state),
+    formInputs: formInputsSelector(state)
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    setCurrentIndex
+    setCurrentIndex,
+    submitForm
   }, dispatch);
 };
 
