@@ -6,13 +6,21 @@ export const PointInTimeQuestions = {
     { question: 'How many ADULTS are in your household?', type: 'dropdown', answers: 'number' },
     { question: 'How many CHILDREN UNDER 18?', type: 'dropdown', answers: 'number' },
     { question: 'Have you served in the U.S. Armed Forces?', type: 'dropdown', answers: 'general' },
+    { quesiton: 'How long have you lived in Hawaii?', type: 'dropdown', answers: 'number' },
+    { question: 'Why are you homeless?', type: 'input' },
+    { question: 'How many times have you ever been homeless?', type: 'dropdown', answers: 'number' },
     { question: 'How long have you been continuously homeless this time?', type: 'dropdown', answers: 'number' },
     { question: 'How many times have you been homeless in the past 3 years?', type: 'dropdown', answers: 'homelessDate' },
     { question: 'Were you on the street, beach, park, or in an emergency shelter each time?', type: 'dropdown', answers: 'homelessCount' },
     { question: 'Do you have a mental health disability that limits your ability to work or perform activities of daily living?', type: 'dropdown', answers: 'general' },
     { question: 'Do you have an alcohol or drug problem that limits your ability to work or perform activities of daily living?', type: 'dropdown', answers: 'general' },
     { question: 'Select all Benefits that you are currently receiving:', type: 'dropdown', answers: 'benefits' },
-    { question: 'Do you have a physical, developmental, or other disability that limits your ability to work or perform activities of daily living?', type: 'dropdown', answers: 'general' }
+    { question: 'Do you have a physical, developmental, or other disability that limits your ability to work or perform activities of daily living?', type: 'dropdown', answers: 'general' },
+    { question: 'Do you have any of the following identification:', type: 'checkbox', answers: 'ids' },
+    { question: 'Education level completed', type: 'dropdown', answers: 'education' },
+    { question: 'Are you currently employed?', type: 'radio', answers: 'general' },
+    { question: 'What is your current pay?', type: 'input' }
+    // { question: 'When were you last employed?' type: 'datePicker' },
   ]
 };
 
@@ -28,7 +36,8 @@ export const Basic = {
     { question: 'Age', type: 'input' },
     { question: 'What Race do you most identify with? (SELECT ONLY ONE)', type: 'radio', answers: 'ethnicity' },
     { question: 'In what language do you feel best able to exprees yourself?', type: 'input' },
-    { question: 'What district are you currently living in?', type: 'dropdown', answers: 'district' }
+    { question: 'What district are you currently living in?', type: 'dropdown', answers: 'district' },
+    { question: 'Concent to Participate', type: 'radio', answers: 'general' }
   ]
 };
 
