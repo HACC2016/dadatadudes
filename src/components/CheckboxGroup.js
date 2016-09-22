@@ -1,4 +1,8 @@
 import React, { Component, PropTypes } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+// Actions
+import { addFormField } from '../actions/Form';
 // Compoonents
 import { MKSpinner } from 'react-native-material-kit';
 import { View, StyleSheet } from 'react-native';
@@ -16,7 +20,9 @@ const styles = Object.assign({}, StyleSheet.create({
 
 class CheckboxGroup extends Component {
   static propTypes = {
-    items: PropTypes.array.isRequired
+    addFormField: PropTypes.func,
+    items: PropTypes.array.isRequired,
+    field: PropTypes.string
   }
 
   mixins: [PureRenderMixin];
@@ -34,6 +40,10 @@ class CheckboxGroup extends Component {
           key={key}
           text={item.text}
           type={item.type}
+          value={item.value}
+          text={item.text}
+          field={this.props.field}
+          onPress={this.props.addFormField}
         />
       );
     });
@@ -55,4 +65,10 @@ class CheckboxGroup extends Component {
   }
 }
 
-export default CheckboxGroup;
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+    addFormField
+  }, dispatch);
+};
+
+export default connect(null, mapDispatchToProps)(CheckboxGroup);
