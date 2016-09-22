@@ -33,7 +33,7 @@ export const Basic = {
     { question: 'Social Security Number', type: 'input' },
     { question: 'Gender', type: 'checkbox', answers: 'gender' },
     { type: 'datePicker' },
-    { question: 'Age', type: 'input' },
+    { question: 'Age', type: 'input' }, // ****Score of 1 if age is 60+
     { question: 'What Race do you most identify with? (SELECT ONLY ONE)', type: 'radio', answers: 'ethnicity' },
     { question: 'In what language do you feel best able to exprees yourself?', type: 'input' },
     { question: 'What district are you currently living in?', type: 'dropdown', answers: 'district' },
@@ -44,14 +44,14 @@ export const Basic = {
 export const VispdatHousingHistory = {
   prefaceText: '',
   questions: [
-    { question: 'Where do you sleep most frequently', type: 'checkbox', answers: 'sleeping' },
-    { question: 'How long has it been since you lived in permanent stable housing?', type: 'dropdown', answers: 'number' },
-    { question: 'In the last three years, how many times have you been homeless?', type: 'dropdown', answers: 'number' }
+    { question: 'Where do you sleep most frequently', type: 'checkbox', answers: 'sleeping' }, // ****Score of 1 if anything other than “shelter, transitional housing, or safe haven”
+    { question: 'How long has it been since you lived in permanent stable housing?', type: 'dropdown', answers: 'number' }, // ****If person has experienced 1 or more consecutive years of homelessness, and / or 4+ episodes of homelessness, then score 1
+    { question: 'In the last three years, how many times have you been homeless?', type: 'dropdown', answers: 'number' } // ****If person has experienced 1 or more consecutive years of homelessness, and / or 4+ episodes of homelessness, then score 1
   ]
 };
 
 export const VispdatRisks = {
-  prefaceText: 'In the past six months, how many times have you...',
+  prefaceText: 'In the past six months, how many times have you...', // ****Score of 1 for Emergency Service Use if the total number of interactions equals 4 or more
   questions: [
     { question: 'Received health care at an emergency department / room?', type: 'dropdown', answers: 'number' },
     { question: 'Taken an ambulance to the hospital?', type: 'dropdown', answers: 'number' },
@@ -59,43 +59,44 @@ export const VispdatRisks = {
     { question: 'Used a crisis service, including sexual assault crisis, mental health crisis, family / intimate violence, distress centers and suicide prevention hotlines?', type: 'dropdown', answers: 'number' },
     { question: 'Talked to police because you witnessed a crime, were the victim of a crime, or the alleged perpetrator of a crime or because the police told you that you must move along?', type: 'dropdown', answers: 'number' },
     { question: 'Stayed one or more nights in a holding cell, jail or prison, whether that was a short-term stay like the drunk tank, a longer stay for a more serous offense, or anything in between?', type: 'dropdown', answers: 'number' },
-    { question: 'Have you been attacked or beaten up since you’ve become homeless?', type: 'radio', answers: 'general' },
-    { question: 'Have you threatened to or tried to harm yourself or anyone else in the last year?', type: 'radio', answers: 'general' },
-    { question: 'Do you have any legal stuff going on right now that may result in you being locked up, having to pay fines, or that make it more difficult to rent a place to live?', type: 'radio', answers: 'general' },
-    { question: 'Does anybody force or trick you to do things that you do not want to do?', type: 'radio', answers: 'general' },
-    { question: 'Do you ever do things that may be considered to be risky like exchange sex for money, run drugs for someone, have unprotected sex with someone you don’t know, share a needle, or anything like that?', type: 'radio', answers: 'general' }
+    { question: 'Have you been attacked or beaten up since you’ve become homeless?', type: 'radio', answers: 'general' }, // ****Score of 1 for Risk of Harm if any of the above were answered with “Yes”
+    { question: 'Have you threatened to or tried to harm yourself or anyone else in the last year?', type: 'radio', answers: 'general' }, // ****Score of 1 for Risk of Harm if any of the above were answered with “Yes”
+    { question: 'Do you have any legal stuff going on right now that may result in you being locked up, having to pay fines, or that make it more difficult to rent a place to live?', type: 'radio', answers: 'general' }, // ****Score of 1 for Legal Issues if any of the above were answered with “Yes”
+    { question: 'Does anybody force or trick you to do things that you do not want to do?', type: 'radio', answers: 'general' }, // ****Score of 1 for Risk or Exploitation if any of the above were answered with “Yes”
+    { question: 'Do you ever do things that may be considered to be risky like exchange sex for money, run drugs for someone, have unprotected sex with someone you don’t know, share a needle, or anything like that?', type: 'radio', answers: 'general' } // ****Score of 1 for Risk or Exploitation if any of the above were answered with “Yes”
   ]
 };
 
 export const VispdatSocialization = {
   prefaceText: '',
   questions: [
-    { question: 'Is there any person, past landlord, business, bookie, dealer, or government group like the IRS that things you owe them money?', type: 'radio', answers: 'general' },
-    { question: 'Do you get any money from the government, a pension, an inheritance, working under the table, a regular job, or anything like that?', type: 'radio', answers: 'general' },
-    { question: 'Do you have planned activities, other than just surviving, that make you feel happy and fulfilled?', type: 'radio', answers: 'general' },
-    { question: 'Are you currently able to take care of basic needs like bathing, changing clothes, using a restroom, getting food and clean water and other things like that?', type: 'radio', answers: 'general' },
-    { question: 'Is your current homelessness in any way caused by a relationship that broke down, an unhealthy or abusive relationship, or because family or friends caused you to become evicted?', type: 'radio', answers: 'general' }
+    { question: 'Is there any person, past landlord, business, bookie, dealer, or government group like the IRS that things you owe them money?', type: 'radio', answers: 'general' }, // ****Score of 1 for Money Management if any of the above were answered with “Yes”
+    { question: 'Do you get any money from the government, a pension, an inheritance, working under the table, a regular job, or anything like that?', type: 'radio', answers: 'general' }, // ****Score of 1 for Money Management if any of the above were answered with “Yes”
+    { question: 'Do you have planned activities, other than just surviving, that make you feel happy and fulfilled?', type: 'radio', answers: 'general' }, // ****Score of 1 for Meaningful Daily Activity if any of the above were answered with “No”
+    { question: 'Are you currently able to take care of basic needs like bathing, changing clothes, using a restroom, getting food and clean water and other things like that?', type: 'radio', answers: 'general' }, // ****Score of 1 for Self-Care if any of the above were answered with “No”
+    { question: 'Is your current homelessness in any way caused by a relationship that broke down, an unhealthy or abusive relationship, or because family or friends caused you to become evicted?', type: 'radio', answers: 'general' } // ****Score of 1 for Social Relationships if any of the above were answered with “Yes”
   ]
 };
 
+// ****Score of 1 for TRI-Morbidity if the respondent scored 1 for Physical health and 1 for substance use and 1 for mental health.
 export const VispdatWellness = {
   prefaceText: '',
   questions: [
-    { question: 'Have you ever had to leave an apartment, shelter program, or other place you were staying because of your physical health?', type: 'radio', answers: 'general' },
-    { question: 'Do you have any chronic health issues with your liver, kidneys, stomach, lungs or heart?', type: 'radio', answers: 'general' },
-    { question: 'If there was a space available in a program that specifically assists people that live with HIV or AIDS, would that be of interest to you?', type: 'radio', answers: 'general' },
-    { question: 'Do you have any physical disabilities that would limit the type of housing you could access, or would make it hard to live independently because you’d need help?', type: 'radio', answers: 'general' },
-    { question: 'When you are sick or not feeling well, do you avoid getting help?', type: 'radio', answers: 'general' },
-    { question: 'FOR FEMALE RESPONDENTS ONLY: Are you currently pregnant?', type: 'radio', answers: 'general' },
-    { question: 'Has your drinking or drug use led you to being kicked out of an apartment or program where you were staying in the past?', type: 'radio', answers: 'general' },
-    { question: 'Will drinking or drug use make it difficult for you to stay housed or afford your housing?', type: 'radio', answers: 'general' },
-    { question: 'A mental health issue or concern?', type: 'radio', answers: 'general' },
-    { question: 'A past head injury?', type: 'radio', answers: 'general' },
-    { question: 'A learning disability, developmental disability, or other impairment?', type: 'radio', answers: 'general' },
-    { question: 'Do you have any mental health or brain issues that would make it hard for you to live independently because you’d need help?', type: 'radio', answers: 'general' },
-    { question: 'Are there any medications that a doctor said you should be taking that, for whatever reason, you are not taking?', type: 'radio', answers: 'general' },
-    { question: 'Are there any medications like painkillers that you don’t take the way the doctor prescribed or where you sell the medication?', type: 'radio', answers: 'general' },
-    { question: 'YES OR NO: Has your current period of homelessness been caused by an experience of emotional, physical, psychological, sexual, or other type of abuse, or by any other trauma you have experienced?', type: 'radio', answers: 'general' }
+    { question: 'Have you ever had to leave an apartment, shelter program, or other place you were staying because of your physical health?', type: 'radio', answers: 'general' }, // ****Score of 1 for Physical Health if any of the above were answered with “Yes”
+    { question: 'Do you have any chronic health issues with your liver, kidneys, stomach, lungs or heart?', type: 'radio', answers: 'general' }, // ****Score of 1 for Physical Health if any of the above were answered with “Yes”
+    { question: 'If there was a space available in a program that specifically assists people that live with HIV or AIDS, would that be of interest to you?', type: 'radio', answers: 'general' }, // ****Score of 1 for Physical Health if any of the above were answered with “Yes”
+    { question: 'Do you have any physical disabilities that would limit the type of housing you could access, or would make it hard to live independently because you’d need help?', type: 'radio', answers: 'general' }, // ****Score of 1 for Physical Health if any of the above were answered with “Yes”
+    { question: 'When you are sick or not feeling well, do you avoid getting help?', type: 'radio', answers: 'general' }, // ****Score of 1 for Physical Health if any of the above were answered with “Yes”
+    { question: 'FOR FEMALE RESPONDENTS ONLY: Are you currently pregnant?', type: 'radio', answers: 'general' }, // ****Score of 1 for Physical Health if any of the above were answered with “Yes”
+    { question: 'Has your drinking or drug use led you to being kicked out of an apartment or program where you were staying in the past?', type: 'radio', answers: 'general' }, // ****Score of 1 for Substance Use if any of the above were answered with “Yes”
+    { question: 'Will drinking or drug use make it difficult for you to stay housed or afford your housing?', type: 'radio', answers: 'general' }, // ****Score of 1 for Substance Use if any of the above were answered with “Yes”
+    { question: 'A mental health issue or concern?', type: 'radio', answers: 'general' }, // ****Score of 1 for Mental Health if any of the above were answered with “Yes”
+    { question: 'A past head injury?', type: 'radio', answers: 'general' }, // ****Score of 1 for Mental Health if any of the above were answered with “Yes”
+    { question: 'A learning disability, developmental disability, or other impairment?', type: 'radio', answers: 'general' }, // ****Score of 1 for Mental Health if any of the above were answered with “Yes”
+    { question: 'Do you have any mental health or brain issues that would make it hard for you to live independently because you’d need help?', type: 'radio', answers: 'general' }, // ****Score of 1 for Mental Health if any of the above were answered with “Yes”
+    { question: 'Are there any medications that a doctor said you should be taking that, for whatever reason, you are not taking?', type: 'radio', answers: 'general' }, // ****Score of 1 for Medications if any of the above were answered with “Yes”
+    { question: 'Are there any medications like painkillers that you don’t take the way the doctor prescribed or where you sell the medication?', type: 'radio', answers: 'general' }, // ****Score of 1 for Medications if any of the above were answered with “Yes”
+    { question: 'YES OR NO: Has your current period of homelessness been caused by an experience of emotional, physical, psychological, sexual, or other type of abuse, or by any other trauma you have experienced?', type: 'radio', answers: 'general' } // ****Score of 1 for Abuse and Trauma if any of the above were answered with “Yes”
   ]
 };
 
