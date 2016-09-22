@@ -2,7 +2,6 @@ import React, { Component, PropTypes } from 'react';
 // Components
 import { View } from 'react-native';
 import QuestionsContainer from './QuestionsContainer';
-// import FormNavigation from './FormNavigation';
 import Header from './Header';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 
@@ -19,7 +18,6 @@ class Form extends Component {
   constructor(props) {
     super(props);
   }
-        // <FormNavigation />
   render() {
     return (
       <View>
