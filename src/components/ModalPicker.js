@@ -1,8 +1,11 @@
 import React, { Component, PropTypes } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+// Actions
+import { addFormField } from '../actions/Form';
 import ModalPicker from 'react-native-modal-picker';
 import {
   View,
-  InteractionManager,
   StyleSheet
 } from 'react-native';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
@@ -24,45 +27,41 @@ const styles = Object.assign({}, StyleSheet.create({
 }));
 
 class Dropdown extends Component {
-
   static propTypes = {
-    items: PropTypes.array
+    addFormField: PropTypes.func,
+    field: PropTypes.string,
+    items: PropTypes.array,
+    value: PropTypes.string
   };
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      textInputValue: '',
-      data: []
-    };
-  }
 
   mixins: [PureRenderMixin];
 
-  componentDidMount() {
-    InteractionManager.runAfterInteractions(() => {
-      if (this.props.items) {
-        this.setState({
-          data: this.props.items.map(({ text: label }, key) => {
-            return { label, key: key++ };
-          })
-        });
-      }
+  constructor(props) {
+    super(props);
+    /**
+     * Need to remap to fit ModalPicker object schema
+     */
+    this.state = {
+      data: this.props.items.map(({ text: label }, key) => {
+        return { label, key: key++ };
+      })
+    };
+    this.onChangeHandler = this._onChangeHandler.bind(this);
+  }
+
+  _onChangeHandler(data) {
+    this.props.addFormField({
+      field: this.props.field,
+      value: data.label
     });
   }
 
   render() {
-    if (!this.state.data) {
-      return (
-        <View>
-          <Text> fuk uggjjjj</Text>
-        </View>
-      );
-    }
     return (
-      <View style={{ flex: 1, justifyContent: 'space-around' }}>
+      <View style={{ width: 1000 }}>
         <ModalPicker
           data={this.state.data}
+          onChange={this.onChangeHandler}
           initValue="Options"
           style={styles.container}
           overlayStyle={styles.module}
@@ -73,4 +72,10 @@ class Dropdown extends Component {
   }
 }
 
-export default Dropdown;
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+    addFormField
+  }, dispatch);
+};
+
+export default connect(null, mapDispatchToProps)(Dropdown);

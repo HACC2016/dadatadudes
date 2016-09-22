@@ -15,6 +15,9 @@ const styles = Object.assign({}, StyleSheet.create({
 class Checkbox extends Component {
   static propTypes = {
     text: PropTypes.string.isRequired,
+    field: PropTypes.string,
+    value: PropTypes.string,
+    onPress: PropTypes.func,
     type: PropTypes.string
   };
 
@@ -25,17 +28,15 @@ class Checkbox extends Component {
     this.state = {
       checked: false
     };
-    this.handleChange = this._handleChange.bind(this);
+    this.onCheckedHandler = this._onCheckedHandler.bind(this);
     this.showInput = this._showInput.bind(this);
   }
 
-  _handleChange() {
-    const { type } = this.props;
-    if (type === 'input') {
-      this.setState({
-        checked: !this.state.checked
-      });
-    }
+  _onCheckedHandler() {
+    this.props.onPress({
+      field: this.props.field,
+      value: this.props.value
+    });
   }
 
   _showInput() {
@@ -54,7 +55,7 @@ class Checkbox extends Component {
         <View style={styles.container}>
           <MKCheckbox
             checked={this.state.checked}
-            onCheckedChange={this.handleChange}
+            onCheckedChange={this.onCheckedHandler}
             fillColor={MKColor.Teal}
             borderOnColor={MKColor.Pink}
             borderOffColor={MKColor.Green}

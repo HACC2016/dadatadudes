@@ -30,7 +30,9 @@ class FormQuestion extends Component {
     answers: PropTypes.array,
     children: PropTypes.node,
     question: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired
+    type: PropTypes.string.isRequired,
+    field: PropTypes.string,
+    value: PropTypes.string
   };
 
   mixins: [PureRenderMixin];
@@ -44,16 +46,16 @@ class FormQuestion extends Component {
     const { type } = this.props;
     switch (type) {
     case RENDER_TYPES.RADIO: {
-      return <RadioGroup items={this.props.answers} />;
+      return <RadioGroup items={this.props.answers} field={this.props.field} />;
     }
     case RENDER_TYPES.DROPDOWN: {
-      return <DropDown items={this.props.answers} />;
+      return <DropDown items={this.props.answers} field={this.props.field} />;
     }
     case RENDER_TYPES.INPUT: {
-      return <TextField />;
+      return <TextField field={this.props.field} />;
     }
     case RENDER_TYPES.CHECKBOX: {
-      return <CheckboxGroup items={this.props.answers} />;
+      return <CheckboxGroup items={this.props.answers} field={this.props.field} />;
     }
     default:
       return '';

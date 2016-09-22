@@ -19,16 +19,16 @@ export const PointInTimeQuestions = {
 export const Basic = {
   prefaceText: '',
   questions: [
-    { question: 'First Name', type: 'input' },
-    { question: 'Last Name', type: 'input' },
-    { question: 'Nickname', type: 'input' },
-    { question: 'Social Security Number', type: 'input' },
-    { question: 'Gender', type: 'checkbox', answers: 'gender' },
+    { question: 'First Name', type: 'input', field: 'firstName' },
+    { question: 'Last Name', type: 'input', field: 'lastName' },
+    { question: 'Nickname', type: 'input', field: 'nickname' },
+    { question: 'Social Security Number', type: 'input', field: 'ssn' },
+    { question: 'Gender', type: 'checkbox', answers: 'gender', field: 'gender' },
     // { question: 'Date of birth', type: 'datePicker' },
-    { question: 'Age', type: 'input' },
-    { question: 'What Race do you most identify with? (SELECT ONLY ONE)', type: 'radio', answers: 'ethnicity' },
-    { question: 'In what language do you feel best able to exprees yourself?', type: 'input' },
-    { question: 'What district are you currently living in?', type: 'dropdown', answers: 'district' }
+    { question: 'Age', type: 'input', field: 'age' },
+    { question: 'What Race do you most identify with? (SELECT ONLY ONE)', type: 'radio', answers: 'ethnicity', field: 'ethnicity' },
+    { question: 'In what language do you feel best able to exprees yourself?', type: 'input', field: 'motherTongue' },
+    { question: 'What district are you currently living in?', type: 'dropdown', answers: 'district', field: 'district' }
   ]
 };
 
@@ -119,11 +119,12 @@ export const RefusedInfo = {
 };
 
 export const PointInTimeSections = fromJS([
-  { sectionTitle: 'Basic Information for Point in Time', section: Basic },
+  { sectionTitle: 'Basic Information', section: Basic },
   { sectionTitle: 'Description of Person at the current Point in Time', section: PointInTimeQuestions }
 ]);
 
 export const RefusedSections = fromJS([
+  { sectionTitle: 'Basic Information', section: Basic },
   { sectionTitle: 'Description of Person if they Refused to be Surveyed', section: RefusedInfo }
 ]);
 

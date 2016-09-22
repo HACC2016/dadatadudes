@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Provider, connect } from 'react-redux';
-import { Router } from 'react-native-router-flux';
+import { ApolloProvider } from 'react-apollo';
 import App from './app.js';
 import apollo from './store/apollo';
 import configureStore from './store/configureStore';
@@ -17,9 +16,9 @@ export default () => {
     }
     render() {
       return (
-        <Provider store={this.state.store} client={apollo}>
+        <ApolloProvider store={this.state.store} client={apollo}>
           <App />
-        </Provider>
+        </ApolloProvider>
       );
     }
   }

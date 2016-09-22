@@ -14,23 +14,38 @@ import ToggleBar from '../components/ToggleBar';
 import { loadSection } from '../actions/Form';
 // Selectors
 import {
-  currentRouteSelector
+  currentRouteSelector,
+  pointInTimeMutationSelector
 } from '../selectors/Form';
 // Questions
 import { PointInTimeSections } from '../utilities/questions';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import * as answerOptions from '../utilities/answerOptions.js';
 
+import gql from 'graphql-tag';
+import { graphql } from 'react-apollo';
+
+const mutation = gql`
+  mutation{
+    AddReport(input: { districtId: "96744", reportedAt: "04/09/2014" }){
+      reportedAt
+    }
+  }
+`;
+
+
 class PointInTime extends Component {
   static propTypes = {
     currentRoute: PropTypes.string,
-    loadSection: PropTypes.func
+    loadSection: PropTypes.func,
+    mutate: PropTypes.func
   };
 
   mixins: [PureRenderMixin];
 
   constructor(props) {
     super(props);
+    this.submitForm = this._submitForm.bind(this);
   }
 
   componentWillMount() {
@@ -39,6 +54,16 @@ class PointInTime extends Component {
       currentRoute: 'Point In Time',
       allSections: PointInTimeSections,
       answerOptions
+    });
+  }
+
+  _submitForm() {
+    this.props.mutate()
+    .then((result) => {
+      console.log('result', result);
+    })
+    .catch((error) => {
+      console.log('error', error);
     });
   }
 
@@ -52,7 +77,7 @@ class PointInTime extends Component {
           text={this.props.currentRoute}
         />
         <FormContainer />
-        <ToggleBar />
+        <ToggleBar onClick={this.submitForm} />
       </ScrollView>
     );
   }
@@ -60,7 +85,8 @@ class PointInTime extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    currentRoute: currentRouteSelector(state)
+    currentRoute: currentRouteSelector(state),
+    pointInTimeMutation: pointInTimeMutationSelector(state)
   };
 };
 
@@ -70,4 +96,6 @@ const mapDispatchToProps = (dispatch) => {
   }, dispatch);
 };
 
+PointInTime = graphql(mutation)(PointInTime);
 export default connect(mapStateToProps, mapDispatchToProps)(PointInTime);
+
