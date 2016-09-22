@@ -6,9 +6,9 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 const styles = Object.assign({}, StyleSheet.create({
 
   container: {
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center'
+    flexDirection: 'column',
+    alignItems: 'center',
+    marginRight: 20
   }
 
 }));
