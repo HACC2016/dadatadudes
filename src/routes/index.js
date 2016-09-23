@@ -46,7 +46,7 @@ const navStyles = Object.assign({}, StyleSheet.create({
 export default Actions.create(
   <Scene key="root" defaultRoute="home">
     <Scene key="login" component={Login} />
-    <Scene key="home" type={ActionConst.RESET} component={Home} initial={true} />
+    <Scene key="home" type={ActionConst.RESET} component={Home} />
     <Scene
       key="PointInTimeBasic"
       component={PointInTimeBasic}
@@ -66,6 +66,7 @@ export default Actions.create(
     />
     <Scene
       key="VispdatBasic"
+ initial={true}
       component={VispdatBasic}
       onRight={() => { Actions.VispdatRisk(); }}
       rightTitle={"Next"}

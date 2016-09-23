@@ -53,7 +53,7 @@ class PointInTime extends Component {
       );
     }
     return (
-      <ScrollView style={styles.container} >
+      <ScrollView>
         <Header
           text={"Vispdat Housing History"}
         />

@@ -9,6 +9,9 @@ const styles = Object.assign({}, StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center'
+  },
+  text: {
+    marginRight: 40
   }
 }));
 
@@ -61,7 +64,7 @@ class Checkbox extends Component {
             borderOffColor={`rgba(224,228,204,1)`}
             rippleColor={`rgba(243,134,48,1)`}
           />
-          <Text>{this.props.text}</Text>
+          <Text style={styles.text}>{this.props.text}</Text>
         </View>
         {this.showInput()}
       </View>

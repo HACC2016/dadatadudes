@@ -1,8 +1,15 @@
 import React, { Component, PropTypes } from 'react';
 // Components
-import { ListView } from 'react-native';
+import { ListView, StyleSheet } from 'react-native';
 import FormQuestion from './FormQuestion';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
+
+const styles = Object.assign({}, StyleSheet.create({
+  container: {
+    marginTop: 50,
+    marginHorizontal: 70
+  }
+}));
 
 class Question extends Component {
   static propTypes = {
@@ -31,6 +38,7 @@ class Question extends Component {
   render() {
     return (
       <ListView
+        style={styles.container}
         dataSource={this.props.questions}
         initialListSize={this.props.questions.size}
         scrollRenderAhead={250}

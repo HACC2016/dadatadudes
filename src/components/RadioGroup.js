@@ -12,7 +12,8 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 const styles = Object.assign({}, StyleSheet.create({
   listView: {
     flex: 1,
-    flexDirection: 'row'
+    flexDirection: 'row',
+    flexWrap: 'wrap'
   }
 }));
 

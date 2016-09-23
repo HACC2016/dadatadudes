@@ -5,11 +5,13 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 
 const styles = Object.assign({}, StyleSheet.create({
   container: {
-    flex: 1,
-    flexDirection: 'row'
+    flex: 0,
+    flexDirection: 'row',
+    flexWrap: 'wrap'
   },
   text: {
-    alignSelf: 'center'
+    alignSelf: 'center',
+    marginRight: 50
   }
 }));
 

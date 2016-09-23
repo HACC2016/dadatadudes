@@ -19,7 +19,8 @@ const styles = Object.assign({}, StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
-    flexWrap: 'wrap'
+    flexWrap: 'wrap',
+    marginVertical: 10
   }
 }));
 
