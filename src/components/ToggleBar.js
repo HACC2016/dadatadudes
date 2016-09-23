@@ -2,13 +2,31 @@ import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 // Components
-import { View, TouchableHighlight, Image } from 'react-native';
 import Button from './Button';
+import { View, TouchableHighlight, StyleSheet } from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 // Actions
 import { setCurrentIndex, submitForm } from '../actions/Form';
 // Selectors
 import { currentIndexSelector, formInputsSelector } from '../selectors/Form';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
+
+const styles = StyleSheet.create({
+  base: {
+    flex: 1,
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    marginTop: 5
+  },
+  row: {
+    flexDirection: 'row'
+  },
+  col: {
+    flexDirection: 'column',
+    marginLeft: 50,
+    marginRight: 50
+  }
+});
 
 class ToggleBar extends Component {
   static propTypes = {
@@ -37,20 +55,27 @@ class ToggleBar extends Component {
 
   render() {
     return (
-      <View>
-        <TouchableHighlight onPress={this.nextPage}>
-          <Image
-            style={{ width: 50, height: 50 }}
-            source={{ uri: 'http://placekitten.com/100/100' }}
-          />
-        </TouchableHighlight>
-        <TouchableHighlight onPress={this.backPage}>
-          <Image
-            style={{ width: 50, height: 50 }}
-            source={{ uri: 'http://placekitten.com/250/250' }}
-          />
-        </TouchableHighlight>
-        <Button text={"Submit"} onPress={this.props.onClick} value={this.props.formInputs} />
+      <View style={styles.base}>
+        <View style={styles.row}>
+          <TouchableHighlight onPress={this.nextPage}>
+            <View style={styles.col}>
+              <Icon
+                name="keyboard-arrow-left"
+                size={100}
+                color="#00bfff"
+              />
+            </View>
+          </TouchableHighlight>
+          <TouchableHighlight onPress={this.backPage}>
+            <View style={styles.col}>
+              <Icon
+                name="keyboard-arrow-right"
+                size={100}
+                color="#00bfff"
+              />
+            </View>
+          </TouchableHighlight>
+        </View>
       </View>
     );
   }

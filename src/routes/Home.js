@@ -14,8 +14,16 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 
 const styles = Object.assign({}, StyleSheet.create({
   container: {
-    flex: 0,
+    flex: 1,
+    justifyContent: 'space-around',
+    alignItems: 'center',
     flexDirection: 'row'
+  },
+  route: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'column'
   }
 }));
 
@@ -30,29 +38,32 @@ class Home extends Component {
 
   render() {
     return (
-      <ScrollView style={styles.container}>
+      <ScrollView contentContainerStyle={styles.container}>
         <TouchableHighlight onPress={Actions.PointInTimeBasic}>
-          <View>
+          <View style={styles.route} >
             <Text> Point In Time </Text>
             <Icon
               name="hourglass-empty"
+              color={"#0a64a0"}
               size={150}
             />
           </View>
         </TouchableHighlight>
         <TouchableHighlight onPress={Actions.VispdatBasic}>
-          <View>
+          <View style={styles.route} >
             <Text> VI-SPDAT </Text>
             <Icon
+              color={"#501eb4"}
               name="assignment"
               size={150}
             />
           </View>
         </TouchableHighlight>
-        <TouchableHighlight onPress={Actions.RefuseBasic}>
-          <View>
+        <TouchableHighlight onPress={Actions.Refuse}>
+          <View style={styles.route} >
             <Text> Refuse </Text>
             <Icon
+              color={"#dc2878"}
               name="warning"
               size={150}
             />

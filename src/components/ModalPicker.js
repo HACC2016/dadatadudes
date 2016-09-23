@@ -3,9 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 // Actions
 import { addFormField } from '../actions/Form';
-import ModalPicker from 'react-native-modal-picker';
 import {
-  View,
   Picker,
   StyleSheet
 } from 'react-native';
@@ -41,9 +39,9 @@ class Dropdown extends Component {
   }
 
   _renderPickerItems() {
-    return this.props.items.map((item) => {
+    return this.props.items.map((item, key) => {
       return (
-        <Picker.Item label={item.text} value={item.value} />
+        <Picker.Item label={item.text} value={item.value} key={key} />
       );
     });
   }

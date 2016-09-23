@@ -10,6 +10,7 @@ import {
 import Button from '../components/Button';
 import Header from '../components/Header';
 import Questions from '../components/Questions';
+import DateSelector from '../components/DateSelector.js';
 // Selectors
 import { formInputsSelector } from '../selectors/Form';
 // Questions
@@ -51,6 +52,7 @@ class Refuse extends Component {
   }
 
   _onPressHandler() {
+    console.log('this.props.fields', this.props.fields);
     this.props.submit(this.props.fields)
     .then((result) => {
       console.log('result', result);
@@ -88,6 +90,7 @@ class Refuse extends Component {
           onPress={this.onPressHandler}
           text={"Submit Form!"}
         />
+        <DateSelector />
       </ScrollView>
     );
   }

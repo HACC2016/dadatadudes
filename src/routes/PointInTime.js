@@ -50,6 +50,7 @@ class PointInTime extends Component {
   }
 
   _onPressHandler() {
+    console.log('this.props.fields', this.props.fields);
     this.props.submit(this.props.fields)
     .then((result) => {
       console.log('result', result);
