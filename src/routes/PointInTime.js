@@ -1,6 +1,7 @@
 // Need to attach current section to redux store.
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
 // Components
 import {
   ScrollView
@@ -8,10 +9,13 @@ import {
 import Header from '../components/Header';
 import Questions from '../components/Questions';
 import Button from '../components/Button';
+// Selectors
+import { formInputsSelector } from '../selectors/Form';
 // Questions
 import { PointInTimeQuestions } from '../utilities/questions';
 import { processQuestions } from '../utilities/helpers';
 import * as answerOptions from '../utilities/answerOptions.js';
+// GraphQL
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
 
@@ -24,6 +28,10 @@ const mutation = gql`
 `;
 
 class PointInTime extends Component {
+  static propTypes = {
+    fields: PropTypes.object,
+    submit: PropTypes.func
+  };
 
   mixins: [PureRenderMixin];
 
@@ -42,7 +50,7 @@ class PointInTime extends Component {
   }
 
   _onPressHandler() {
-    this.props.mutate()
+    this.props.submit(this.props.fields)
     .then((result) => {
       console.log('result', result);
     })
@@ -50,6 +58,7 @@ class PointInTime extends Component {
       console.log('error', error);
     });
   }
+
 
   _renderPrefaceText() {
     if (PointInTimeQuestions.prefaceText) {
@@ -84,5 +93,21 @@ class PointInTime extends Component {
   }
 }
 
-PointInTime = graphql(mutation)(PointInTime);
-export default PointInTime;
+const mapStateToProps = (state) => {
+  return {
+    fields: formInputsSelector(state)
+  };
+};
+
+PointInTime = graphql(mutation, {
+  props: ({ mutate }) => ({
+    submit: (input) => mutate({
+      variables: {
+        districtId: input.districtId,
+        reportedAt: input.reportedAt
+      }
+    })
+  })
+})(PointInTime);
+
+export default connect(mapStateToProps)(PointInTime);

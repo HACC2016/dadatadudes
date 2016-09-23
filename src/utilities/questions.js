@@ -21,16 +21,16 @@ export const BasicQuestions = fromJS({
   sectionTitle: 'Basic Information',
   prefaceText: '',
   questions: [
+    { question: 'What Race do you most identify with? (SELECT ONLY ONE)', type: 'dropdown', answers: 'ethnicity', field: 'ethnicity' },
+    { question: 'What district are you currently living in?', type: 'dropdown', answers: 'district', field: 'district' },
     { question: 'First Name', type: 'input', field: 'firstName' },
     { question: 'Last Name', type: 'input', field: 'lastName' },
     { question: 'Nickname', type: 'input', field: 'nickname' },
     { question: 'Social Security Number', type: 'input', field: 'ssn' },
-    { question: 'Gender', type: 'checkbox', answers: 'gender', field: 'gender' },
+    { question: 'Gender', type: 'radio', answers: 'gender', field: 'gender' },
     // { question: 'Date of birth', type: 'datePicker' },
     { question: 'Age', type: 'input', field: 'age' },
-    { question: 'What Race do you most identify with? (SELECT ONLY ONE)', type: 'radio', answers: 'ethnicity', field: 'ethnicity' },
-    { question: 'In what language do you feel best able to exprees yourself?', type: 'input', field: 'motherTongue' },
-    { question: 'What district are you currently living in?', type: 'dropdown', answers: 'district', field: 'district' }
+    { question: 'In what language do you feel best able to exprees yourself?', type: 'input', field: 'languages' }
   ]
 });
 

@@ -6,23 +6,12 @@ import { addFormField } from '../actions/Form';
 import ModalPicker from 'react-native-modal-picker';
 import {
   View,
+  Picker,
   StyleSheet
 } from 'react-native';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 
 const styles = Object.assign({}, StyleSheet.create({
-
-  container: {
-    flex: 1,
-    flexDirection: 'row',
-    marginTop: 5,
-    marginLeft: 5,
-    marginBottom: 5
-  },
-  module: {
-    flex: 1,
-    position: 'relative'
-  }
 
 }));
 
@@ -30,8 +19,7 @@ class Dropdown extends Component {
   static propTypes = {
     addFormField: PropTypes.func,
     field: PropTypes.string,
-    items: PropTypes.array,
-    value: PropTypes.string
+    items: PropTypes.array
   };
 
   mixins: [PureRenderMixin];
@@ -41,33 +29,37 @@ class Dropdown extends Component {
     /**
      * Need to remap to fit ModalPicker object schema
      */
-    this.state = {
-      data: this.props.items.map(({ text: label }, key) => {
-        return { label, key: key++ };
-      })
-    };
     this.onChangeHandler = this._onChangeHandler.bind(this);
+    this.renderPickerItems = this._renderPickerItems.bind(this);
+    this.state = {
+      selected: {}
+    };
   }
 
-  _onChangeHandler(data) {
+  _renderPickerItems() {
+    return this.props.items.map((item) => {
+      return (
+        <Picker.Item label={item.text} value={item.value} />
+      );
+    });
+  }
+
+  _onChangeHandler(value) {
     this.props.addFormField({
       field: this.props.field,
-      value: data.label
+      value
     });
+    this.setState({ selected: value });
   }
 
   render() {
     return (
-      <View style={{ width: 1000 }}>
-        <ModalPicker
-          data={this.state.data}
-          onChange={this.onChangeHandler}
-          initValue="Options"
-          style={styles.container}
-          overlayStyle={styles.module}
-          sectionStyle={styles.module}
-        />
-      </View>
+      <Picker
+        selectedValue={this.state.selected}
+        onValueChange={this.onChangeHandler}
+      >
+        {this.renderPickerItems()}
+      </Picker>
     );
   }
 }

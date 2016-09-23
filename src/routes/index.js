@@ -78,11 +78,11 @@ export default Actions.create(
       component={PointInTime}
       title={"Point In Time"}
       onLeft={() => { Actions.PointInTimeBasic(); }}
-      onRight={() => { console.log('submit form here'); Actions.home(); }}
       leftTitle={"Back"}
-      rightTitle={"Submit!"}
       navigationBarStyle={navStyles.navBar}
       titleStyle={navStyles.title}
+      // rightTitle={"Submit!"}
+      // onRight={() => { console.log('submit form here'); Actions.home(); }}
     />
     <Scene
       key="VispdatBasic"
@@ -147,8 +147,8 @@ export default Actions.create(
       component={VispdatFollowUp}
       onLeft={() => { Actions.VispdatWellness(); }}
       leftTitle={"Back"}
-      onRight={() => { console.log('submit form here'); Actions.home(); }}
-      rightTitle={"Submit!"}
+      // onRight={() => { console.log('submit form here'); Actions.home(); }}
+      // rightTitle={"Submit!"}
     />
     <Scene
       title={"Basic Information"}
@@ -170,8 +170,8 @@ export default Actions.create(
       component={Refuse}
       onLeft={() => { Actions.RefuseBasic(); }}
       leftTitle={"Back"}
-      onRight={() => { console.log('submit form here'); Actions.home(); }}
-      rightTitle={"Submit!"}
+      // onRight={() => { console.log('submit form here'); Actions.home(); }}
+      // rightTitle={"Submit!"}
     />
     <Scene key="sandbox" component={Sandbox} />
     <Scene key="testRoute" component={TestRoute} hideNavBar={true} />
