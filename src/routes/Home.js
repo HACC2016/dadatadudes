@@ -12,6 +12,13 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
+const styles = Object.assign({}, StyleSheet.create({
+  container: {
+    flex: 0,
+    flexDirection: 'row'
+  }
+}));
+
 class Home extends Component {
   static propTypes = {
     loadAnswerOptions: PropTypes.func
@@ -23,7 +30,7 @@ class Home extends Component {
 
   render() {
     return (
-      <ScrollView>
+      <ScrollView style={styles.container}>
         <TouchableHighlight onPress={Actions.PointInTimeBasic}>
           <View>
             <Text> Point In Time </Text>

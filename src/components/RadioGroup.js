@@ -14,7 +14,8 @@ const styles = Object.assign({}, StyleSheet.create({
   listView: {
     flex: 1,
     flexDirection: 'row',
-    flexWrap: 'wrap'
+    flexWrap: 'wrap',
+    marginTop: 5
   }
 }));
 

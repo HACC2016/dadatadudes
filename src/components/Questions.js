@@ -6,8 +6,8 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 
 const styles = Object.assign({}, StyleSheet.create({
   container: {
-    marginTop: 50,
-    marginHorizontal: 70
+    marginTop: 60,
+    marginHorizontal: 50
   }
 }));
 

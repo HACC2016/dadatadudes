@@ -22,8 +22,8 @@ import { StyleSheet } from 'react-native';
 
 const navStyles = Object.assign({}, StyleSheet.create({
   navBar: {
-    backgroundColor: 'rgba(167,219,216,1)',
-    borderBottomColor: 'rgba(243,134,48,1)',
+    backgroundColor: '#166CA5',
+    borderBottomColor: '#166CA5',
     borderBottomWidth: 1
   },
   title: {
@@ -44,7 +44,7 @@ const navStyles = Object.assign({}, StyleSheet.create({
  * to prevent users to returning to the form after they it has been submitted.
  */
 export default Actions.create(
-  <Scene key="root" defaultRoute="home">
+  <Scene key="root" defaultRoute="home" leftButtonImage={require('../assets/arrow-left.png')}  rightButtonImage={require('../assets/arrow-right.png')} >
     <Scene
       key="login"
       title={"Login"}
@@ -67,9 +67,7 @@ export default Actions.create(
       component={PointInTimeBasic}
       onBack={() => { Actions.home(); }}
       onLeft={() => { Actions.home(); }}
-      leftTitle={"Back"}
       onRight={() => { Actions.PointInTime(); }}
-      rightTitle={"Next"}
       navigationBarStyle={navStyles.navBar}
       titleStyle={navStyles.title}
     />
@@ -81,8 +79,6 @@ export default Actions.create(
       leftTitle={"Back"}
       navigationBarStyle={navStyles.navBar}
       titleStyle={navStyles.title}
-      // rightTitle={"Submit!"}
-      // onRight={() => { console.log('submit form here'); Actions.home(); }}
     />
     <Scene
       key="VispdatBasic"
@@ -90,9 +86,7 @@ export default Actions.create(
       component={VispdatBasic}
       onBack={() => { Actions.home(); }}
       onLeft={() => { Actions.home(); }}
-      leftTitle={"Back"}
       onRight={() => { Actions.VispdatRisk(); }}
-      rightTitle={"Next"}
       navigationBarStyle={navStyles.navBar}
       titleStyle={navStyles.title}
     />
@@ -103,9 +97,7 @@ export default Actions.create(
       key="VispdatRisk"
       component={VispdatRisk}
       onLeft={() => { Actions.Vispdat(); }}
-      leftTitle={"Back"}
       onRight={() => { Actions.VispdatHousing(); }}
-      rightTitle={"Next"}
     />
     <Scene
       title={"Vispdat Housing"}
@@ -114,9 +106,7 @@ export default Actions.create(
       key="VispdatHousing"
       component={VispdatHousing}
       onLeft={() => { Actions.VispdatRisk(); }}
-      leftTitle={"Back"}
       onRight={() => { Actions.VispdatSocialization(); }}
-      rightTitle={"Next"}
     />
     <Scene
       title={"Vispdat Socilization"}
@@ -125,9 +115,7 @@ export default Actions.create(
       key="VispdatSocialization"
       component={VispdatSocialization}
       onLeft={() => { Actions.VispdatHousing(); }}
-      leftTitle={"Back"}
       onRight={() => { Actions.VispdatWellness(); }}
-      rightTitle={"Next"}
     />
     <Scene
       title={"Vispdat Wellness"}
@@ -137,7 +125,6 @@ export default Actions.create(
       component={VispdatWellness}
       onLeft={() => { Actions.VispdatSocialization(); }}
       onRight={() => { Actions.VispdatFollowUp(); }}
-      rightTitle={"Next"}
     />
     <Scene
       title={"Vispdat Follow Up"}
@@ -147,8 +134,6 @@ export default Actions.create(
       component={VispdatFollowUp}
       onLeft={() => { Actions.VispdatWellness(); }}
       leftTitle={"Back"}
-      // onRight={() => { console.log('submit form here'); Actions.home(); }}
-      // rightTitle={"Submit!"}
     />
     <Scene
       title={"Basic Information"}
@@ -158,9 +143,7 @@ export default Actions.create(
       component={RefuseBasic}
       onBack={() => { Actions.home(); }}
       onLeft={() => { Actions.home(); }}
-      leftTitle={"Back"}
       onRight={() => { Actions.Refuse(); }}
-      rightTitle={"Next"}
     />
     <Scene
       title={"Information about the Person"}
@@ -170,8 +153,6 @@ export default Actions.create(
       component={Refuse}
       onLeft={() => { Actions.RefuseBasic(); }}
       leftTitle={"Back"}
-      // onRight={() => { console.log('submit form here'); Actions.home(); }}
-      // rightTitle={"Submit!"}
     />
     <Scene key="sandbox" component={Sandbox} />
     <Scene key="testRoute" component={TestRoute} hideNavBar={true} />

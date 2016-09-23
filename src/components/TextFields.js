@@ -44,7 +44,7 @@ class TextField extends Component {
           placeholder={this.props.question}
           onChangeText={this.onChangeText}
           tintColor={`rgba(224,228,204,1)`}
-          highlightColor= {'rgba(250,105,0,0.6)'}
+          highlightColor= {'#E35393'}
           textInputStyle={{ color: 'rgba(0,0,0,0.65)' }}
           style={styles.textField}
         />
