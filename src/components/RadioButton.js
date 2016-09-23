@@ -45,10 +45,10 @@ class RadioButton extends Component {
         <MKRadioButton
           onPress={this.onPressHandler}
           group={group}
-          fillColor={`rgba(105,210,231,1)`}
-          borderOnColor={`rgba(105,210,231,1)`}
+          fillColor={`#734BC3`}
+          borderOnColor={`#501EB4`}
           borderOffColor={`rgba(224,228,204,1)`}
-          rippleColor={`rgba(250,105,0,1)`}
+          rippleColor={`#DE337F`}
         />
         <Text style={styles.text}>{text}</Text>
       </View>
