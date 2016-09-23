@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { StyleSheet, Text } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { MKButton, MKColor } from 'react-native-material-kit';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 
@@ -7,7 +7,14 @@ const styles = Object.assign({}, StyleSheet.create({
   buttonText: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: 'white'
+    color: 'white',
+    padding: 5
+  },
+  button: {
+    height: 36,
+    marginBottom: 10,
+    justifyContent: 'center',
+    paddingRight: 250
   }
 }));
 
@@ -45,7 +52,7 @@ class Button extends Component {
         <Text
           style={styles.buttonText}
         >
-        {text}
+          {text}
         </Text>
       </MKButton>
     );

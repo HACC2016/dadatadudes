@@ -5,6 +5,7 @@ import CheckboxGroup from './CheckboxGroup';
 import RadioGroup from './RadioGroup';
 import DropDown from './ModalPicker';
 import TextField from './TextFields';
+import DateSelector from './DateSelector';
 // Utils
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 
@@ -12,7 +13,8 @@ const RENDER_TYPES = {
   CHECKBOX: 'checkbox',
   DROPDOWN: 'dropdown',
   INPUT: 'input',
-  RADIO: 'radio'
+  RADIO: 'radio',
+  DATE: 'datePicker'
 };
 
 const styles = Object.assign({}, StyleSheet.create({
@@ -52,6 +54,9 @@ class FormQuestion extends Component {
     }
     case RENDER_TYPES.INPUT: {
       return <TextField field={this.props.field} question={this.props.question} />;
+    }
+    case RENDER_TYPES.DATE: {
+      return <DateSelector />;
     }
     case RENDER_TYPES.CHECKBOX: {
       return <CheckboxGroup items={this.props.answers} field={this.props.field} />;

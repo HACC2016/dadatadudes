@@ -7,13 +7,21 @@ export const PointInTimeQuestions = fromJS({
     { question: 'How many ADULTS are in your household?', type: 'dropdown', answers: 'number' },
     { question: 'How many CHILDREN UNDER 18?', type: 'dropdown', answers: 'number' },
     { question: 'Have you served in the U.S. Armed Forces?', type: 'dropdown', answers: 'general' },
+    { quesiton: 'How long have you lived in Hawaii?', type: 'dropdown', answers: 'number' },
+    { question: 'Why are you homeless?', type: 'input' },
+    { question: 'How many times have you ever been homeless?', type: 'dropdown', answers: 'number' },
     { question: 'How long have you been continuously homeless this time?', type: 'dropdown', answers: 'number' },
     { question: 'How many times have you been homeless in the past 3 years?', type: 'dropdown', answers: 'homelessDate' },
     { question: 'Were you on the street, beach, park, or in an emergency shelter each time?', type: 'dropdown', answers: 'homelessCount' },
     { question: 'Do you have a mental health disability that limits your ability to work or perform activities of daily living?', type: 'dropdown', answers: 'general' },
     { question: 'Do you have an alcohol or drug problem that limits your ability to work or perform activities of daily living?', type: 'dropdown', answers: 'general' },
     { question: 'Select all Benefits that you are currently receiving:', type: 'dropdown', answers: 'benefits' },
-    { question: 'Do you have a physical, developmental, or other disability that limits your ability to work or perform activities of daily living?', type: 'dropdown', answers: 'general' }
+    { question: 'Do you have a physical, developmental, or other disability that limits your ability to work or perform activities of daily living?', type: 'dropdown', answers: 'general' },
+    { question: 'Do you have any of the following identification:', type: 'checkbox', answers: 'ids' },
+    { question: 'Education level completed', type: 'dropdown', answers: 'education' },
+    { question: 'Are you currently employed?', type: 'radio', answers: 'general' },
+    { question: 'What is your current pay?', type: 'input' }
+    // { question: 'When were you last employed?' type: 'datePicker' },
   ]
 });
 
@@ -30,6 +38,7 @@ export const BasicQuestions = fromJS({
     { question: 'In what language do you feel best able to exprees yourself?', type: 'input', field: 'languages' },
     { question: 'What Race do you most identify with? (SELECT ONLY ONE)', type: 'dropdown', answers: 'ethnicity', field: 'ethnicity' },
     { question: 'What district are you currently living in?', type: 'dropdown', answers: 'district', field: 'district' },
+    { question: 'Concent to Participate', type: 'dropdown', answers: 'general' }
     // { question: 'Date of birth', type: 'datePicker' },
   ]
 });
@@ -38,15 +47,15 @@ export const VispdatHousingHistory = fromJS({
   sectionTitle: 'History of Housing and Homelessness',
   prefaceText: '',
   questions: [
-    { question: 'Where do you sleep most frequently', type: 'dropdown', answers: 'sleeping' },
-    { question: 'How long has it been since you lived in permanent stable housing?', type: 'dropdown', answers: 'number' },
-    { question: 'In the last three years, how many times have you been homeless?', type: 'dropdown', answers: 'number' }
+    { question: 'Where do you sleep most frequently', type: 'dropdown', answers: 'sleeping' },// ****Score of 1 if anything other than “shelter, transitional housing, or safe haven”
+    { question: 'How long has it been since you lived in permanent stable housing?', type: 'dropdown', answers: 'number' }, // ****If person has experienced 1 or more consecutive years of homelessness, and / or 4+ episodes of homelessness, then score 1
+    { question: 'In the last three years, how many times have you been homeless?', type: 'dropdown', answers: 'number' } // ****If person has experienced 1 or more consecutive years of homelessness, and / or 4+ episodes of homelessness, then score 1
   ]
 });
 
 export const VispdatRisksQuestions = fromJS({
   sectionTitle: 'Risks',
-  prefaceText: 'In the past six months, how many times have you...',
+  prefaceText: 'In the past six months, how many times have you...', // ****Score of 1 for Emergency Service Use if the total number of interactions equals 4 or more
   questions: [
     { question: 'Received health care at an emergency department / room?', type: 'dropdown', answers: 'number' },
     { question: 'Taken an ambulance to the hospital?', type: 'dropdown', answers: 'number' },
@@ -75,24 +84,25 @@ export const VispdatSocializationQuestions = fromJS({
 });
 
 export const VispdatWellnessQuestions = fromJS({
+// ****Score of 1 for TRI-Morbidity if the respondent scored 1 for Physical health and 1 for substance use and 1 for mental health.
   sectionTitle: 'Wellness',
   prefaceText: '',
   questions: [
-    { question: 'Have you ever had to leave an apartment, shelter program, or other place you were staying because of your physical health?', type: 'dropdown', answers: 'general' },
-    { question: 'Do you have any chronic health issues with your liver, kidneys, stomach, lungs or heart?', type: 'dropdown', answers: 'general' },
-    { question: 'If there was a space available in a program that specifically assists people that live with HIV or AIDS, would that be of interest to you?', type: 'dropdown', answers: 'general' },
-    { question: 'Do you have any physical disabilities that would limit the type of housing you could access, or would make it hard to live independently because you’d need help?', type: 'dropdown', answers: 'general' },
-    { question: 'When you are sick or not feeling well, do you avoid getting help?', type: 'dropdown', answers: 'general' },
-    { question: 'FOR FEMALE RESPONDENTS ONLY: Are you currently pregnant?', type: 'dropdown', answers: 'general' },
-    { question: 'Has your drinking or drug use led you to being kicked out of an apartment or program where you were staying in the past?', type: 'dropdown', answers: 'general' },
-    { question: 'Will drinking or drug use make it difficult for you to stay housed or afford your housing?', type: 'dropdown', answers: 'general' },
-    { question: 'A mental health issue or concern?', type: 'dropdown', answers: 'general' },
-    { question: 'A past head injury?', type: 'dropdown', answers: 'general' },
-    { question: 'A learning disability, developmental disability, or other impairment?', type: 'dropdown', answers: 'general' },
-    { question: 'Do you have any mental health or brain issues that would make it hard for you to live independently because you’d need help?', type: 'dropdown', answers: 'general' },
-    { question: 'Are there any medications that a doctor said you should be taking that, for whatever reason, you are not taking?', type: 'dropdown', answers: 'general' },
-    { question: 'Are there any medications like painkillers that you don’t take the way the doctor prescribed or where you sell the medication?', type: 'dropdown', answers: 'general' },
-    { question: 'YES OR NO: Has your current period of homelessness been caused by an experience of emotional, physical, psychological, sexual, or other type of abuse, or by any other trauma you have experienced?', type: 'dropdown', answers: 'general' }
+    { question: 'Have you ever had to leave an apartment, shelter program, or other place you were staying because of your physical health?', type: 'radio', answers: 'general' }, // ****Score of 1 for Physical Health if any of the above were answered with “Yes”
+    { question: 'Do you have any chronic health issues with your liver, kidneys, stomach, lungs or heart?', type: 'dropdown', answers: 'general' }, // ****Score of 1 for Physical Health if any of the above were answered with “Yes”
+    { question: 'If there was a space available in a program that specifically assists people that live with HIV or AIDS, would that be of interest to you?', type: 'dropdown', answers: 'general' }, // ****Score of 1 for Physical Health if any of the above were answered with “Yes”
+    { question: 'Do you have any physical disabilities that would limit the type of housing you could access, or would make it hard to live independently because you’d need help?', type: 'dropdown', answers: 'general' }, // ****Score of 1 for Physical Health if any of the above were answered with “Yes”
+    { question: 'When you are sick or not feeling well, do you avoid getting help?', type: 'dropdown', answers: 'general' }, // ****Score of 1 for Physical Health if any of the above were answered with “Yes”
+    { question: 'FOR FEMALE RESPONDENTS ONLY: Are you currently pregnant?', type: 'dropdown', answers: 'general' }, // ****Score of 1 for Physical Health if any of the above were answered with “Yes”
+    { question: 'Has your drinking or drug use led you to being kicked out of an apartment or program where you were staying in the past?', type: 'dropdown', answers: 'general' }, // ****Score of 1 for Substance Use if any of the above were answered with “Yes”
+    { question: 'Will drinking or drug use make it difficult for you to stay housed or afford your housing?', type: 'dropdown', answers: 'general' }, // ****Score of 1 for Substance Use if any of the above were answered with “Yes”
+    { question: 'A mental health issue or concern?', type: 'dropdown', answers: 'general' }, // ****Score of 1 for Mental Health if any of the above were answered with “Yes”
+    { question: 'A past head injury?', type: 'dropdown', answers: 'general' }, // ****Score of 1 for Mental Health if any of the above were answered with “Yes”
+    { question: 'A learning disability, developmental disability, or other impairment?', type: 'dropdown', answers: 'general' }, // ****Score of 1 for Mental Health if any of the above were answered with “Yes”
+    { question: 'Do you have any mental health or brain issues that would make it hard for you to live independently because you’d need help?', type: 'dropdown', answers: 'general' }, // ****Score of 1 for Mental Health if any of the above were answered with “Yes”
+    { question: 'Are there any medications that a doctor said you should be taking that, for whatever reason, you are not taking?', type: 'dropdown', answers: 'general' }, // ****Score of 1 for Medications if any of the above were answered with “Yes”
+    { question: 'Are there any medications like painkillers that you don’t take the way the doctor prescribed or where you sell the medication?', type: 'dropdown', answers: 'general' }, // ****Score of 1 for Medications if any of the above were answered with “Yes”
+    { question: 'YES OR NO: Has your current period of homelessness been caused by an experience of emotional, physical, psychological, sexual, or other type of abuse, or by any other trauma you have experienced?', type: 'dropdown', answers: 'general' } // ****Score of 1 for Abuse and Trauma if any of the above were answered with “Yes”
   ]
 });
 
@@ -116,3 +126,12 @@ export const RefuseQuestions = fromJS({
     { question: 'What district are they current living in?', type: 'dropdown', answers: 'district' }
   ]
 });
+
+export const VispdatCategories = [
+  { title: 'Pre-Survey', base: '1' },
+  { title: 'History of Housing & Homelessness', base: '2' },
+  { title: 'Risks', base: '4' },
+  { title: 'Socialization & Daily Functions', base: '4' },
+  { title: 'Wellness', base: '6' },
+  { title: 'Risk Score', base: '17' }
+];
