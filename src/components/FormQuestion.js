@@ -61,7 +61,6 @@ class FormQuestion extends Component {
   }
 
   render() {
-  console.log(this.props.field);
     return (
       <View style={styles.container}>
         { (this.props.type !== 'input') ? <Text> {this.props.question} </Text> : null }

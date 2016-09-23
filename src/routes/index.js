@@ -45,20 +45,40 @@ const navStyles = Object.assign({}, StyleSheet.create({
  */
 export default Actions.create(
   <Scene key="root" defaultRoute="home">
-    <Scene key="login" component={Login} />
-    <Scene key="home" type={ActionConst.RESET} component={Home} initial={true} />
+    <Scene
+      key="login"
+      title={"Login"}
+      component={Login}
+      navigationBarStyle={navStyles.navBar}
+      titleStyle={navStyles.title}
+    />
+    <Scene
+      title={"Home"}
+      key="home"
+      type={ActionConst.RESET}
+      component={Home}
+      initial={true}
+      navigationBarStyle={navStyles.navBar}
+      titleStyle={navStyles.title}
+    />
     <Scene
       key="PointInTimeBasic"
+      title={"Basic Information"}
       component={PointInTimeBasic}
+      onBack={() => { Actions.home(); }}
+      onLeft={() => { Actions.home(); }}
+      leftTitle={"Back"}
       onRight={() => { Actions.PointInTime(); }}
       rightTitle={"Next"}
+      navigationBarStyle={navStyles.navBar}
+      titleStyle={navStyles.title}
     />
     <Scene
       key="PointInTime"
       component={PointInTime}
       title={"Point In Time"}
       onLeft={() => { Actions.PointInTimeBasic(); }}
-      onRight={() => { console.log('submit form here'); }}
+      onRight={() => { console.log('submit form here'); Actions.home(); }}
       leftTitle={"Back"}
       rightTitle={"Submit!"}
       navigationBarStyle={navStyles.navBar}
@@ -66,11 +86,20 @@ export default Actions.create(
     />
     <Scene
       key="VispdatBasic"
+      title={"Basic Information"}
       component={VispdatBasic}
+      onBack={() => { Actions.home(); }}
+      onLeft={() => { Actions.home(); }}
+      leftTitle={"Back"}
       onRight={() => { Actions.VispdatRisk(); }}
       rightTitle={"Next"}
+      navigationBarStyle={navStyles.navBar}
+      titleStyle={navStyles.title}
     />
     <Scene
+      title={"Vispdat Risk"}
+      navigationBarStyle={navStyles.navBar}
+      titleStyle={navStyles.title}
       key="VispdatRisk"
       component={VispdatRisk}
       onLeft={() => { Actions.Vispdat(); }}
@@ -79,6 +108,9 @@ export default Actions.create(
       rightTitle={"Next"}
     />
     <Scene
+      title={"Vispdat Housing"}
+      navigationBarStyle={navStyles.navBar}
+      titleStyle={navStyles.title}
       key="VispdatHousing"
       component={VispdatHousing}
       onLeft={() => { Actions.VispdatRisk(); }}
@@ -87,6 +119,9 @@ export default Actions.create(
       rightTitle={"Next"}
     />
     <Scene
+      title={"Vispdat Socilization"}
+      navigationBarStyle={navStyles.navBar}
+      titleStyle={navStyles.title}
       key="VispdatSocialization"
       component={VispdatSocialization}
       onLeft={() => { Actions.VispdatHousing(); }}
@@ -95,30 +130,47 @@ export default Actions.create(
       rightTitle={"Next"}
     />
     <Scene
+      title={"Vispdat Wellness"}
+      navigationBarStyle={navStyles.navBar}
+      titleStyle={navStyles.title}
       key="VispdatWellness"
       component={VispdatWellness}
       onLeft={() => { Actions.VispdatSocialization(); }}
+      onRight={() => { Actions.VispdatFollowUp(); }}
+      rightTitle={"Next"}
     />
     <Scene
+      title={"Vispdat Follow Up"}
+      navigationBarStyle={navStyles.navBar}
+      titleStyle={navStyles.title}
       key="VispdatFollowUp"
       component={VispdatFollowUp}
       onLeft={() => { Actions.VispdatWellness(); }}
       leftTitle={"Back"}
-      onRight={() => { console.log('submit form here'); }}
+      onRight={() => { console.log('submit form here'); Actions.home(); }}
       rightTitle={"Submit!"}
     />
     <Scene
+      title={"Basic Information"}
+      navigationBarStyle={navStyles.navBar}
+      titleStyle={navStyles.title}
       key="RefuseBasic"
       component={RefuseBasic}
+      onBack={() => { Actions.home(); }}
+      onLeft={() => { Actions.home(); }}
+      leftTitle={"Back"}
       onRight={() => { Actions.Refuse(); }}
       rightTitle={"Next"}
     />
     <Scene
+      title={"Information about the Person"}
+      navigationBarStyle={navStyles.navBar}
+      titleStyle={navStyles.title}
       key="Refuse"
       component={Refuse}
       onLeft={() => { Actions.RefuseBasic(); }}
       leftTitle={"Back"}
-      onRight={() => { console.log('submit form here'); }}
+      onRight={() => { console.log('submit form here'); Actions.home(); }}
       rightTitle={"Submit!"}
     />
     <Scene key="sandbox" component={Sandbox} />
