@@ -1,28 +1,16 @@
 // Need to attach current section to redux store.
-import React, { Component, PropTypes } from 'react';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+import React, { Component } from 'react';
 // Components
 import {
-  ScrollView,
-  StyleSheet
+  ScrollView
 } from 'react-native';
-import { MKSpinner } from 'react-native-material-kit';
 import Header from '../components/Header';
-import FormContainer from '../components/FormContainer';
-import ToggleBar from '../components/ToggleBar';
-// Actions
-import { loadSection } from '../actions/Form';
-// Selectors
-import {
-  currentRouteSelector,
-  pointInTimeMutationSelector
-} from '../selectors/Form';
+import Questions from '../components/Questions';
 // Questions
-import { PointInTimeSections } from '../utilities/questions';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import { PointInTimeQuestions } from '../utilities/questions';
+import { processQuestions } from '../utilities/helpers';
 import * as answerOptions from '../utilities/answerOptions.js';
-
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
 
@@ -34,75 +22,50 @@ const mutation = gql`
   }
 `;
 
-const styles = Object.assign({}, StyleSheet.create({
-  container: {
-    // marginTop: 50
-  }
-}));
-
-
 class PointInTime extends Component {
-  static propTypes = {
-    currentRoute: PropTypes.string,
-    loadSection: PropTypes.func,
-    mutate: PropTypes.func
-  };
 
   mixins: [PureRenderMixin];
 
   constructor(props) {
     super(props);
-    this.submitForm = this._submitForm.bind(this);
+    this.renderPrefaceText = this._renderPrefaceText.bind(this);
+    this.state = {
+      questions: PointInTimeQuestions.get('questions').map((question) => {
+        if (!question.has('answers')) {
+          return question;
+        }
+        return question.set('answers', answerOptions[ question.get('answers') ]);
+      })
+    };
   }
 
-  componentWillMount() {
-    this.props.loadSection({
-      currentIndex: 0,
-      currentRoute: 'Point In Time',
-      allSections: PointInTimeSections,
-      answerOptions
-    });
-  }
-
-  _submitForm() {
-    this.props.mutate()
-    .then((result) => {
-      console.log('result', result);
-    })
-    .catch((error) => {
-      console.log('error', error);
-    });
+  _renderPrefaceText() {
+    if (PointInTimeQuestions.prefaceText) {
+      return (<Text>{PointInTimeQuestions.get('prefaceText')}</Text>);
+    }
+    return null;
   }
 
   render() {
-    if (!this.props.currentRoute) {
-      return <MKSpinner />;
+    if (!this.state.questions) {
+      return (
+        <Text> Loading.. </Text>
+      );
     }
     return (
       <ScrollView style={styles.container} >
         <Header
-          text={this.props.currentRoute}
+          text={"Vispdat Housing History"}
         />
-        <FormContainer/>
-        <ToggleBar onClick={this.submitForm} />
+        <Header
+          text={PointInTimeQuestions.get('sectionTitle')}
+        />
+        <Questions
+          questions={processQuestions(this.state.questions)}
+        />
       </ScrollView>
     );
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    currentRoute: currentRouteSelector(state),
-    pointInTimeMutation: pointInTimeMutationSelector(state)
-  };
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({
-    loadSection
-  }, dispatch);
-};
-
-PointInTime = graphql(mutation)(PointInTime);
-export default connect(mapStateToProps, mapDispatchToProps)(PointInTime);
-
+export default PointInTime;

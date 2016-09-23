@@ -26,10 +26,20 @@ export const currentSectionTitleSelector = createSelector(
   }
 );
 
+const sectionQuestionsSelector = (state) => {
+  if (state.form.has('questions')) {
+    return state.form.get('questions');
+  }
+  return null;
+};
+
 export const currentQuestionsSelector = createSelector(
-  [currentSectionSelector, answerOptionsSelector],
+  [sectionQuestionsSelector, answerOptionsSelector],
   (currentSection, answerOptions) => {
-    return currentSection.get('questions').map((question) => {
+    if (!currentSection) {
+      return null;
+    }
+    return currentSection.map((question) => {
       if (!question.has('answers')) {
         return question;
       }
