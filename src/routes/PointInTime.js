@@ -7,6 +7,7 @@ import {
 } from 'react-native';
 import Header from '../components/Header';
 import Questions from '../components/Questions';
+import Button from '../components/Button';
 // Questions
 import { PointInTimeQuestions } from '../utilities/questions';
 import { processQuestions } from '../utilities/helpers';
@@ -29,6 +30,7 @@ class PointInTime extends Component {
   constructor(props) {
     super(props);
     this.renderPrefaceText = this._renderPrefaceText.bind(this);
+    this.onPressHandler = this._onPressHandler.bind(this);
     this.state = {
       questions: PointInTimeQuestions.get('questions').map((question) => {
         if (!question.has('answers')) {
@@ -37,6 +39,16 @@ class PointInTime extends Component {
         return question.set('answers', answerOptions[ question.get('answers') ]);
       })
     };
+  }
+
+  _onPressHandler() {
+    this.props.mutate()
+    .then((result) => {
+      console.log('result', result);
+    })
+    .catch((error) => {
+      console.log('error', error);
+    });
   }
 
   _renderPrefaceText() {
@@ -63,9 +75,13 @@ class PointInTime extends Component {
         <Questions
           questions={processQuestions(this.state.questions)}
         />
+        <Button
+          onPress={this.onPressHandler}
+        />
       </ScrollView>
     );
   }
 }
 
+PointInTime = graphql(mutation)(PointInTime);
 export default PointInTime;
