@@ -24,11 +24,11 @@ const navStyles = Object.assign({}, StyleSheet.create({
   navBar: {
     backgroundColor: 'rgba(167,219,216,1)',
     borderBottomColor: 'rgba(243,134,48,1)',
-    borderBottomWidth: 1,
+    borderBottomWidth: 1
   },
   title: {
     color: 'white',
-    fontWeight: 'bold',
+    fontWeight: 'bold'
   }
 }));
 

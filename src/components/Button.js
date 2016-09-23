@@ -26,7 +26,7 @@ class Button extends Component {
   }
 
   _onPressHandler() {
-    this.props.onPress(this.props.value);
+    this.props.onPress();
   }
 
 
@@ -34,7 +34,7 @@ class Button extends Component {
     const { text } = this.props;
     return (
       <MKButton
-        style={{ width: 150 }}
+        style={{ width: 150, height: 50 }}
         onPress={this.onPressHandler}
         backgroundColor={MKColor.Teal}
         shadowOffset={{ width: 0, height: 2 }}
