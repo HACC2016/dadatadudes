@@ -3,11 +3,12 @@ import React, { Component, PropTypes } from 'react';
 import { ListView, StyleSheet } from 'react-native';
 import FormQuestion from './FormQuestion';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
+import Style from '../utilities/styles.js';
 
 const styles = Object.assign({}, StyleSheet.create({
   container: {
     marginTop: 60,
-    marginHorizontal: 50
+    marginHorizontal: Style.FORM_MARGIN_X
   }
 }));
 
@@ -26,6 +27,7 @@ class Question extends Component {
   _renderQuestions(item) {
     return (
       <FormQuestion
+        style={styles.questions}
         question={item.question}
         type={item.type}
         answers={item.answers}

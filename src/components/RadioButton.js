@@ -3,15 +3,20 @@ import { View, Text, StyleSheet } from 'react-native';
 import { MKRadioButton, MKColor } from 'react-native-material-kit';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 
+import Style from '../utilities/styles.js';
+
 const styles = Object.assign({}, StyleSheet.create({
   container: {
     flex: 0,
     flexDirection: 'row',
-    flexWrap: 'wrap'
+    flexWrap: 'wrap',
+    alignItems: 'center'
   },
   text: {
-    alignSelf: 'center',
-    marginRight: 50
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: Style.MARGIN_RIGHT,
+    fontSize: Style.FONT_SIZE
   }
 }));
 

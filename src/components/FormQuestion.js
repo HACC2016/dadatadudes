@@ -15,12 +15,17 @@ const RENDER_TYPES = {
   RADIO: 'radio'
 };
 
+import Style from '../utilities/styles.js';
+
 const styles = Object.assign({}, StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
     flexWrap: 'wrap',
-    marginVertical: 15
+    marginVertical: Style.MARGIN_VERTICAL
+  },
+  font: {
+    fontSize: Style.FONT_SIZE
   }
 }));
 
@@ -64,7 +69,7 @@ class FormQuestion extends Component {
   render() {
     return (
       <View style={styles.container}>
-        { (this.props.type !== 'input') ? <Text> {this.props.question} </Text> : null }
+        { (this.props.type !== 'input') ? <Text style={styles.font}> {this.props.question} </Text> : null }
         {this.renderAnswerOptions()}
       </View>
     );

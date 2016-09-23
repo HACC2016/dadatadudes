@@ -11,8 +11,12 @@ import {
 } from 'react-native';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 
-const styles = Object.assign({}, StyleSheet.create({
+import Style from '../utilities/styles.js';
 
+const styles = Object.assign({}, StyleSheet.create({
+  text: {
+    fontSize: Style.FONT_SIZE
+  }
 }));
 
 class Dropdown extends Component {

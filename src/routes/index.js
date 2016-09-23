@@ -76,7 +76,6 @@ export default Actions.create(
       component={PointInTime}
       title={"Point In Time"}
       onLeft={() => { Actions.PointInTimeBasic(); }}
-      leftTitle={"Back"}
       navigationBarStyle={navStyles.navBar}
       titleStyle={navStyles.title}
     />
@@ -133,7 +132,6 @@ export default Actions.create(
       key="VispdatFollowUp"
       component={VispdatFollowUp}
       onLeft={() => { Actions.VispdatWellness(); }}
-      leftTitle={"Back"}
     />
     <Scene
       title={"Basic Information"}
@@ -152,7 +150,6 @@ export default Actions.create(
       key="Refuse"
       component={Refuse}
       onLeft={() => { Actions.RefuseBasic(); }}
-      leftTitle={"Back"}
     />
     <Scene key="sandbox" component={Sandbox} />
     <Scene key="testRoute" component={TestRoute} hideNavBar={true} />

@@ -4,6 +4,8 @@ import { MKCheckbox, MKColor } from 'react-native-material-kit';
 import TextField from '../components/TextFields';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 
+import Style from '../utilities/styles.js';
+
 const styles = Object.assign({}, StyleSheet.create({
   container: {
     flex: 1,
@@ -11,7 +13,8 @@ const styles = Object.assign({}, StyleSheet.create({
     alignItems: 'center'
   },
   text: {
-    marginRight: 40
+    marginRight: 40,
+    fontSize: Style.FONT_SIZE
   }
 }));
 
