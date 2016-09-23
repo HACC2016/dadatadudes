@@ -1,30 +1,8 @@
 import { createSelector } from 'reselect';
 
-const allSectionsByRouteSelector = (state) => {
-  return state.form.get('allSections');
-};
-
 const answerOptionsSelector = (state) => {
   return state.form.get('answerOptions');
 };
-
-export const currentIndexSelector = (state) => {
-  return state.form.get('currentIndex');
-};
-
-export const currentSectionSelector = createSelector(
-  [allSectionsByRouteSelector, currentIndexSelector],
-  (allSectionsTable, currentIndex) => {
-    return allSectionsTable.getIn([currentIndex, 'section']);
-  }
-);
-
-export const currentSectionTitleSelector = createSelector(
-  [allSectionsByRouteSelector, currentIndexSelector],
-  (allSectionsTable, currentIndex) => {
-    return allSectionsTable.getIn([currentIndex, 'sectionTitle']);
-  }
-);
 
 const sectionQuestionsSelector = (state) => {
   if (state.form.has('questions')) {
@@ -47,29 +25,120 @@ export const currentQuestionsSelector = createSelector(
     });
   }
 );
-export const currentPrefaceTextSelector = createSelector(
-  [currentSectionSelector],
-  (currentSection) => {
-    return currentSection.get('prefaceText');
-  }
-);
-
-export const currentRouteSelector = (state) => {
-  return state.form.get('currentRoute');
-};
 
 export const formInputsSelector = (state) => {
   return state.form.get('formFields');
 };
 
-export const pointInTimeMutationSelector = createSelector(
+export const basicFieldsSelector = createSelector(
   [formInputsSelector],
   (formInputs) => {
-    if (formInputs) {
-      const inputs = formInputs.toJS();
-      console.log('inputs', inputs);
-      return inputs;
-    }
-    return null;
+    const {
+      firstName,
+      lastName,
+      nickname,
+      ssn,
+      gender,
+      age,
+      ethnicity,
+      languages,
+      district
+    } = formInputs.toJS();
+    return {
+      firstName,
+      lastName,
+      nickname,
+      ssn,
+      gender,
+      age,
+      ethnicity,
+      languages,
+      district
+    };
   }
 );
+
+export const refuseFieldsSelector = createSelector(
+  [formInputsSelector],
+  (formInputs) => {
+    // const {
+    //   // ...
+    // } = formInputs.toJS();
+    return {
+      // ...
+    };
+  }
+);
+
+export const pointInTimeFieldsSelector = createSelector(
+  [formInputsSelector],
+  (formInputs) => {
+    // const {
+    //   // ...
+    // } = formInputs.toJS();
+    return {
+      // ...
+    };
+  }
+);
+
+export const vispdatFollowUpSelector = createSelector(
+  [formInputsSelector],
+  (formInputs) => {
+    // const {
+    //   // ...
+    // } = formInputs.toJS();
+    return {
+      // ...
+    };
+  }
+);
+
+export const vispdatHousingHistorySelector = createSelector(
+  [formInputsSelector],
+  (formInputs) => {
+    // const {
+    //   // ...
+    // } = formInputs.toJS();
+    return {
+      // ...
+    };
+  }
+);
+
+export const vispdatRiskSelector = createSelector(
+  [formInputsSelector],
+  (formInputs) => {
+    // const {
+    //   // ...
+    // } = formInputs.toJS();
+    return {
+      // ...
+    };
+  }
+);
+
+export const vispdatSocializationSelector = createSelector(
+  [formInputsSelector],
+  (formInputs) => {
+    // const {
+    //   // ...
+    // } = formInputs.toJS();
+    return {
+      // ...
+    };
+  }
+);
+
+export const vispdatWellnessSelector = createSelector(
+  [formInputsSelector],
+  (formInputs) => {
+    // const {
+    //   // ...
+    // } = formInputs.toJS();
+    return {
+      // ...
+    };
+  }
+);
+
