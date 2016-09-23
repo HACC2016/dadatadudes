@@ -6,6 +6,9 @@ const styles = Object.assign({}, StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-start',
     backgroundColor: 'red'
+  },
+  text: {
+    color: 'pink'
   }
 }));
 
@@ -21,7 +24,7 @@ class Header extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>{this.props.text}</Text>
+        <Text style={styles.text}>{this.props.text}</Text>
       </View>
     );
   }

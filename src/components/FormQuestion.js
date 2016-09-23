@@ -20,7 +20,7 @@ const styles = Object.assign({}, StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
-    margin: 10
+    flexWrap: 'wrap'
   }
 
 }));
@@ -52,7 +52,7 @@ class FormQuestion extends Component {
       return <DropDown items={this.props.answers} field={this.props.field} />;
     }
     case RENDER_TYPES.INPUT: {
-      return <TextField field={this.props.field} />;
+      return <TextField field={this.props.field} question={this.props.question} />;
     }
     case RENDER_TYPES.CHECKBOX: {
       return <CheckboxGroup items={this.props.answers} field={this.props.field} />;
@@ -63,9 +63,10 @@ class FormQuestion extends Component {
   }
 
   render() {
+  console.log(this.props.field);
     return (
       <View style={styles.container}>
-        <Text> {this.props.question} </Text>
+        { (this.props.type !== 'input') ? <Text> {this.props.question} </Text> : null }
         {this.renderAnswerOptions()}
       </View>
     );

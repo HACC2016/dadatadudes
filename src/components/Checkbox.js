@@ -56,10 +56,10 @@ class Checkbox extends Component {
           <MKCheckbox
             checked={this.state.checked}
             onCheckedChange={this.onCheckedHandler}
-            fillColor={MKColor.Teal}
-            borderOnColor={MKColor.Pink}
-            borderOffColor={MKColor.Green}
-            rippleColor={MKColor.Blue}
+            fillColor={`rgba(105,210,231,1)`}
+            borderOnColor={`rgba(105,210,231,1)`}
+            borderOffColor={`rgba(224,228,204,1)`}
+            rippleColor={`rgba(243,134,48,1)`}
           />
           <Text>{this.props.text}</Text>
         </View>

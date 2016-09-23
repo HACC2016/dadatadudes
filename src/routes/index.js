@@ -11,6 +11,19 @@ import {
   Scene,
   ActionConst
 } from 'react-native-router-flux';
+import { StyleSheet } from 'react-native';
+
+const navStyles = Object.assign({}, StyleSheet.create({
+  navBar: {
+    backgroundColor: 'rgba(167,219,216,1)',
+    borderBottomColor: 'rgba(243,134,48,1)',
+    borderBottomWidth: 1,
+  },
+  title: {
+    color: 'white',
+    fontWeight: 'bold',
+  }
+}));
 
 /**
  * Order of rendering is based on index of Child scene.
@@ -30,9 +43,12 @@ export default Actions.create(
     <Scene key="login" component={Login} hideNavBar={hideNavBar} />
     <Scene key="home" type={ActionConst.RESET} component={Home} hideNavBar={hideNavBar} />
     <Scene key="pointInTime"
+      hideNavBar={false}
+      navigationBarStyle={navStyles.navBar}
+      titleStyle={navStyles.title}
       component={PointInTime}
       initial={true}
-      title={"Point In Time"}
+      title={"POINT IN TIME"}
       onLeft={()=>{console.log('left clicked')}}
       onRight={()=>{console.log('right clicked')}}
       leftTitle={"Back"}

@@ -6,8 +6,10 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 const styles = Object.assign({}, StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center'
+    flexDirection: 'row'
+  },
+  text: {
+    alignSelf: 'center'
   }
 }));
 
@@ -41,12 +43,12 @@ class RadioButton extends Component {
         <MKRadioButton
           onPress={this.onPressHandler}
           group={group}
-          fillColor={MKColor.Teal}
-          borderOnColor={MKColor.Pink}
-          borderOffColor={MKColor.Green}
-          rippleColor={MKColor.Blue}
+          fillColor={`rgba(105,210,231,1)`}
+          borderOnColor={`rgba(105,210,231,1)`}
+          borderOffColor={`rgba(224,228,204,1)`}
+          rippleColor={`rgba(250,105,0,1)`}
         />
-        <Text>{text}</Text>
+        <Text style={styles.text}>{text}</Text>
       </View>
     );
   }

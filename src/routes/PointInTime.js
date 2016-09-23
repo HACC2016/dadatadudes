@@ -4,7 +4,8 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 // Components
 import {
-  ScrollView
+  ScrollView,
+  StyleSheet
 } from 'react-native';
 import { MKSpinner } from 'react-native-material-kit';
 import Header from '../components/Header';
@@ -32,6 +33,12 @@ const mutation = gql`
     }
   }
 `;
+
+const styles = Object.assign({}, StyleSheet.create({
+  container: {
+    // marginTop: 50
+  }
+}));
 
 
 class PointInTime extends Component {
@@ -72,11 +79,11 @@ class PointInTime extends Component {
       return <MKSpinner />;
     }
     return (
-      <ScrollView>
+      <ScrollView style={styles.container} >
         <Header
           text={this.props.currentRoute}
         />
-        <FormContainer />
+        <FormContainer/>
         <ToggleBar onClick={this.submitForm} />
       </ScrollView>
     );

@@ -10,19 +10,10 @@ import RadioButton from './RadioButton.js';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 
 const styles = Object.assign({}, StyleSheet.create({
-
   listView: {
     flex: 1,
     flexDirection: 'row'
-  },
-  row: {
-    flexDirection: 'row'
-  },
-  col: {
-    flex: 0,
-    flexDirection: 'column'
   }
-
 }));
 
 class RadioOptions extends Component {
@@ -65,7 +56,7 @@ class RadioOptions extends Component {
       );
     }
     return (
-      <View style={styles.container}>
+      <View style={styles.listView}>
         {this.renderRadioButtons()}
       </View>
     );
