@@ -17,12 +17,10 @@ const addFormField = (state, { field, value }) => {
   return state.set('formFields', Map({ [ field ]: value }));
 };
 
-const loadSection = (state, { allSections, answerOptions, currentIndex, currentRoute }) => {
+const loadSection = (state, { questions, answerOptions }) => {
   return state.merge({
-    allSections,
-    answerOptions,
-    currentIndex,
-    currentRoute
+    questions,
+    answerOptions
   });
 };
 

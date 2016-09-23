@@ -16,13 +16,11 @@ const RENDER_TYPES = {
 };
 
 const styles = Object.assign({}, StyleSheet.create({
-
   container: {
     flex: 1,
     flexDirection: 'column',
     margin: 10
   }
-
 }));
 
 class FormQuestion extends Component {

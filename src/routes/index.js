@@ -2,10 +2,17 @@ import React from 'react';
 import Home from './Home';
 import Login from './Login';
 import PointInTime from './PointInTime';
-import Vispdat from './VISPDAT';
+import PointInTimeBasic from './PointInTimeBasic';
 import Refuse from './Refuse';
+import RefuseBasic from './RefuseBasic';
 import Sandbox from './Sandbox';
 import TestRoute from './TestRoute';
+import VispdatBasic from './VispdatBasic';
+import VispdatHousing from './VispdatHousingHistory';
+import VispdatRisk from './VispdatRisk';
+import VispdatSocialization from './VispdatSocialization';
+import VispdatWellness from './VispdatWellness';
+import VispdatFollowUp from './VispdatFollowUp';
 import {
   Actions,
   Scene,
@@ -23,24 +30,86 @@ import {
  * We set the "Home" route to use type ActionConst.RESET
  * to prevent users to returning to the form after they it has been submitted.
  */
-const hideNavBar = true;
-
 export default Actions.create(
   <Scene key="root" defaultRoute="home">
-    <Scene key="login" component={Login} hideNavBar={hideNavBar} />
-    <Scene key="home" type={ActionConst.RESET} component={Home} hideNavBar={hideNavBar} />
-    <Scene key="pointInTime"
-      component={PointInTime}
-      initial={true}
-      title={"Point In Time"}
-      onLeft={()=>{console.log('left clicked')}}
-      onRight={()=>{console.log('right clicked')}}
-      leftTitle={"Back"}
+    <Scene key="login" component={Login} />
+    <Scene key="home" type={ActionConst.RESET} component={Home} initial={true} />
+    <Scene
+      key="PointInTimeBasic"
+      component={PointInTimeBasic}
+      onRight={() => { Actions.PointInTime(); }}
       rightTitle={"Next"}
     />
-    <Scene key="vispdat" component={Vispdat} hideNavBar={hideNavBar} />
-    <Scene key="refuse" component={Refuse} hideNavBar={hideNavBar} />
-    <Scene key="sandbox" component={Sandbox} hideNavBar={hideNavBar} />
+    <Scene
+      key="PointInTime"
+      component={PointInTime}
+      title={"Point In Time"}
+      onLeft={() => { Actions.PointInTimeBasic(); }}
+      onRight={() => { console.log('submit form here'); }}
+      leftTitle={"Back"}
+      rightTitle={"Submit!"}
+    />
+    <Scene
+      key="VispdatBasic"
+      component={VispdatBasic}
+      onRight={() => { Actions.VispdatRisk(); }}
+      rightTitle={"Next"}
+    />
+    <Scene
+      key="VispdatRisk"
+      component={VispdatRisk}
+      onLeft={() => { Actions.Vispdat(); }}
+      leftTitle={"Back"}
+      onRight={() => { Actions.VispdatHousing(); }}
+      rightTitle={"Next"}
+    />
+    <Scene
+      key="VispdatHousing"
+      component={VispdatHousing}
+      onLeft={() => { Actions.VispdatRisk(); }}
+      leftTitle={"Back"}
+      onRight={() => { Actions.VispdatSocialization(); }}
+      rightTitle={"Next"}
+    />
+    <Scene
+      key="VispdatSocialization"
+      component={VispdatSocialization}
+      onLeft={() => { Actions.VispdatHousing(); }}
+      leftTitle={"Back"}
+      onRight={() => { Actions.VispdatWellness(); }}
+      rightTitle={"Next"}
+    />
+    <Scene
+      key="VispdatWellness"
+      component={VispdatWellness}
+      onLeft={() => { Actions.VispdatSocialization(); }}
+      leftTitle={"Back"}
+      onRight={() => { Actions.VispdatFollowUp(); }}
+      rightTitle={"Next"}
+    />
+    <Scene
+      key="VispdatFollowUp"
+      component={VispdatFollowUp}
+      onLeft={() => { Actions.VispdatWellness(); }}
+      leftTitle={"Back"}
+      onRight={() => { console.log('submit form here'); }}
+      rightTitle={"Submit!"}
+    />
+    <Scene
+      key="RefuseBasic"
+      component={RefuseBasic}
+      onRight={() => { Actions.Refuse(); }}
+      rightTitle={"Next"}
+    />
+    <Scene
+      key="Refuse"
+      component={Refuse}
+      onLeft={() => { Actions.RefuseBasic(); }}
+      leftTitle={"Back"}
+      onRight={() => { console.log('submit form here'); }}
+      rightTitle={"Submit!"}
+    />
+    <Scene key="sandbox" component={Sandbox} />
     <Scene key="testRoute" component={TestRoute} hideNavBar={true} />
   </Scene>
 );

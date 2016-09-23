@@ -1,6 +1,7 @@
 import { fromJS } from 'immutable';
 
-export const PointInTimeQuestions = {
+export const PointInTimeQuestions = fromJS({
+  sectionTitle: 'Point In Time',
   prefaceText: '',
   questions: [
     { question: 'How many ADULTS are in your household?', type: 'dropdown', answers: 'number' },
@@ -14,9 +15,10 @@ export const PointInTimeQuestions = {
     { question: 'Select all Benefits that you are currently receiving:', type: 'dropdown', answers: 'benefits' },
     { question: 'Do you have a physical, developmental, or other disability that limits your ability to work or perform activities of daily living?', type: 'dropdown', answers: 'general' }
   ]
-};
+});
 
-export const Basic = {
+export const BasicQuestions = fromJS({
+  sectionTitle: 'Basic Information',
   prefaceText: '',
   questions: [
     { question: 'First Name', type: 'input', field: 'firstName' },
@@ -30,18 +32,20 @@ export const Basic = {
     { question: 'In what language do you feel best able to exprees yourself?', type: 'input', field: 'motherTongue' },
     { question: 'What district are you currently living in?', type: 'dropdown', answers: 'district', field: 'district' }
   ]
-};
+});
 
-export const VispdatHousingHistory = {
+export const VispdatHousingHistory = fromJS({
+  sectionTitle: 'History of Housing and Homelessness',
   prefaceText: '',
   questions: [
     { question: 'Where do you sleep most frequently', type: 'checkbox', answers: 'sleeping' },
     { question: 'How long has it been since you lived in permanent stable housing?', type: 'dropdown', answers: 'number' },
     { question: 'In the last three years, how many times have you been homeless?', type: 'dropdown', answers: 'number' }
   ]
-};
+});
 
-export const VispdatRisks = {
+export const VispdatRisksQuestions = fromJS({
+  sectionTitle: 'Risks',
   prefaceText: 'In the past six months, how many times have you...',
   questions: [
     { question: 'Received health care at an emergency department / room?', type: 'dropdown', answers: 'number' },
@@ -56,9 +60,10 @@ export const VispdatRisks = {
     { question: 'Does anybody force or trick you to do things that you do not want to do?', type: 'radio', answers: 'general' },
     { question: 'Do you ever do things that may be considered to be risky like exchange sex for money, run drugs for someone, have unprotected sex with someone you don’t know, share a needle, or anything like that?', type: 'radio', answers: 'general' }
   ]
-};
+});
 
-export const VispdatSocialization = {
+export const VispdatSocializationQuestions = fromJS({
+  sectionTitle: 'Socialization & Daily Functioning',
   prefaceText: '',
   questions: [
     { question: 'Is there any person, past landlord, business, bookie, dealer, or government group like the IRS that things you owe them money?', type: 'radio', answers: 'general' },
@@ -67,9 +72,10 @@ export const VispdatSocialization = {
     { question: 'Are you currently able to take care of basic needs like bathing, changing clothes, using a restroom, getting food and clean water and other things like that?', type: 'radio', answers: 'general' },
     { question: 'Is your current homelessness in any way caused by a relationship that broke down, an unhealthy or abusive relationship, or because family or friends caused you to become evicted?', type: 'radio', answers: 'general' }
   ]
-};
+});
 
-export const VispdatWellness = {
+export const VispdatWellnessQuestions = fromJS({
+  sectionTitle: 'Wellness',
   prefaceText: '',
   questions: [
     { question: 'Have you ever had to leave an apartment, shelter program, or other place you were staying because of your physical health?', type: 'radio', answers: 'general' },
@@ -88,27 +94,20 @@ export const VispdatWellness = {
     { question: 'Are there any medications like painkillers that you don’t take the way the doctor prescribed or where you sell the medication?', type: 'radio', answers: 'general' },
     { question: 'YES OR NO: Has your current period of homelessness been caused by an experience of emotional, physical, psychological, sexual, or other type of abuse, or by any other trauma you have experienced?', type: 'radio', answers: 'general' }
   ]
-};
+});
 
-export const VispdatFollowUp = {
+export const VispdatFollowUpQuestions = fromJS({
+  sectionTitle: 'Follow-Up Questions',
   prefaceText: '',
   questions: [
     { question: 'On a regular day, where is it easiest to find you and what time of day is easiest to do so?', type: 'input' },
     { question: 'Is there a phone number and/or email where someone can safely get in touch with you or leave you a message?', type: 'input' },
     { question: 'Ok, now I\'d like to take your picture so that it is easier to find you and confirm your identity in the future. May I do so?', type: 'radio', answers: 'general' }
   ]
-};
+});
 
-export const VispdatQuestions = [
-  { title: 'Basic Information', items: Basic },
-  { title: 'History of Housing and Homelessness', items: VispdatHousingHistory },
-  { title: 'Risks', items: VispdatRisks },
-  { title: 'Socialization & Daily Functioning', items: VispdatSocialization },
-  { title: 'Wellness', items: VispdatWellness },
-  { title: 'Follow-Up Questions', items: VispdatFollowUp }
-];
-
-export const RefusedInfo = {
+export const RefuseQuestions = fromJS({
+  sectionTitle: 'Description of Person if they Refused to be Surveyed',
   prefaceText: '',
   questions: [
     { question: 'Gender', type: 'radio', answers: 'gender' },
@@ -116,35 +115,4 @@ export const RefusedInfo = {
     { question: 'What Race do you think this person might be?', type: 'radio', answers: 'ethnicity' },
     { question: 'What district are they current living in?', type: 'dropdown', answers: 'district' }
   ]
-};
-
-export const PointInTimeSections = fromJS([
-  { sectionTitle: 'Basic Information', section: Basic },
-  { sectionTitle: 'Description of Person at the current Point in Time', section: PointInTimeQuestions }
-]);
-
-export const RefusedSections = fromJS([
-  { sectionTitle: 'Basic Information', section: Basic },
-  { sectionTitle: 'Description of Person if they Refused to be Surveyed', section: RefusedInfo }
-]);
-
-export const VispdatSections = fromJS([
-  { sectionTitle: 'Basic Information', section: Basic },
-  { sectionTitle: 'Risks', section: VispdatRisks },
-  { sectionTitle: 'History of Housing and Homelessness', section: VispdatHousingHistory },
-  { sectionTitle: 'Socialization & Daily Functioning', section: VispdatSocialization },
-  { sectionTitle: 'Wellness', section: VispdatWellness },
-  { sectionTitle: 'Follow-Up Questions', section: VispdatFollowUp }
-]);
-
-
-export default {
-  PointInTimeQuestions,
-  Basic,
-  RefusedInfo,
-  VispdatHousingHistory,
-  VispdatRisks,
-  VispdatSocialization,
-  VispdatWellness,
-  VispdatFollowUp
-};
+});

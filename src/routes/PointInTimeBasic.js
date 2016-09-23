@@ -1,14 +1,6 @@
 // Need to attach current section to redux store.
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import React, { Component, PropTypes } from 'react';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-// Actions
-import { loadSection } from '../actions/Form';
-// Selectors
-import {
-  currentQuestionsSelector
-} from '../selectors/Form';
+import React, { Component } from 'react';
 // Components
 import {
   Text,
@@ -17,24 +9,18 @@ import {
 import Header from '../components/Header';
 import Questions from '../components/Questions';
 // Questions
-import { RefuseQuestions } from '../utilities/questions';
+import { BasicQuestions } from '../utilities/questions';
 import { processQuestions } from '../utilities/helpers';
 import * as answerOptions from '../utilities/answerOptions.js';
 
-class Refuse extends Component {
-  static propTypes = {
-    currentRoute: PropTypes.string,
-    loadSection: PropTypes.func,
-    questions: PropTypes.object
-  };
-
+class PointInTimeBasic extends Component {
   mixins: [PureRenderMixin];
 
   constructor(props) {
     super(props);
     this.renderPrefaceText = this._renderPrefaceText.bind(this);
     this.state = {
-      questions: RefuseQuestions.get('questions').map((question) => {
+      questions: BasicQuestions.get('questions').map((question) => {
         if (!question.has('answers')) {
           return question;
         }
@@ -43,16 +29,9 @@ class Refuse extends Component {
     };
   }
 
-  componentWillMount() {
-    // this.props.loadSection({
-    //   questions: RefuseQuestions.get('questions'),
-    //   answerOptions
-    // });
-  }
-
   _renderPrefaceText() {
-    if (RefuseQuestions.prefaceText) {
-      return (<Text>{RefuseQuestions.get('prefaceText')}</Text>);
+    if (BasicQuestions.prefaceText) {
+      return (<Text>{BasicQuestions.get('prefaceText')}</Text>);
     }
     return null;
   }
@@ -69,7 +48,7 @@ class Refuse extends Component {
           text={"Vispdat Housing History"}
         />
         <Header
-          text={RefuseQuestions.get('sectionTitle')}
+          text={BasicQuestions.get('sectionTitle')}
         />
         <Questions
           questions={processQuestions(this.state.questions)}
@@ -79,4 +58,4 @@ class Refuse extends Component {
   }
 }
 
-export default Refuse;
+export default PointInTimeBasic;

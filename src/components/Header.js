@@ -3,9 +3,9 @@ import { View, StyleSheet, Text } from 'react-native';
 
 const styles = Object.assign({}, StyleSheet.create({
   container: {
-    flex: 1,
     justifyContent: 'flex-start',
-    backgroundColor: 'red'
+    backgroundColor: 'red',
+    height: 5
   }
 }));
 
