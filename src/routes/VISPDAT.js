@@ -10,6 +10,8 @@ import { MKSpinner } from 'react-native-material-kit';
 import Header from '../components/Header';
 import FormContainer from '../components/FormContainer';
 import ToggleBar from '../components/ToggleBar';
+// import RiskSummary from '../components/RiskSummary.js';
+
 // Actions
 import { loadSection } from '../actions/Form';
 // Selectors

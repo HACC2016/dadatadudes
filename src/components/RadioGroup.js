@@ -7,9 +7,9 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 
 const styles = Object.assign({}, StyleSheet.create({
 
-  listView: {
+  container: {
     flex: 1,
-    flexDirection: 'row'
+    margin: 10
   },
   row: {
     flexDirection: 'row'
@@ -57,7 +57,9 @@ class RadioOptions extends Component {
     }
     return (
       <View style={styles.container}>
+        <View style={styles.row}>
         {this.renderRadioButtons()}
+        </View>
       </View>
     );
   }

@@ -10,6 +10,7 @@ import { MKSpinner } from 'react-native-material-kit';
 import Header from '../components/Header';
 import FormContainer from '../components/FormContainer';
 import ToggleBar from '../components/ToggleBar';
+import DateSelector from '../components/DateSelector.js';
 // Actions
 import { loadSection } from '../actions/Form';
 // Selectors
@@ -51,6 +52,7 @@ class TestRoute extends Component {
         <Header
           text={this.props.currentRoute}
         />
+        <DateSelector />
         <FormContainer />
         <ToggleBar />
       </ScrollView>

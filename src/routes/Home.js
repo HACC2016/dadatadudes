@@ -4,7 +4,6 @@ import {
   Actions
 } from 'react-native-router-flux';
 import {
-  Image,
   StyleSheet,
   Text,
   TouchableHighlight,

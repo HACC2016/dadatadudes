@@ -260,6 +260,24 @@ export const benefits = [
   }
 ];
 
+export const ids = [
+  {
+    value: 'driversLicence',
+    text: 'Drivers Licence',
+    type: 'input'
+  },
+  {
+    value: 'stateId',
+    text: 'State Id',
+    type: 'input'
+  },
+  {
+    value: 'passport',
+    text: 'Passport',
+    type: 'input'
+  }
+];
+
 export const district = [
   {
     value: 'Honolulu-01',
