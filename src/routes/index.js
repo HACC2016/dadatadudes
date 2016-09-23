@@ -4,7 +4,6 @@ import Login from './Login';
 import PointInTime from './PointInTime';
 import PointInTimeBasic from './PointInTimeBasic';
 import Refuse from './Refuse';
-import RefuseBasic from './RefuseBasic';
 import Sandbox from './Sandbox';
 import TestRoute from './TestRoute';
 import VispdatBasic from './VispdatBasic';
@@ -136,22 +135,12 @@ export default Actions.create(
       leftTitle={"Back"}
     />
     <Scene
-      title={"Basic Information"}
-      navigationBarStyle={navStyles.navBar}
-      titleStyle={navStyles.title}
-      key="RefuseBasic"
-      component={RefuseBasic}
-      onBack={() => { Actions.home(); }}
-      onLeft={() => { Actions.home(); }}
-      onRight={() => { Actions.Refuse(); }}
-    />
-    <Scene
       title={"Information about the Person"}
       navigationBarStyle={navStyles.navBar}
       titleStyle={navStyles.title}
       key="Refuse"
       component={Refuse}
-      onLeft={() => { Actions.RefuseBasic(); }}
+      onLeft={() => { Actions.home(); }}
       leftTitle={"Back"}
     />
     <Scene key="sandbox" component={Sandbox} />

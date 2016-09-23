@@ -32,7 +32,7 @@ class VispdatFollowUp extends Component {
   static propTypes = {
     fields: PropTypes.object,
     submit: PropTypes.func,
-    totalVispdatRiskScore: PropTypes.number
+    vispdatRiskScore: PropTypes.number
   };
 
   mixins: [PureRenderMixin];
@@ -59,6 +59,7 @@ class VispdatFollowUp extends Component {
   }
 
   _onPressHandler() {
+    console.log('this.props.fields', this.props.fields);
     this.props.submit(this.props.fields)
     .then((result) => {
       console.log('result', result);
@@ -86,7 +87,7 @@ class VispdatFollowUp extends Component {
           questions={processQuestions(this.state.questions)}
         />
         <Text>
-          Total Risk Score: {this.props.totalVispdatRiskScore}
+          Total Risk Score: {this.props.vispdatRiskScore}
         </Text>
         <Button
           onPress={this.onPressHandler}

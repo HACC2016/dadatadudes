@@ -35,9 +35,9 @@ class Dropdown extends Component {
   }
 
   _renderPickerItems() {
-    return this.props.items.map((item) => {
+    return this.props.items.map((item, key) => {
       return (
-        <Picker.Item label={item.text} value={item.value} />
+        <Picker.Item label={item.text} value={item.value} key={key} />
       );
     });
   }

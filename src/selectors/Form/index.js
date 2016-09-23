@@ -115,16 +115,17 @@ export const VispdatWellnessScore = createSelector(
   }
 );
 
-export const totalVispdatRiskScoreSelectore = createSelector(
+export const totalVispdatRiskScoreSelector = createSelector(
   [
     VispdatBasicScore,
     VispdatHousingScore,
     VispdatRiskScore,
     VispdatSocializationScore,
     VispdatWellnessScore
-  ]
-  (basic = 0, housing = 0, risk = 0, socilization = 0, wellness = 0) => {
-    return (basic + housing + risk + socializiation + wellness)
+  ],
+  (basic = 0, housing = 0, risk = 0, socializiation = 0, wellness = 0) => {
+    console.log('(basic + housing + risk + socializiation + wellness)', (basic + housing + risk + socializiation + wellness));
+    return (basic + housing + risk + socializiation + wellness);
   }
 );
 export const refuseFieldsSelector = createSelector(
