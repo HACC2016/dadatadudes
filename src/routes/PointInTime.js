@@ -77,6 +77,7 @@ class PointInTime extends Component {
         />
         <Button
           onPress={this.onPressHandler}
+          text={"Submit Form!"}
         />
       </ScrollView>
     );
