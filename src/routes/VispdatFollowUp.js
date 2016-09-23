@@ -11,7 +11,7 @@ import Button from '../components/Button';
 import Header from '../components/Header';
 import Questions from '../components/Questions';
 // Selectors
-import { formInputsSelector } from '../selectors/Form';
+import { formInputsSelector, totalVispdatRiskScoreSelector } from '../selectors/Form';
 // Questions
 import { VispdatFollowUpQuestions } from '../utilities/questions';
 import { processQuestions } from '../utilities/helpers';
@@ -31,7 +31,8 @@ const mutation = gql`
 class VispdatFollowUp extends Component {
   static propTypes = {
     fields: PropTypes.object,
-    submit: PropTypes.func
+    submit: PropTypes.func,
+    totalVispdatRiskScore: PropTypes.number
   };
 
   mixins: [PureRenderMixin];
@@ -84,6 +85,9 @@ class VispdatFollowUp extends Component {
         <Questions
           questions={processQuestions(this.state.questions)}
         />
+        <Text>
+          Total Risk Score: {this.props.totalVispdatRiskScore}
+        </Text>
         <Button
           onPress={this.onPressHandler}
           text={"Submit Form!"}
@@ -95,7 +99,8 @@ class VispdatFollowUp extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    fields: formInputsSelector(state)
+    fields: formInputsSelector(state),
+    vispdatRiskScore: totalVispdatRiskScoreSelector(state)
   };
 };
 

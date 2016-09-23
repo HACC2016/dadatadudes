@@ -4,9 +4,10 @@ import { connect } from 'react-redux';
 // Actions
 import { addFormField } from '../actions/Form';
 // Compoonents
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, ListView } from 'react-native';
 import { MKRadioButton, MKSpinner } from 'react-native-material-kit';
 import RadioButton from './RadioButton.js';
+import { processQuestions } from '../utilities/helpers';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 
 const styles = Object.assign({}, StyleSheet.create({
@@ -32,35 +33,53 @@ class RadioOptions extends Component {
     this.renderRadioButtons = this._renderRadioButtons.bind(this);
   }
 
-  _renderRadioButtons() {
-    const { items } = this.props;
-    return items.map((item, key) => {
-      return (
-        <RadioButton
-          key={key}
-          value={item.value}
-          text={item.text}
-          field={this.props.field}
-          onPress={this.props.addFormField}
-          group={this.radioGroup}
-        />
-      );
-    });
+  _renderRadioButtons(item) {
+    return (
+      <RadioButton
+        value={item.value}
+        text={item.text}
+        field={this.props.field}
+        onPress={this.props.addFormField}
+        group={this.radioGroup}
+      />
+    );
+    // const { items } = this.props;
+    // return items.map((item, key) => {
+    //   return (
+    //     <RadioButton
+    //       key={key}
+    //       value={item.value}
+    //       text={item.text}
+    //       field={this.props.field}
+    //       onPress={this.props.addFormField}
+    //       group={this.radioGroup}
+    //     />
+    //   );
+    // });
   }
 
   render() {
-    if (!this.props.items) {
-      return (
-        <View>
-          <MKSpinner />
-        </View>
-      );
-    }
     return (
-      <View style={styles.listView}>
-        {this.renderRadioButtons()}
-      </View>
+      <ListView
+        style={styles.container}
+        dataSource={processQuestions(this.props.items)}
+        initialListSize={this.props.items.size}
+        scrollRenderAhead={250}
+        renderRow={this.renderRadioButtons}
+      />
     );
+    // if (!this.props.items) {
+    //   return (
+    //     <View>
+    //       <MKSpinner />
+    //     </View>
+    //   );
+    // }
+    // return (
+    //   <View style={styles.listView}>
+    //     {this.renderRadioButtons()}
+    //   </View>
+    // );
   }
 }
 

@@ -3,9 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 // Actions
 import { addFormField } from '../actions/Form';
-import ModalPicker from 'react-native-modal-picker';
 import {
-  View,
   Picker,
   StyleSheet
 } from 'react-native';

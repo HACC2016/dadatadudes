@@ -58,6 +58,75 @@ export const basicFieldsSelector = createSelector(
   }
 );
 
+export const VispdatBasicScore = createSelector(
+  [formInputsSelector],
+  (formInputs) => {
+    // ... logic for basic scores
+    /**
+     * Score one if person is over 60
+     */
+  }
+);
+
+export const VispdatHousingScore = createSelector(
+  [formInputsSelector],
+  (formInputs) => {
+    // ... logic for housing scores.
+    /**
+     * Score one if anything other than “shelter, transitional housing, or safe haven”
+     * If person has experienced 1 or more consecutive years of homelessness, and / or 4+ episodes of homelessness, then score 1
+     */
+  }
+);
+
+export const VispdatRiskScore = createSelector(
+  [formInputsSelector],
+  (formInputs) => {
+    // ... logic for risk scores.
+    /**
+     * Score one if risk of harm is answered "yes"
+     * Score one if legal issues were answered "yes"
+     * Score one if risk or exploitation were answered "yes"
+     */
+  }
+);
+
+export const VispdatSocializationScore = createSelector(
+  [formInputsSelector],
+  (formInputs) => {
+    /*
+     * Score one if money management were answered "yes"
+     * Score one if meaningful daily activity were answered "no"
+     * Score one if self-care were answered "no"
+     * Score one if social relationship were answered "yes"
+     */
+    // ... logic for socializiation scores.
+  }
+);
+
+export const VispdatWellnessScore = createSelector(
+  [formInputsSelector],
+  (formInputs) => {
+    // ... logic for wellness scores.
+    /**
+     * Score one if FEMALE & currently pregnent were answered "yes"
+     * Score one if substance use were answered "yes"
+     */
+  }
+);
+
+export const totalVispdatRiskScoreSelectore = createSelector(
+  [
+    VispdatBasicScore,
+    VispdatHousingScore,
+    VispdatRiskScore,
+    VispdatSocializationScore,
+    VispdatWellnessScore
+  ]
+  (basic = 0, housing = 0, risk = 0, socilization = 0, wellness = 0) => {
+    return (basic + housing + risk + socializiation + wellness)
+  }
+);
 export const refuseFieldsSelector = createSelector(
   [formInputsSelector],
   (formInputs) => {
@@ -69,6 +138,7 @@ export const refuseFieldsSelector = createSelector(
     };
   }
 );
+
 
 export const pointInTimeFieldsSelector = createSelector(
   [formInputsSelector],
