@@ -7,18 +7,24 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 // Actions
 import * as FormActions from '../actions/Form';
-import { MKColor, MKTextField } from 'react-native-material-kit';
+import { MKTextField } from 'react-native-material-kit';
 
 import Style from '../utilities/styles.js';
 
 const styles = Object.assign({}, StyleSheet.create({
+  container: {
+    marginVertical: Style.MARGIN_VERTICAL
+  },
   textField: {
     fontSize: Style.FONT_SIZE,
     color: 'rgba(0,0,0,0.6)',
-    height: Style.FONT_SIZE+10
+    height: Style.FONT_SIZE + 30
   },
   label: {
-    fontSize: Style.FONT_SIZE-1
+    fontSize: Style.FONT_SIZE - 1
+  },
+  polo: {
+    flex: 1
   }
 }));
 
@@ -46,14 +52,15 @@ class TextField extends Component {
 
   render() {
     return (
-      <View>
+      <View style={styles.container}>
         <MKTextField
+          style={styles.polo}
           floatingLabelEnabled={true}
           floatingLabelFont={styles.label}
           placeholder={this.props.question}
           onChangeText={this.onChangeText}
-          tintColor={`rgba(224,228,204,1)`}
-          highlightColor= {'#E35393'}
+          tintColor={"rgba(224,228,204,1)"}
+          highlightColor={"#E35393"}
           textInputStyle={styles.textField}
         />
       </View>

@@ -7,20 +7,40 @@ import { Actions } from 'react-native-router-flux';
 import {
   Alert,
   Text,
-  ScrollView
+  ScrollView,
+  View,
+  StyleSheet
 } from 'react-native';
 import Button from '../components/Button';
 import Header from '../components/Header';
 import Questions from '../components/Questions';
 // Selectors
-import { formInputsSelector, totalVispdatRiskScoreSelector, allVispdatRiskScoresSelector } from '../selectors/Form';
+import {
+  formInputsSelector,
+  totalVispdatRiskScoreSelector,
+  allVispdatRiskScoresSelector
+} from '../selectors/Form';
 // Questions
 import { VispdatFollowUpQuestions } from '../utilities/questions';
 import { processQuestions } from '../utilities/helpers';
 import * as answerOptions from '../utilities/answerOptions.js';
+import Style from '../utilities/styles';
 // GraphQL
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
+
+const styles = Object.assign({}, StyleSheet.create({
+  container: {
+    flexDirection: 'column',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  riskScore: {
+    fontWeight: 'bold',
+    fontSize: Style.RISK_BUTTON_FONT_SIZE
+  }
+}));
 
 const mutation = gql`
   mutation($input: AssessmentInputType!){
@@ -91,13 +111,15 @@ class VispdatFollowUp extends Component {
         <Questions
           questions={processQuestions(this.state.questions)}
         />
-        <Text>
-          Total Risk Score: {this.props.vispdatRiskScore}
-        </Text>
-        <Button
-          onPress={this.onPressHandler}
-          text={"Submit Form!"}
-        />
+        <View style={styles.container}>
+          <Text style={styles.riskScore}>
+            Total Risk Score: {this.props.vispdatRiskScore}
+          </Text>
+          <Button
+            onPress={this.onPressHandler}
+            text={"Submit Form!"}
+          />
+        </View>
       </ScrollView>
     );
   }
@@ -116,6 +138,7 @@ VispdatFollowUp = graphql(mutation, {
     submit: (fields) => mutate({
       variables: {
         input: {
+          personId: '1234',
           districtId: fields.districtId,
           generalDemographics: {
             age: fields.age,

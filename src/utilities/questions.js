@@ -7,7 +7,7 @@ export const PointInTimeQuestions = fromJS({
     { question: 'How many ADULTS are in your household?', type: 'dropdown', answers: 'number', field: 'familyMembersAdult' },
     { question: 'How many CHILDREN UNDER 18?', type: 'dropdown', answers: 'number', field: 'familyMembersChildren' },
     { question: 'Have you served in the U.S. Armed Forces?', type: 'dropdown', answers: 'general', field: 'veteran' },
-    { quesiton: 'How long have you lived in Hawaii?', type: 'dropdown', answers: 'number', field: 'lengthOfStayInHawaii' },
+    { question: 'How long have you lived in Hawaii?', type: 'dropdown', answers: 'number', field: 'lengthOfStayInHawaii' },
     // { question: 'Why are you homeless?', type: 'input', field: 'reasonForHomelessness' },
     { question: 'How many times have you ever been homeless?', type: 'dropdown', answers: 'number', field: 'timesHomelessCount' },
     { question: 'How long have you been continuously homeless this time?', type: 'dropdown', answers: 'number', field: '' },
@@ -33,11 +33,11 @@ export const BasicQuestions = fromJS({
     { question: 'Last Name', type: 'input', field: 'lastName' },
     { question: 'Nickname', type: 'input', field: 'nickName' },
     { question: 'Social Security Number', type: 'input', field: 'ssn' },
-    { question: 'Gender', type: 'radio', answers: 'gender', field: 'gender' },
-    // { type: 'datePicker', field: 'dateOfBirth' },
+    { question: 'In what language do you feel best able to express yourself?', type: 'input', field: 'languages' },
     { question: 'Age', type: 'input', field: 'age' },
-    { question: 'What Race do you most identify with? (SELECT ONLY ONE)', type: 'radio', answers: 'ethnicity', field: 'ethnicity' },
-    { question: 'In what language do you feel best able to exprees yourself?', type: 'input', field: 'languages' },
+    // { question: 'Gender', type: 'dropdown', answers: 'gender', field: 'gender' },
+    // { type: 'datePicker', field: 'dateOfBirth' },
+    { question: 'What Race do you most identify with?', type: 'dropdown', answers: 'ethnicity', field: 'ethnicity' },
     { question: 'What district are you currently living in?', type: 'dropdown', answers: 'district', field: 'districtId' }
   ]
 });
@@ -74,11 +74,11 @@ export const VispdatSocializationQuestions = fromJS({
   sectionTitle: 'Socialization & Daily Functioning',
   prefaceText: '',
   questions: [
-    { question: 'Is there any person, past landlord, business, bookie, dealer, or government group like the IRS that things you owe them money?', type: 'radio', answers: 'general', field: 'owesMoney' },
-    { question: 'Do you get any money from the government, a pension, an inheritance, working under the table, a regular job, or anything like that?', type: 'radio', answers: 'general', field: 'hasIncome' },
-    { question: 'Do you have planned activities, other than just surviving, that make you feel happy and fulfilled?', type: 'radio', answers: 'general', field: 'hasMeaningfulActivity' },
-    { question: 'Are you currently able to take care of basic needs like bathing, changing clothes, using a restroom, getting food and clean water and other things like that?', type: 'radio', answers: 'general', field: 'hasBasicSelfCare' },
-    { question: 'Is your current homelessness in any way caused by a relationship that broke down, an unhealthy or abusive relationship, or because family or friends caused you to become evicted?', type: 'radio', answers: 'general', field: 'homelessDueToRelationships' }
+    { question: 'Is there any person, past landlord, business, bookie, dealer, or government group like the IRS that things you owe them money?', type: 'dropdown', answers: 'general', field: 'owesMoney' },
+    { question: 'Do you get any money from the government, a pension, an inheritance, working under the table, a regular job, or anything like that?', type: 'dropdown', answers: 'general', field: 'hasIncome' },
+    { question: 'Do you have planned activities, other than just surviving, that make you feel happy and fulfilled?', type: 'dropdown', answers: 'general', field: 'hasMeaningfulActivity' },
+    { question: 'Are you currently able to take care of basic needs like bathing, changing clothes, using a restroom, getting food and clean water and other things like that?', type: 'dropdown', answers: 'general', field: 'hasBasicSelfCare' },
+    { question: 'Is your current homelessness in any way caused by a relationship that broke down, an unhealthy or abusive relationship, or because family or friends caused you to become evicted?', type: 'dropdown', answers: 'general', field: 'homelessDueToRelationships' }
   ]
 });
 
@@ -86,21 +86,21 @@ export const VispdatWellnessQuestions = fromJS({
   sectionTitle: 'Wellness',
   prefaceText: '',
   questions: [
-    { question: 'Have you ever had to leave an apartment, shelter program, or other place you were staying because of your physical health?', type: 'radio', answers: 'general', field: 'forcedFromHousingBecauseHealth' },
-    { question: 'Do you have any chronic health issues with your liver, kidneys, stomach, lungs or heart?', type: 'radio', answers: 'general', field: 'chronicHealthIssues' },
-    { question: 'If there was a space available in a program that specifically assists people that live with HIV or AIDS, would that be of interest to you?', type: 'radio', answers: 'general', field: 'interestedInHivAidsProgram' },
-    { question: 'Do you have any physical disabilities that would limit the type of housing you could access, or would make it hard to live independently because you’d need help?', type: 'radio', answers: 'general', field: 'limitingPhysicalDisabilities' },
-    { question: 'When you are sick or not feeling well, do you avoid getting help?', type: 'radio', answers: 'general', field: 'avoidsHelpWhenSick' },
-    { question: 'FOR FEMALE RESPONDENTS ONLY: Are you currently pregnant?', type: 'radio', answers: 'general', field: 'currentlyPregnant' },
-    { question: 'Has your drinking or drug use led you to being kicked out of an apartment or program where you were staying in the past?', type: 'radio', answers: 'general', field: 'forcedFromHousingBecauseAlcoholOrDrugs' },
-    { question: 'Will drinking or drug use make it difficult for you to stay housed or afford your housing?', type: 'radio', answers: 'general', field: 'maintainHousingDifficultyAlcoholDrugs' },
-    { question: 'Have you ever had trouble maintaining your housing, or been kicked out of an apartment, shelter program or other place you were staying, because of a mental health issue or concern?', type: 'radio', answers: 'general', field: 'maintainHousingDifficultyMentalHealth' },
-    { question: 'Have you ever had trouble maintaining your housing, or been kicked out of an apartment, shelter program or other place you were staying, because of a past head injury?', type: 'radio', answers: 'general', field: 'maintainHousingDifficultyHeadInjury' },
-    { question: 'Have you ever had trouble maintaining your housing, or been kicked out of an apartment, shelter program or other place you were staying, because of a learning disability, developmental disability, or other impairment?', type: 'radio', answers: 'general', field: 'maintainHousingDifficultyLearningDisability' },
-    { question: 'Do you have any mental health or brain issues that would make it hard for you to live independently because you’d need help?', type: 'radio', answers: 'general', field: 'limitingMentalDisabilities' },
-    { question: 'Are there any medications that a doctor said you should be taking that, for whatever reason, you are not taking?', type: 'radio', answers: 'general', field: 'notTakingPrescribedMedications' },
-    { question: 'Are there any medications like painkillers that you don’t take the way the doctor prescribed or where you sell the medication?', type: 'radio', answers: 'general', field: 'sellingOrAbusingPrescribedMedications' },
-    { question: 'YES OR NO: Has your current period of homelessness been caused by an experience of emotional, physical, psychological, sexual, or other type of abuse, or by any other trauma you have experienced?', type: 'radio', answers: 'general', field: 'homelessnessCausedByAbuseOrTrauma' }
+    { question: 'Have you ever had to leave an apartment, shelter program, or other place you were staying because of your physical health?', type: 'dropdown', answers: 'general', field: 'forcedFromHousingBecauseHealth' },
+    { question: 'Do you have any chronic health issues with your liver, kidneys, stomach, lungs or heart?', type: 'dropdown', answers: 'general', field: 'chronicHealthIssues' },
+    { question: 'If there was a space available in a program that specifically assists people that live with HIV or AIDS, would that be of interest to you?', type: 'dropdown', answers: 'general', field: 'interestedInHivAidsProgram' },
+    { question: 'Do you have any physical disabilities that would limit the type of housing you could access, or would make it hard to live independently because you’d need help?', type: 'dropdown', answers: 'general', field: 'limitingPhysicalDisabilities' },
+    { question: 'When you are sick or not feeling well, do you avoid getting help?', type: 'dropdown', answers: 'general', field: 'avoidsHelpWhenSick' },
+    { question: 'FOR FEMALE RESPONDENTS ONLY: Are you currently pregnant?', type: 'dropdown', answers: 'general', field: 'currentlyPregnant' },
+    { question: 'Has your drinking or drug use led you to being kicked out of an apartment or program where you were staying in the past?', type: 'dropdown', answers: 'general', field: 'forcedFromHousingBecauseAlcoholOrDrugs' },
+    { question: 'Will drinking or drug use make it difficult for you to stay housed or afford your housing?', type: 'dropdown', answers: 'general', field: 'maintainHousingDifficultyAlcoholDrugs' },
+    { question: 'Have you ever had trouble maintaining your housing, or been kicked out of an apartment, shelter program or other place you were staying, because of a mental health issue or concern?', type: 'dropdown', answers: 'general', field: 'maintainHousingDifficultyMentalHealth' },
+    { question: 'Have you ever had trouble maintaining your housing, or been kicked out of an apartment, shelter program or other place you were staying, because of a past head injury?', type: 'dropdown', answers: 'general', field: 'maintainHousingDifficultyHeadInjury' },
+    { question: 'Have you ever had trouble maintaining your housing, or been kicked out of an apartment, shelter program or other place you were staying, because of a learning disability, developmental disability, or other impairment?', type: 'dropdown', answers: 'general', field: 'maintainHousingDifficultyLearningDisability' },
+    { question: 'Do you have any mental health or brain issues that would make it hard for you to live independently because you’d need help?', type: 'dropdown', answers: 'general', field: 'limitingMentalDisabilities' },
+    { question: 'Are there any medications that a doctor said you should be taking that, for whatever reason, you are not taking?', type: 'dropdown', answers: 'general', field: 'notTakingPrescribedMedications' },
+    { question: 'Are there any medications like painkillers that you don’t take the way the doctor prescribed or where you sell the medication?', type: 'dropdown', answers: 'general', field: 'sellingOrAbusingPrescribedMedications' },
+    { question: 'YES OR NO: Has your current period of homelessness been caused by an experience of emotional, physical, psychological, sexual, or other type of abuse, or by any other trauma you have experienced?', type: 'dropdown', answers: 'general', field: 'homelessnessCausedByAbuseOrTrauma' }
   ]
 });
 

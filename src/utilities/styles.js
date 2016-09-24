@@ -43,6 +43,7 @@ export default Style = {
   BUTTON_MARGIN_TOP: em(2),
   BUTTON_MARGIN_BOTTOM: em(4),
   BUTTON_FONT_SIZE: em(1.4),
+  RISK_BUTTON_FONT_SIZE: em(1.5),
 
   // FONT
   FONT_SIZE: em(1),

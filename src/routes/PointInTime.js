@@ -6,7 +6,10 @@ import { Actions } from 'react-native-router-flux';
 // Components
 import {
   Alert,
-  ScrollView
+  ScrollView,
+  View,
+  StyleSheet,
+  Text
 } from 'react-native';
 import Header from '../components/Header';
 import Questions from '../components/Questions';
@@ -17,9 +20,23 @@ import { formInputsSelector } from '../selectors/Form';
 import { PointInTimeQuestions } from '../utilities/questions';
 import { processQuestions } from '../utilities/helpers';
 import * as answerOptions from '../utilities/answerOptions.js';
+import Style from '../utilities/styles';
 // GraphQL
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
+
+const styles = Object.assign({}, StyleSheet.create({
+  container: {
+    flexDirection: 'column',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  riskScore: {
+    fontWeight: 'bold',
+    fontSize: Style.RISK_BUTTON_FONT_SIZE
+  }
+}));
 
 const mutation = gql`
   mutation($input: PersonInputType!){
@@ -89,10 +106,12 @@ class PointInTime extends Component {
         <Questions
           questions={processQuestions(this.state.questions)}
         />
-        <Button
-          onPress={this.onPressHandler}
-          text={"Submit Form!"}
-        />
+        <View style={styles.container}>
+          <Button
+            onPress={this.onPressHandler}
+            text={"Submit Form!"}
+          />
+        </View>
       </ScrollView>
     );
   }

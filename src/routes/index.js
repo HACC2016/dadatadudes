@@ -94,7 +94,7 @@ export default Actions.create(
       titleStyle={navStyles.title}
       key="VispdatRisk"
       component={VispdatRisk}
-      onLeft={() => { Actions.Vispdat(); }}
+      onLeft={() => { Actions.home(); }}
       onRight={() => { Actions.VispdatHousing(); }}
     />
     <Scene
@@ -138,7 +138,7 @@ export default Actions.create(
       titleStyle={navStyles.title}
       key="Refuse"
       component={Refuse}
-      onLeft={() => { Actions.RefuseBasic(); }}
+      onLeft={() => { Actions.home(); }}
     />
     <Scene key="sandbox" component={Sandbox} />
     <Scene key="testRoute" component={TestRoute} hideNavBar={true} />
