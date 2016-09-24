@@ -1,58 +1,95 @@
 // Need to attach current section to redux store.
+import PureRenderMixin from 'react-addons-pure-render-mixin';
 import React, { Component, PropTypes } from 'react';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 // Components
 import {
   ScrollView
 } from 'react-native';
-import { MKSpinner } from 'react-native-material-kit';
 import Header from '../components/Header';
-import FormContainer from '../components/FormContainer';
-import ToggleBar from '../components/ToggleBar';
-// Actions
-import { loadSection } from '../actions/Form';
+import Questions from '../components/Questions';
+import Button from '../components/Button';
 // Selectors
-import {
-  currentRouteSelector
-} from '../selectors/Form';
+import { formInputsSelector } from '../selectors/Form';
 // Questions
-import { PointInTimeSections } from '../utilities/questions';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import { PointInTimeQuestions } from '../utilities/questions';
+import { processQuestions } from '../utilities/helpers';
 import * as answerOptions from '../utilities/answerOptions.js';
+// GraphQL
+import gql from 'graphql-tag';
+import { graphql } from 'react-apollo';
+
+const mutation = gql`
+  mutation($input: PersonInputType!){
+    AddPerson(input: $input) {
+      _id
+      districtId
+    }
+  }
+`;
 
 class PointInTime extends Component {
   static propTypes = {
-    currentRoute: PropTypes.string,
-    loadSection: PropTypes.func
+    fields: PropTypes.object,
+    submit: PropTypes.func
   };
 
   mixins: [PureRenderMixin];
 
   constructor(props) {
     super(props);
+    this.renderPrefaceText = this._renderPrefaceText.bind(this);
+    this.onPressHandler = this._onPressHandler.bind(this);
+    this.state = {
+      questions: PointInTimeQuestions.get('questions').map((question) => {
+        if (!question.has('answers')) {
+          return question;
+        }
+        return question.set('answers', answerOptions[ question.get('answers') ]);
+      })
+    };
   }
 
-  componentWillMount() {
-    this.props.loadSection({
-      currentIndex: 0,
-      currentRoute: 'Point In Time',
-      allSections: PointInTimeSections,
-      answerOptions
+  _onPressHandler() {
+    console.log('this.props.fields', this.props.fields);
+    this.props.submit(this.props.fields)
+    .then((result) => {
+      console.log('result', result);
+    })
+    .catch((error) => {
+      console.log('error', error);
     });
   }
 
+
+  _renderPrefaceText() {
+    if (PointInTimeQuestions.prefaceText) {
+      return (<Text>{PointInTimeQuestions.get('prefaceText')}</Text>);
+    }
+    return null;
+  }
+
   render() {
-    if (!this.props.currentRoute) {
-      return <MKSpinner />;
+    if (!this.state.questions) {
+      return (
+        <Text> Loading.. </Text>
+      );
     }
     return (
       <ScrollView>
         <Header
-          text={this.props.currentRoute}
+          text={"Vispdat Housing History"}
         />
-        <FormContainer />
-        <ToggleBar />
+        <Header
+          text={PointInTimeQuestions.get('sectionTitle')}
+        />
+        <Questions
+          questions={processQuestions(this.state.questions)}
+        />
+        <Button
+          onPress={this.onPressHandler}
+          text={"Submit Form!"}
+        />
       </ScrollView>
     );
   }
@@ -60,14 +97,55 @@ class PointInTime extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    currentRoute: currentRouteSelector(state)
+    fields: formInputsSelector(state)
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({
-    loadSection
-  }, dispatch);
-};
+PointInTime = graphql(mutation, {
+  props: ({ mutate }) => ({
+    submit: (fields) => mutate({
+      variables: {
+        input: {
+          age: fields.age,
+          assessmentIds: fields.assessmentIds,
+          alcoholDrugProblem: fields.alcoholDrugProblem,
+          benefitEbt: fields.benefitEbt,
+          benefitSsi: fields.benefitSsi,
+          benefitTanf: fields.benefitTanf,
+          benefitUnemployment: fields.benefitUnemployment,
+          benefitVeteran: fields.benefitVeteran,
+          benefitWelfare: fields.benefitWelfare,
+          dateCreated: fields.dateCreated,
+          districtId: fields.districtId,
+          driversLicenseNumber: fields.driversLicenseNumber,
+          educationLevel: fields.educationLevel,
+          employmentCurPay: fields.employmentCurPay,
+          employmentLastEmployed: fields.employmentLastEmployed,
+          employmentStatus: fields.employmentStatus,
+          ethnicity: fields.ethnicity,
+          familyMembersAdult: fields.familyMembersAdult,
+          familyMembersChildren: fields.familyMembersChildren,
+          firstName: fields.firstName,
+          gender: fields.gender,
+          geoLocation: fields.geoLocation,
+          hawaiiStateId: fields.hawaiiStateId,
+          lastHomelessDate: fields.lastHomelessDate,
+          lastHomelessAreaLived: fields.lastHomelessAreaLived,
+          lastName: fields.lastName,
+          lengthOfStayHawaii: fields.lengthOfStayHawaii,
+          mentalHealthDisability: fields.mentalHealthDisability,
+          onTheStreets: fields.onTheStreets,
+          otherDisability: fields.otherDisability,
+          reportIds: fields.reportIds,
+          reasonForHomelessness: fields.reasonForHomelessness,
+          shelterName: fields.shelterName,
+          shelterStatus: fields.shelterStatus,
+          ssn: fields.ssn,
+          timeHomelessCount: fields.timeHomelessCount
+        }
+      }
+    })
+  })
+})(PointInTime);
 
-export default connect(mapStateToProps, mapDispatchToProps)(PointInTime);
+export default connect(mapStateToProps)(PointInTime);

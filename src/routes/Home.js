@@ -4,35 +4,28 @@ import {
   Actions
 } from 'react-native-router-flux';
 import {
+  ScrollView,
   StyleSheet,
   Text,
   TouchableHighlight,
   View
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import NavBar from '../components/NavBar.js';
 
-const styles = StyleSheet.create({
-  base: {
+const styles = Object.assign({}, StyleSheet.create({
+  container: {
     flex: 1,
     justifyContent: 'space-around',
     alignItems: 'center',
-    flexDirection: 'row',
-    marginTop: 100
+    flexDirection: 'row'
   },
-  image: {
-    height: 250,
-    width: 250
-  },
-  background: {
-    backgroundColor: 'black'
-  },
-  centerText: {
-    fontSize: 50,
-    fontWeight: 'bold',
-    textAlign: 'center'
+  route: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'column'
   }
-});
+}));
 
 class Home extends Component {
   static propTypes = {
@@ -45,45 +38,38 @@ class Home extends Component {
 
   render() {
     return (
-      <View style={styles.background}>
-        <View>
-          <NavBar
-            text="Homelss Observation & Mapping Engine"
-          />
-        </View>
-        <View style={styles.base}>
-          <TouchableHighlight onPress={Actions.pointInTime}>
-            <View>
-              <Text style={styles.centerText}> Point In Time </Text>
-              <Icon
-                name="hourglass-empty"
-                size={300}
-                color="#00bfff"
-              />
-            </View>
-          </TouchableHighlight>
-          <TouchableHighlight onPress={Actions.vispdat}>
-            <View>
-              <Text style={styles.centerText}> VI-SPDAT </Text>
-              <Icon
-                name="assignment"
-                size={300}
-                color="#ffe4c4"
-              />
-            </View>
-          </TouchableHighlight>
-          <TouchableHighlight onPress={Actions.refuse}>
-            <View>
-              <Text style={styles.centerText}> Refuse </Text>
-              <Icon
-                name="warning"
-                size={300}
-                color="#ff7f50"
-              />
-            </View>
-          </TouchableHighlight>
-        </View>
-      </View>
+      <ScrollView contentContainerStyle={styles.container}>
+        <TouchableHighlight onPress={Actions.PointInTimeBasic}>
+          <View style={styles.route} >
+            <Text> Point In Time </Text>
+            <Icon
+              name="hourglass-empty"
+              color={"#0a64a0"}
+              size={150}
+            />
+          </View>
+        </TouchableHighlight>
+        <TouchableHighlight onPress={Actions.VispdatBasic}>
+          <View style={styles.route} >
+            <Text> VI-SPDAT </Text>
+            <Icon
+              color={"#501eb4"}
+              name="assignment"
+              size={150}
+            />
+          </View>
+        </TouchableHighlight>
+        <TouchableHighlight onPress={Actions.Refuse}>
+          <View style={styles.route} >
+            <Text> Refuse </Text>
+            <Icon
+              color={"#dc2878"}
+              name="warning"
+              size={150}
+            />
+          </View>
+        </TouchableHighlight>
+      </ScrollView>
     );
   }
 }

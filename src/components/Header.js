@@ -3,9 +3,9 @@ import { View, StyleSheet, Text } from 'react-native';
 
 const styles = Object.assign({}, StyleSheet.create({
   container: {
-    flex: 1,
     justifyContent: 'flex-start',
-    backgroundColor: 'red'
+    backgroundColor: 'red',
+    height: 5
   }
 }));
 
@@ -21,7 +21,7 @@ class Header extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>{this.props.text}</Text>
+        <Text style={styles.text}>{this.props.text}</Text>
       </View>
     );
   }

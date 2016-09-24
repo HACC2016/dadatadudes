@@ -5,10 +5,6 @@ import { View, Text } from 'react-native';
 import Questions from './Questions';
 import { processQuestions } from '../utilities/helpers';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import {
-  currentPrefaceTextSelector,
-  currentQuestionsSelector
-} from '../selectors/Form';
 
 class QuestionsContainer extends Component {
   static propTypes = {
@@ -44,8 +40,6 @@ class QuestionsContainer extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    questions: currentQuestionsSelector(state),
-    prefaceText: currentPrefaceTextSelector(state)
   };
 };
 

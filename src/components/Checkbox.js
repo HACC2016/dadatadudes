@@ -4,17 +4,26 @@ import { MKCheckbox, MKColor } from 'react-native-material-kit';
 import TextField from '../components/TextFields';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 
+import Style from '../utilities/styles.js';
+
 const styles = Object.assign({}, StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center'
+  },
+  text: {
+    marginRight: 40,
+    fontSize: Style.FONT_SIZE
   }
 }));
 
 class Checkbox extends Component {
   static propTypes = {
     text: PropTypes.string.isRequired,
+    field: PropTypes.string,
+    value: PropTypes.string,
+    onPress: PropTypes.func,
     type: PropTypes.string
   };
 
@@ -25,17 +34,15 @@ class Checkbox extends Component {
     this.state = {
       checked: false
     };
-    this.handleChange = this._handleChange.bind(this);
+    this.onCheckedHandler = this._onCheckedHandler.bind(this);
     this.showInput = this._showInput.bind(this);
   }
 
-  _handleChange() {
-    const { type } = this.props;
-    if (type === 'input') {
-      this.setState({
-        checked: !this.state.checked
-      });
-    }
+  _onCheckedHandler() {
+    this.props.onPress({
+      field: this.props.field,
+      value: this.props.value
+    });
   }
 
   _showInput() {
@@ -54,13 +61,13 @@ class Checkbox extends Component {
         <View style={styles.container}>
           <MKCheckbox
             checked={this.state.checked}
-            onCheckedChange={this.handleChange}
-            fillColor={MKColor.Teal}
-            borderOnColor={MKColor.Pink}
-            borderOffColor={MKColor.Green}
-            rippleColor={MKColor.Blue}
+            onCheckedChange={this.onCheckedHandler}
+            fillColor={`#734BC3`}
+            borderOnColor={`#501EB4`}
+            borderOffColor={`rgba(224,228,204,1)`}
+            rippleColor={`#DE337F`}
           />
-          <Text>{this.props.text}</Text>
+          <Text style={styles.text}>{this.props.text}</Text>
         </View>
         {this.showInput()}
       </View>

@@ -1,12 +1,26 @@
 import React, { Component, PropTypes } from 'react';
 import {
-  View
+  View,
+  StyleSheet
 } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 // Actions
 import * as FormActions from '../actions/Form';
 import { MKColor, MKTextField } from 'react-native-material-kit';
+
+import Style from '../utilities/styles.js';
+
+const styles = Object.assign({}, StyleSheet.create({
+  textField: {
+    fontSize: Style.FONT_SIZE,
+    color: 'rgba(0,0,0,0.6)',
+    height: Style.FONT_SIZE+10
+  },
+  label: {
+    fontSize: Style.FONT_SIZE-1
+  }
+}));
 
 class TextField extends Component {
 
@@ -34,9 +48,13 @@ class TextField extends Component {
     return (
       <View>
         <MKTextField
+          floatingLabelEnabled={true}
+          floatingLabelFont={styles.label}
+          placeholder={this.props.question}
           onChangeText={this.onChangeText}
-          tintColor={MKColor.Lime}
-          textInputStyle={{ color: MKColor.Orange }}
+          tintColor={`rgba(224,228,204,1)`}
+          highlightColor= {'#E35393'}
+          textInputStyle={styles.textField}
         />
       </View>
     );

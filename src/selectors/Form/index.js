@@ -1,35 +1,23 @@
 import { createSelector } from 'reselect';
 
-const allSectionsByRouteSelector = (state) => {
-  return state.form.get('allSections');
-};
-
 const answerOptionsSelector = (state) => {
   return state.form.get('answerOptions');
 };
 
-export const currentIndexSelector = (state) => {
-  return state.form.get('currentIndex');
+const sectionQuestionsSelector = (state) => {
+  if (state.form.has('questions')) {
+    return state.form.get('questions');
+  }
+  return null;
 };
 
-export const currentSectionSelector = createSelector(
-  [allSectionsByRouteSelector, currentIndexSelector],
-  (allSectionsTable, currentIndex) => {
-    return allSectionsTable.getIn([currentIndex, 'section']);
-  }
-);
-
-export const currentSectionTitleSelector = createSelector(
-  [allSectionsByRouteSelector, currentIndexSelector],
-  (allSectionsTable, currentIndex) => {
-    return allSectionsTable.getIn([currentIndex, 'sectionTitle']);
-  }
-);
-
 export const currentQuestionsSelector = createSelector(
-  [currentSectionSelector, answerOptionsSelector],
+  [sectionQuestionsSelector, answerOptionsSelector],
   (currentSection, answerOptions) => {
-    return currentSection.get('questions').map((question) => {
+    if (!currentSection) {
+      return null;
+    }
+    return currentSection.map((question) => {
       if (!question.has('answers')) {
         return question;
       }
@@ -37,15 +25,212 @@ export const currentQuestionsSelector = createSelector(
     });
   }
 );
-export const currentPrefaceTextSelector = createSelector(
-  [currentSectionSelector],
-  (currentSection) => {
-    return currentSection.get('prefaceText');
+
+export const formInputsSelector = (state) => {
+  if (!state.form.has('formFields')) {
+    return {};
+  }
+  return state.form.get('formFields').toJS();
+};
+
+// Max amount of possible points: 1;
+export const VispdatBasicScore = createSelector(
+  [formInputsSelector],
+  (formInputs) => {
+    const { age } = formInputs;
+    if (age > 60) {
+      return 1;
+    }
+    return 0;
   }
 );
 
-export const currentRouteSelector = (state) => {
-  return state.form.get('currentRoute');
-};
+// Max amount of possible points: 2;
+export const VispdatHousingScore = createSelector(
+  [formInputsSelector],
+  (formInputs) => {
+    const validSleepingFields = ['refused', 'outdoors', 'other'];
+    const validHomelessDateFields = ['oneYearOrLonger', 'fourOrMoreTimes'];
+    const {
+      sleepsMostFrequentlyAt,
+      timePassedSincePermanentHousing,
+      timesHomelessInPastThreeYears
+    } = formInputs;
+    let score = 0;
+    if (validSleepingFields.indexOf(sleepsMostFrequentlyAt) > -1) {
+      score = score + 1;
+    }
+    if (
+        validHomelessDateFields.indexOf(timePassedSincePermanentHousing) > -1 ||
+        validHomelessDateFields.indexOf(timesHomelessInPastThreeYears) > -1
+      ) {
+      score = score + 1;
+    }
+    return score;
+  }
+);
 
-export const formInputsSelector = (state) => state.form.formInputs;
+// Max amount of possible points: 2;
+export const VispdatRiskScore = createSelector(
+  [formInputsSelector],
+  (formInputs) => {
+    const {
+      timesReceivedErCareInSixMonths,
+      timesAmbulanceRidesInSixMonths,
+      timesHospitalizedAsInpatientInSixMonths,
+      timesUsedCrisisServiceInSixMonths,
+      timesPoliceTalksInSixMonths,
+      timesJailedInSixMonths
+    } = formInputs;
+    let score = 0;
+    if (timesReceivedErCareInSixMonths !== 'none' || timesReceivedErCareInSixMonths !== 'other') {
+      score = 0.25;
+    }
+    if (timesReceivedErCareInSixMonths !== 'none' || timesReceivedErCareInSixMonths !== 'other') {
+      score = 0.25;
+    }
+    if (timesReceivedErCareInSixMonths !== 'none' || timesReceivedErCareInSixMonths !== 'other') {
+      score = 0.25;
+    }
+    if (timesReceivedErCareInSixMonths !== 'none' || timesReceivedErCareInSixMonths !== 'other') {
+      score = 0.25;
+    }
+    if (timesReceivedErCareInSixMonths !== 'none' || timesReceivedErCareInSixMonths !== 'other') {
+      score = 0.25;
+    }
+    if (timesReceivedErCareInSixMonths !== 'none' || timesReceivedErCareInSixMonths !== 'other') {
+      score = 0.25;
+    }
+    // ... logic for risk scores.
+    /**
+     * Score one if risk of harm is answered "yes"
+     * Score one if legal issues were answered "yes"
+     * Score one if risk or exploitation were answered "yes"
+     */
+  }
+);
+
+// Max amount of possible points: 2;
+export const VispdatSocializationScore = createSelector(
+  [formInputsSelector],
+  (formInputs) => {
+    /*
+     * Score one if money management were answered "yes"
+     * Score one if meaningful daily activity were answered "no"
+     * Score one if self-care were answered "no"
+     * Score one if social relationship were answered "yes"
+     */
+    // ... logic for socializiation scores.
+  }
+);
+
+// Max amount of possible points: 2;
+export const VispdatWellnessScore = createSelector(
+  [formInputsSelector],
+  (formInputs) => {
+    // ... logic for wellness scores.
+    /**
+     * Score one if FEMALE & currently pregnent were answered "yes"
+     * Score one if substance use were answered "yes"
+     */
+  }
+);
+
+export const totalVispdatRiskScoreSelector = createSelector(
+  [
+    VispdatBasicScore,
+    VispdatHousingScore,
+    VispdatRiskScore,
+    VispdatSocializationScore,
+    VispdatWellnessScore
+  ],
+  (basic = 0, housing = 0, risk = 0, socializiation = 0, wellness = 0) => {
+    console.log('(basic + housing + risk + socializiation + wellness)', (basic + housing + risk + socializiation + wellness));
+    return (basic + housing + risk + socializiation + wellness);
+  }
+);
+export const refuseFieldsSelector = createSelector(
+  [formInputsSelector],
+  (formInputs) => {
+    // const {
+    //   // ...
+    // } = formInputs.toJS();
+    return {
+      // ...
+    };
+  }
+);
+
+
+export const pointInTimeFieldsSelector = createSelector(
+  [formInputsSelector],
+  (formInputs) => {
+    // const {
+    //   // ...
+    // } = formInputs.toJS();
+    return {
+      // ...
+    };
+  }
+);
+
+export const vispdatFollowUpSelector = createSelector(
+  [formInputsSelector],
+  (formInputs) => {
+    // const {
+    //   // ...
+    // } = formInputs.toJS();
+    return {
+      // ...
+    };
+  }
+);
+
+export const vispdatHousingHistorySelector = createSelector(
+  [formInputsSelector],
+  (formInputs) => {
+    // const {
+    //   // ...
+    // } = formInputs.toJS();
+    return {
+      // ...
+    };
+  }
+);
+
+export const vispdatRiskSelector = createSelector(
+  [formInputsSelector],
+  (formInputs) => {
+    // const {
+    //   // ...
+    // } = formInputs.toJS();
+    return {
+      // ...
+    };
+  }
+);
+
+export const vispdatSocializationSelector = createSelector(
+  [formInputsSelector],
+  (formInputs) => {
+    // const {
+    //   // ...
+    // } = formInputs.toJS();
+    return {
+      // ...
+    };
+  }
+);
+
+export const vispdatWellnessSelector = createSelector(
+  [formInputsSelector],
+  (formInputs) => {
+    // const {
+    //   // ...
+    // } = formInputs.toJS();
+    return {
+      // ...
+    };
+  }
+);
+

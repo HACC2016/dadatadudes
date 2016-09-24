@@ -14,27 +14,21 @@ const RENDER_TYPES = {
   DROPDOWN: 'dropdown',
   INPUT: 'input',
   RADIO: 'radio',
-  DATE: 'datePicker'
+  DATE: 'date'
 };
 
-const styles = Object.assign({}, StyleSheet.create({
+import Style from '../utilities/styles.js';
 
+const styles = Object.assign({}, StyleSheet.create({
   container: {
     flex: 1,
-    margin: 5
+    flexDirection: 'column',
+    flexWrap: 'wrap',
+    marginVertical: Style.MARGIN_VERTICAL
   },
-  row: {
-    flexDirection: 'row'
-  },
-  col: {
-    flexDirection: 'column'
-  },
-  title: {
-    fontSize: 15,
-    fontWeight: 'bold',
-    color: 'black'
+  font: {
+    fontSize: Style.FONT_SIZE
   }
-
 }));
 
 class FormQuestion extends Component {
@@ -42,7 +36,9 @@ class FormQuestion extends Component {
     answers: PropTypes.array,
     children: PropTypes.node,
     question: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired
+    type: PropTypes.string.isRequired,
+    field: PropTypes.string,
+    value: PropTypes.string
   };
 
   mixins: [PureRenderMixin];
@@ -50,40 +46,47 @@ class FormQuestion extends Component {
   constructor(props) {
     super(props);
     this.renderAnswerOptions = this._renderAnswerOptions.bind(this);
+    this.renderQuestion = this._renderQuestion.bind(this);
   }
 
   _renderAnswerOptions() {
     const { type } = this.props;
     switch (type) {
     case RENDER_TYPES.RADIO: {
-      return <RadioGroup items={this.props.answers} />;
+      return <RadioGroup items={this.props.answers} field={this.props.field} />;
     }
     case RENDER_TYPES.DROPDOWN: {
-      return <DropDown items={this.props.answers} />;
+      return <DropDown items={this.props.answers} field={this.props.field} />;
     }
     case RENDER_TYPES.INPUT: {
-      return <TextField />;
+      return <TextField field={this.props.field} question={this.props.question} />;
     }
     case RENDER_TYPES.DATE: {
       return <DateSelector />;
     }
     case RENDER_TYPES.CHECKBOX: {
-      return <CheckboxGroup items={this.props.answers} />;
+      return <CheckboxGroup items={this.props.answers} field={this.props.field} />;
     }
     default:
       return '';
     }
   }
 
+  _renderQuestion() {
+    const { type, question } = this.props;
+    if (type !== 'input') {
+      return (
+        <Text style={styles.font}> {question} </Text>
+      );
+    }
+    return null;
+  }
+
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.row}>
-          <View style={styles.col}>
-            <Text style={styles.title}> {this.props.question} </Text>
-            {this.renderAnswerOptions()}
-          </View>
-        </View>
+        {this.renderQuestion()}
+        {this.renderAnswerOptions()}
       </View>
     );
   }

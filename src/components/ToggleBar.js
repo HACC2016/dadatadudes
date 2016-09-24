@@ -2,13 +2,13 @@ import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 // Components
+import Button from './Button';
 import { View, TouchableHighlight, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-
 // Actions
-import { setCurrentIndex } from '../actions/Form';
+import { setCurrentIndex, submitForm } from '../actions/Form';
 // Selectors
-import { currentIndexSelector } from '../selectors/Form';
+import { currentIndexSelector, formInputsSelector } from '../selectors/Form';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 
 const styles = StyleSheet.create({
@@ -31,6 +31,8 @@ const styles = StyleSheet.create({
 class ToggleBar extends Component {
   static propTypes = {
     currentIndex: PropTypes.number,
+    formInputs: PropTypes.object,
+    onClick: PropTypes.func,
     setCurrentIndex: PropTypes.func
   };
 
@@ -81,13 +83,15 @@ class ToggleBar extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    currentIndex: currentIndexSelector(state)
+    currentIndex: currentIndexSelector(state),
+    formInputs: formInputsSelector(state)
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    setCurrentIndex
+    setCurrentIndex,
+    submitForm
   }, dispatch);
 };
 

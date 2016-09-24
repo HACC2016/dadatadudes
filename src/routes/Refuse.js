@@ -1,75 +1,119 @@
 // Need to attach current section to redux store.
+import PureRenderMixin from 'react-addons-pure-render-mixin';
 import React, { Component, PropTypes } from 'react';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 // Components
 import {
+  Text,
   ScrollView
 } from 'react-native';
-import { MKSpinner } from 'react-native-material-kit';
+import Button from '../components/Button';
 import Header from '../components/Header';
-import FormContainer from '../components/FormContainer';
-import ToggleBar from '../components/ToggleBar';
+import Questions from '../components/Questions';
 import DateSelector from '../components/DateSelector.js';
-// Actions
-import { loadSection } from '../actions/Form';
 // Selectors
-import {
-  currentRouteSelector
-} from '../selectors/Form';
+import { formInputsSelector } from '../selectors/Form';
 // Questions
-import { RefusedSections } from '../utilities/questions';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import { RefuseQuestions } from '../utilities/questions';
+import { processQuestions } from '../utilities/helpers';
 import * as answerOptions from '../utilities/answerOptions.js';
+// GraphQL
+import gql from 'graphql-tag';
+import { graphql } from 'react-apollo';
 
-class TestRoute extends Component {
+const mutation = gql`
+  mutation($input: ReportInput!){
+    AddReport(input: $input) {
+      _id
+      districtId
+    }
+  }
+`;
+
+class Refuse extends Component {
   static propTypes = {
-    currentRoute: PropTypes.string,
-    loadSection: PropTypes.func
+    fields: PropTypes.object,
+    submit: PropTypes.func
   };
 
   mixins: [PureRenderMixin];
 
   constructor(props) {
     super(props);
+    this.renderPrefaceText = this._renderPrefaceText.bind(this);
+    this.onPressHandler = this._onPressHandler.bind(this);
+    this.state = {
+      questions: RefuseQuestions.get('questions').map((question) => {
+        if (!question.has('answers')) {
+          return question;
+        }
+        return question.set('answers', answerOptions[ question.get('answers') ]);
+      })
+    };
   }
 
-  componentWillMount() {
-    this.props.loadSection({
-      currentIndex: 0,
-      currentRoute: 'Refused',
-      allSections: RefusedSections,
-      answerOptions
+  _onPressHandler() {
+    console.log('this.props.fields', this.props.fields);
+    this.props.submit(this.props.fields)
+    .then((result) => {
+      console.log('result', result);
+    })
+    .catch((error) => {
+      console.log('error', error);
     });
   }
 
+  _renderPrefaceText() {
+    if (RefuseQuestions.prefaceText) {
+      return (<Text>{RefuseQuestions.get('prefaceText')}</Text>);
+    }
+    return null;
+  }
+
   render() {
-    if (!this.props.currentRoute) {
-      return <MKSpinner />;
+    if (!this.state.questions) {
+      return (
+        <Text> Loading.. </Text>
+      );
     }
     return (
       <ScrollView>
         <Header
-          text={this.props.currentRoute}
+          text={"Vispdat Housing History"}
+        />
+        <Header
+          text={RefuseQuestions.get('sectionTitle')}
+        />
+        <Questions
+          questions={processQuestions(this.state.questions)}
+        />
+        <Button
+          onPress={this.onPressHandler}
+          text={"Submit Form!"}
         />
         <DateSelector />
-        <FormContainer />
-        <ToggleBar />
       </ScrollView>
     );
   }
 }
 
+Refuse = graphql(mutation, {
+  props: ({ mutate }) => ({
+    submit: (fields) => mutate({
+      variables: {
+        input: {
+          districtId: fields.districtId,
+          reportedAt: fields.reportedAt
+        }
+      }
+    })
+  })
+})(Refuse);
+
 const mapStateToProps = (state) => {
   return {
-    currentRoute: currentRouteSelector(state)
+    fields: formInputsSelector(state)
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({
-    loadSection
-  }, dispatch);
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(TestRoute);
+export default connect(mapStateToProps)(Refuse);

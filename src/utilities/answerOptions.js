@@ -116,6 +116,10 @@ export const yesNo = [
 ];
 export const number = [
   {
+    value: 'none',
+    text: '0'
+  },
+  {
     value: 'oneToTwo',
     text: '1 - 2'
   },

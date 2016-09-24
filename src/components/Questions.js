@@ -1,9 +1,16 @@
 import React, { Component, PropTypes } from 'react';
 // Components
-import { ListView } from 'react-native';
+import { ListView, StyleSheet } from 'react-native';
 import FormQuestion from './FormQuestion';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import * as options from '../utilities/answerOptions.js';
+import Style from '../utilities/styles.js';
+
+const styles = Object.assign({}, StyleSheet.create({
+  container: {
+    marginTop: 60,
+    marginHorizontal: Style.FORM_MARGIN_X
+  }
+}));
 
 class Question extends Component {
   static propTypes = {
@@ -20,9 +27,12 @@ class Question extends Component {
   _renderQuestions(item) {
     return (
       <FormQuestion
+        style={styles.questions}
         question={item.question}
         type={item.type}
         answers={item.answers}
+        value={item.value}
+        field={item.field}
       />
     );
   }
@@ -30,6 +40,7 @@ class Question extends Component {
   render() {
     return (
       <ListView
+        style={styles.container}
         dataSource={this.props.questions}
         initialListSize={this.props.questions.size}
         scrollRenderAhead={250}
