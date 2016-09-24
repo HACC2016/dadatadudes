@@ -2,8 +2,10 @@
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { Actions } from 'react-native-router-flux';
 // Components
 import {
+  Alert,
   ScrollView
 } from 'react-native';
 import Header from '../components/Header';
@@ -51,10 +53,11 @@ class PointInTime extends Component {
   }
 
   _onPressHandler() {
-    console.log('this.props.fields', this.props.fields);
     this.props.submit(this.props.fields)
     .then((result) => {
+      Alert.alert('Form successfully submitted!', 'Your form has been successfully registered.');
       console.log('result', result);
+      Actions.home();
     })
     .catch((error) => {
       console.log('error', error);
