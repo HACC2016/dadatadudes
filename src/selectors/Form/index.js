@@ -27,61 +27,80 @@ export const currentQuestionsSelector = createSelector(
 );
 
 export const formInputsSelector = (state) => {
-  return state.form.get('formFields');
+  if (!state.form.has('formFields')) {
+    return {};
+  }
+  return state.form.get('formFields').toJS();
 };
 
-export const basicFieldsSelector = createSelector(
-  [formInputsSelector],
-  (formInputs) => {
-    const {
-      firstName,
-      lastName,
-      nickname,
-      ssn,
-      gender,
-      age,
-      ethnicity,
-      languages,
-      district
-    } = formInputs.toJS();
-    return {
-      firstName,
-      lastName,
-      nickname,
-      ssn,
-      gender,
-      age,
-      ethnicity,
-      languages,
-      district
-    };
-  }
-);
-
+// Max amount of possible points: 1;
 export const VispdatBasicScore = createSelector(
   [formInputsSelector],
   (formInputs) => {
-    // ... logic for basic scores
-    /**
-     * Score one if person is over 60
-     */
+    const { age } = formInputs;
+    if (age > 60) {
+      return 1;
+    }
+    return 0;
   }
 );
 
+// Max amount of possible points: 2;
 export const VispdatHousingScore = createSelector(
   [formInputsSelector],
   (formInputs) => {
-    // ... logic for housing scores.
-    /**
-     * Score one if anything other than “shelter, transitional housing, or safe haven”
-     * If person has experienced 1 or more consecutive years of homelessness, and / or 4+ episodes of homelessness, then score 1
-     */
+    const validSleepingFields = ['refused', 'outdoors', 'other'];
+    const validHomelessDateFields = ['oneYearOrLonger', 'fourOrMoreTimes'];
+    const {
+      sleepsMostFrequentlyAt,
+      timePassedSincePermanentHousing,
+      timesHomelessInPastThreeYears
+    } = formInputs;
+    let score = 0;
+    if (validSleepingFields.indexOf(sleepsMostFrequentlyAt) > -1) {
+      score = score + 1;
+    }
+    if (
+        validHomelessDateFields.indexOf(timePassedSincePermanentHousing) > -1 ||
+        validHomelessDateFields.indexOf(timesHomelessInPastThreeYears) > -1
+      ) {
+      score = score + 1;
+    }
+    return score;
   }
 );
 
+// Max amount of possible points: 2;
 export const VispdatRiskScore = createSelector(
   [formInputsSelector],
   (formInputs) => {
+    const {
+      timesReceivedErCareInSixMonths,
+      timesAmbulanceRidesInSixMonths,
+      timesHospitalizedAsInpatientInSixMonths,
+      timesUsedCrisisServiceInSixMonths,
+      timesPoliceTalksInSixMonths,
+      timesJailedInSixMonths
+    } = formInputs;
+    let score = 0;
+    if (timesReceivedErCareInSixMonths !== 'none' || timesReceivedErCareInSixMonths !== 'other') {
+      score = 0.25;
+    }
+    if (timesReceivedErCareInSixMonths !== 'none' || timesReceivedErCareInSixMonths !== 'other') {
+      score = 0.25;
+    }
+    if (timesReceivedErCareInSixMonths !== 'none' || timesReceivedErCareInSixMonths !== 'other') {
+      score = 0.25;
+    }
+    if (timesReceivedErCareInSixMonths !== 'none' || timesReceivedErCareInSixMonths !== 'other') {
+      score = 0.25;
+    }
+    if (timesReceivedErCareInSixMonths !== 'none' || timesReceivedErCareInSixMonths !== 'other') {
+      score = 0.25;
+    }
+    if (timesReceivedErCareInSixMonths !== 'none' || timesReceivedErCareInSixMonths !== 'other') {
+      score = 0.25;
+    }
     // ... logic for risk scores.
     /**
      * Score one if risk of harm is answered "yes"
@@ -91,6 +110,7 @@ export const VispdatRiskScore = createSelector(
   }
 );
 
+// Max amount of possible points: 2;
 export const VispdatSocializationScore = createSelector(
   [formInputsSelector],
   (formInputs) => {
@@ -104,6 +124,7 @@ export const VispdatSocializationScore = createSelector(
   }
 );
 
+// Max amount of possible points: 2;
 export const VispdatWellnessScore = createSelector(
   [formInputsSelector],
   (formInputs) => {

@@ -14,7 +14,7 @@ const RENDER_TYPES = {
   DROPDOWN: 'dropdown',
   INPUT: 'input',
   RADIO: 'radio',
-  DATE: 'datePicker'
+  DATE: 'date'
 };
 
 import Style from '../utilities/styles.js';
@@ -46,6 +46,7 @@ class FormQuestion extends Component {
   constructor(props) {
     super(props);
     this.renderAnswerOptions = this._renderAnswerOptions.bind(this);
+    this.renderQuestion = this._renderQuestion.bind(this);
   }
 
   _renderAnswerOptions() {
@@ -71,10 +72,20 @@ class FormQuestion extends Component {
     }
   }
 
+  _renderQuestion() {
+    const { type, question } = this.props;
+    if (type !== 'input') {
+      return (
+        <Text style={styles.font}> {question} </Text>
+      );
+    }
+    return null;
+  }
+
   render() {
     return (
       <View style={styles.container}>
-        { (this.props.type !== 'input') ? <Text style={styles.font}> {this.props.question} </Text> : null }
+        {this.renderQuestion()}
         {this.renderAnswerOptions()}
       </View>
     );

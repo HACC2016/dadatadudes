@@ -22,9 +22,10 @@ import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
 
 const mutation = gql`
-  mutation{
-    AddReport(input: { districtId: "96744", reportedAt: "04/09/2014" }){
-      reportedAt
+  mutation($input: ReportInput!){
+    AddReport(input: $input) {
+      _id
+      districtId
     }
   }
 `;
@@ -98,10 +99,12 @@ class Refuse extends Component {
 
 Refuse = graphql(mutation, {
   props: ({ mutate }) => ({
-    submit: (input) => mutate({
+    submit: (fields) => mutate({
       variables: {
-        districtId: input.districtId,
-        reportedAt: input.reportedAt
+        input: {
+          districtId: fields.districtId,
+          reportedAt: fields.reportedAt
+        }
       }
     })
   })

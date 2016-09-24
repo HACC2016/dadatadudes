@@ -13,7 +13,6 @@ const styles = Object.assign({}, StyleSheet.create({
   }
 }));
 
-
 class DatePicker extends Component {
 
   static propTypes = {

@@ -20,9 +20,10 @@ import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
 
 const mutation = gql`
-  mutation{
-    AddReport(input: { districtId: "96744", reportedAt: "04/09/2014" }){
-      reportedAt
+  mutation($input: PersonInputType!){
+    AddPerson(input: $input) {
+      _id
+      districtId
     }
   }
 `;
@@ -102,10 +103,46 @@ const mapStateToProps = (state) => {
 
 PointInTime = graphql(mutation, {
   props: ({ mutate }) => ({
-    submit: (input) => mutate({
+    submit: (fields) => mutate({
       variables: {
-        districtId: input.districtId,
-        reportedAt: input.reportedAt
+        input: {
+          age: fields.age,
+          assessmentIds: fields.assessmentIds,
+          alcoholDrugProblem: fields.alcoholDrugProblem,
+          benefitEbt: fields.benefitEbt,
+          benefitSsi: fields.benefitSsi,
+          benefitTanf: fields.benefitTanf,
+          benefitUnemployment: fields.benefitUnemployment,
+          benefitVeteran: fields.benefitVeteran,
+          benefitWelfare: fields.benefitWelfare,
+          dateCreated: fields.dateCreated,
+          districtId: fields.districtId,
+          driversLicenseNumber: fields.driversLicenseNumber,
+          educationLevel: fields.educationLevel,
+          employmentCurPay: fields.employmentCurPay,
+          employmentLastEmployed: fields.employmentLastEmployed,
+          employmentStatus: fields.employmentStatus,
+          ethnicity: fields.ethnicity,
+          familyMembersAdult: fields.familyMembersAdult,
+          familyMembersChildren: fields.familyMembersChildren,
+          firstName: fields.firstName,
+          gender: fields.gender,
+          geoLocation: fields.geoLocation,
+          hawaiiStateId: fields.hawaiiStateId,
+          lastHomelessDate: fields.lastHomelessDate,
+          lastHomelessAreaLived: fields.lastHomelessAreaLived,
+          lastName: fields.lastName,
+          lengthOfStayHawaii: fields.lengthOfStayHawaii,
+          mentalHealthDisability: fields.mentalHealthDisability,
+          onTheStreets: fields.onTheStreets,
+          otherDisability: fields.otherDisability,
+          reportIds: fields.reportIds,
+          reasonForHomelessness: fields.reasonForHomelessness,
+          shelterName: fields.shelterName,
+          shelterStatus: fields.shelterStatus,
+          ssn: fields.ssn,
+          timeHomelessCount: fields.timeHomelessCount
+        }
       }
     })
   })

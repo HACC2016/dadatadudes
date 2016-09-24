@@ -21,9 +21,10 @@ import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
 
 const mutation = gql`
-  mutation{
-    AddReport(input: { districtId: "96744", reportedAt: "04/09/2014" }){
-      reportedAt
+  mutation($input: AssessmentInputType!){
+    AddAssessment(input: $input) {
+      _id
+      districtId
     }
   }
 `;
@@ -107,10 +108,85 @@ const mapStateToProps = (state) => {
 
 VispdatFollowUp = graphql(mutation, {
   props: ({ mutate }) => ({
-    submit: (input) => mutate({
+    submit: (fields) => mutate({
       variables: {
-        districtId: input.districtId,
-        reportedAt: input.reportedAt
+        input: {
+          districtId: fields.districtId,
+          generalDemographics: {
+            age: fields.age,
+            consentOfParticipation: fields.consentOfParticipation,
+            dateOfBirth: fields.dateOfBirth,
+            ethnicity: fields.ethnicity,
+            firstName: fields.firstName,
+            gender: fields.gender, // Needed to add
+            languages: fields.languages,
+            lastName: fields.lastName,
+            mainLanguage: fields.mainLanguage,
+            nickName: fields.nickName,
+            ssn: fields.ssn
+          },
+          historyOfHousingAndHomelessness: {
+            sleepsMostFrequentlyAt: fields.sleepsMostFrequentlyAt,
+            timePassedSincePermanentHousing: fields.timePassedSincePermanentHousing,
+            timesHomelessInPastThreeYears: fields.timesHomelessInPastThreeYears
+          },
+          risk: {
+            timesReceivedErCareInSixMonths: fields.timesReceivedErCareInSixMonths,
+            timesAmbulanceRidesInSixMonths: fields.timesAmbulanceRidesInSixMonths,
+            timesHospitalizedAsInpatientInSixMonths: fields.timesHospitalizedAsInpatientInSixMonths,
+            timesUsedCrisisServiceInSixMonths: fields.timesUsedCrisisServiceInSixMonths,
+            timesPoliceTalksInSixMonths: fields.timesPoliceTalksInSixMonths,
+            timesJailedInSixMonths: fields.timesJailedInSixMonths,
+            timesAttackedSinceHomeless: fields.timesAttackedSinceHomeless,
+            timesHarmedSelfOrOthersPastYear: fields.timesHarmedSelfOrOthersPastYear,
+            hasImmediateLegalIssues: fields.hasImmediateLegalIssues,
+            beingForcedUponToDoUnwantedThings: fields.beingForcedUponToDoUnwantedThings,
+            beingExploitedForSexOrDrugs: fields.beingExploitedForSexOrDrugs
+          },
+          scores: {
+            basicDemographicRiskScore: fields.basicDemographicRiskScore,
+            noHousingScore: fields.noHousingScore,
+            consectutiveHomelessnessScore: fields.consectutiveHomelessnessScore,
+            riskOfHarmScore: fields.riskOfHarmScore,
+            emergencyUseRiskScore: fields.emergencyUseRiskScore,
+            legalIssuesScore: fields.legalIssuesScore,
+            riskOfExploitationScore: fields.riskOfExploitationScore,
+            moneyManagementScore: fields.moneyManagementScore,
+            meaningfulDailyActivityScore: fields.meaningfulDailyActivityScore,
+            selfCareScore: fields.selfCareScore,
+            socialRelationshipsScore: fields.socialRelationshipsScore,
+            physicalHealthScore: fields.physicalHealthScore,
+            substanceAbuseScore: fields.substanceAbuseScore,
+            mentalHealthScore: fields.mentalHealthScore,
+            TriMobilityScore: fields.TriMobilityScore,
+            medicationsScore: fields.medicationsScore,
+            abuseAndTraumaScore: fields.abuseAndTraumaScore
+          },
+          socializingAndDailyFunctioning: {
+            owesMoney: fields.owesMoney,
+            hasIncome: fields.hasIncome,
+            hasMeaningfulActivity: fields.hasMeaningfulActivity,
+            hasBasicSelfCare: fields.hasBasicSelfCare,
+            homelessDueToRelationships: fields.homelessDueToRelationships
+          },
+          wellness: {
+            forcedFromHousingBecauseHealth: fields.forcedFromHousingBecauseHealth,
+            chronicHealthIssues: fields.chronicHealthIssues,
+            interestedInHivAidsProgram: fields.interestedInHivAidsProgram,
+            limitingPhysicalDisabilities: fields.limitingPhysicalDisabilities,
+            avoidsHelpWhenSick: fields.avoidsHelpWhenSick,
+            currentlyPregnant: fields.currentlyPregnant,
+            forcedFromHousingBecauseAlcoholOrDrugs: fields.forcedFromHousingBecauseAlcoholOrDrugs,
+            maintainHousingDifficultyAlcoholDrugs: fields.maintainHousingDifficultyAlcoholDrugs,
+            maintainHousingDifficultyMentalHealth: fields.maintainHousingDifficultyMentalHealth,
+            maintainHousingDifficultyHeadInjury: fields.maintainHousingDifficultyHeadInjury,
+            maintainHousingDifficultyLearningDisability: fields.maintainHousingDifficultyLearningDisability,
+            limitingMentalDisabilities: fields.limitingMentalDisabilities,
+            notTakingPrescribedMedications: fields.notTakingPrescribedMedications,
+            sellingOrAbusingPrescribedMedications: fields.sellingOrAbusingPrescribedMedications,
+            homelessnessCausedByAbuseOrTrauma: fields.homelessnessCausedByAbuseOrTrauma
+          }
+        }
       }
     })
   })
