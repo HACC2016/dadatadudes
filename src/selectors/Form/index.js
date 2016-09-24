@@ -80,27 +80,53 @@ export const VispdatRiskScore = createSelector(
       timesHospitalizedAsInpatientInSixMonths,
       timesUsedCrisisServiceInSixMonths,
       timesPoliceTalksInSixMonths,
-      timesJailedInSixMonths
+      timesJailedInSixMonths,
+      timesHarmedSelfOrOthersPastYear
     } = formInputs;
     let score = 0;
     if (timesReceivedErCareInSixMonths !== 'none' || timesReceivedErCareInSixMonths !== 'other') {
-      score = 0.25;
+      if (timesReceivedErCareInSixMonths === 'oneToTwo') {
+        score = 0.25;
+      } else {
+        score = 1;
+      }
     }
-    if (timesReceivedErCareInSixMonths !== 'none' || timesReceivedErCareInSixMonths !== 'other') {
-      score = 0.25;
+    if (timesAmbulanceRidesInSixMonths !== 'none' || timesAmbulanceRidesInSixMonths !== 'other' && score !== 1) {
+      if (timesReceivedErCareInSixMonths === 'oneToTwo') {
+        score = 0.25;
+      } else {
+        score = 1;
+      }
     }
-    if (timesReceivedErCareInSixMonths !== 'none' || timesReceivedErCareInSixMonths !== 'other') {
-      score = 0.25;
+    if (timesHospitalizedAsInpatientInSixMonths !== 'none' || timesHospitalizedAsInpatientInSixMonths !== 'other' && score !== 1) {
+      if (timesReceivedErCareInSixMonths === 'oneToTwo') {
+        score = 0.25;
+      } else {
+        score = 1;
+      }
     }
-    if (timesReceivedErCareInSixMonths !== 'none' || timesReceivedErCareInSixMonths !== 'other') {
-      score = 0.25;
+    if (timesUsedCrisisServiceInSixMonths !== 'none' || timesUsedCrisisServiceInSixMonths !== 'other' && score !== 1) {
+      if (timesReceivedErCareInSixMonths === 'oneToTwo') {
+        score = 0.25;
+      } else {
+        score = 1;
+      }     
     }
-    if (timesReceivedErCareInSixMonths !== 'none' || timesReceivedErCareInSixMonths !== 'other') {
-      score = 0.25;
+    if (timesPoliceTalksInSixMonths !== 'none' || timesPoliceTalksInSixMonths !== 'other' && score !== 1) {
+      if (timesReceivedErCareInSixMonths === 'oneToTwo') {
+        score = 0.25;
+      } else {
+        score = 1;
+      }
     }
-    if (timesReceivedErCareInSixMonths !== 'none' || timesReceivedErCareInSixMonths !== 'other') {
-      score = 0.25;
+    if (timesJailedInSixMonths !== 'none' || timesJailedInSixMonths !== 'other' && score !== 1) {
+      if (timesReceivedErCareInSixMonths === 'oneToTwo') {
+        score = 0.25;
+      } else {
+        score = 1;
+      }
     }
+    return 0;
     // ... logic for risk scores.
     /**
      * Score one if risk of harm is answered "yes"
