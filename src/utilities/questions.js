@@ -36,7 +36,7 @@ export const BasicQuestions = fromJS({
     { question: 'Gender', type: 'radio', answers: 'gender', field: 'gender' },
     // { type: 'datePicker', field: 'dateOfBirth' },
     { question: 'Age', type: 'input', field: 'age' },
-    // { question: 'What Race do you most identify with? (SELECT ONLY ONE)', type: 'radio', answers: 'ethnicity', field: 'ethnicity' },
+    { question: 'What Race do you most identify with? (SELECT ONLY ONE)', type: 'radio', answers: 'ethnicity', field: 'ethnicity' },
     { question: 'In what language do you feel best able to exprees yourself?', type: 'input', field: 'languages' },
     { question: 'What district are you currently living in?', type: 'dropdown', answers: 'district', field: 'districtId' }
   ]
