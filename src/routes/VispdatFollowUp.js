@@ -2,8 +2,10 @@
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { Actions } from 'react-native-router-flux';
 // Components
 import {
+  Alert,
   Text,
   ScrollView
 } from 'react-native';
@@ -63,7 +65,9 @@ class VispdatFollowUp extends Component {
     console.log('this.props.fields', this.props.fields);
     this.props.submit(this.props.fields)
     .then((result) => {
+      Alert.alert('Form successfully submitted!', 'Your form has been successfully registered.');
       console.log('result', result);
+      Actions.home();
     })
     .catch((error) => {
       console.log('error', error);
