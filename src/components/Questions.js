@@ -8,6 +8,7 @@ import Style from '../utilities/styles.js';
 const styles = Object.assign({}, StyleSheet.create({
   container: {
     marginTop: 60,
+    marginBottom: 60,
     marginHorizontal: Style.FORM_MARGIN_X
   }
 }));
@@ -40,7 +41,7 @@ class Question extends Component {
   render() {
     return (
       <ListView
-        style={styles.container}
+        contentContainerStyle={styles.container}
         dataSource={this.props.questions}
         initialListSize={this.props.questions.size}
         scrollRenderAhead={250}

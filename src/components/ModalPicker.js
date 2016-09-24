@@ -12,6 +12,9 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import Style from '../utilities/styles.js';
 
 const styles = Object.assign({}, StyleSheet.create({
+  container: {
+    marginBottom: 20
+  },
   text: {
     fontSize: Style.FONT_SIZE
   }
@@ -59,6 +62,7 @@ class Dropdown extends Component {
       <Picker
         selectedValue={this.state.selected}
         onValueChange={this.onChangeHandler}
+        style={styles.container}
       >
         {this.renderPickerItems()}
       </Picker>

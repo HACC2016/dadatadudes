@@ -7,21 +7,36 @@ import { Actions } from 'react-native-router-flux';
 import {
   Alert,
   Text,
-  ScrollView
+  ScrollView,
+  StyleSheet,
+  View
 } from 'react-native';
 import Button from '../components/Button';
 import Header from '../components/Header';
 import Questions from '../components/Questions';
-import DateSelector from '../components/DateSelector.js';
 // Selectors
 import { formInputsSelector } from '../selectors/Form';
 // Questions
 import { RefuseQuestions } from '../utilities/questions';
 import { processQuestions } from '../utilities/helpers';
 import * as answerOptions from '../utilities/answerOptions.js';
+import Style from '../utilities/styles';
 // GraphQL
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
+
+const styles = Object.assign({}, StyleSheet.create({
+  container: {
+    flexDirection: 'column',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  riskScore: {
+    fontWeight: 'bold',
+    fontSize: Style.RISK_BUTTON_FONT_SIZE
+  }
+}));
 
 const mutation = gql`
   mutation($input: ReportInput!){
@@ -91,11 +106,12 @@ class Refuse extends Component {
         <Questions
           questions={processQuestions(this.state.questions)}
         />
-        <Button
-          onPress={this.onPressHandler}
-          text={"Submit Form!"}
-        />
-        <DateSelector />
+        <View style={styles.container}>
+          <Button
+            onPress={this.onPressHandler}
+            text={"Submit Form!"}
+          />
+        </View>
       </ScrollView>
     );
   }

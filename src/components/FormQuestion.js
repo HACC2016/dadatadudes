@@ -8,6 +8,7 @@ import TextField from './TextFields';
 import DateSelector from './DateSelector';
 // Utils
 import PureRenderMixin from 'react-addons-pure-render-mixin';
+import Style from '../utilities/styles.js';
 
 const RENDER_TYPES = {
   CHECKBOX: 'checkbox',
@@ -17,13 +18,9 @@ const RENDER_TYPES = {
   DATE: 'date'
 };
 
-import Style from '../utilities/styles.js';
 
 const styles = Object.assign({}, StyleSheet.create({
   container: {
-    flex: 1,
-    flexDirection: 'column',
-    flexWrap: 'wrap',
     marginVertical: Style.MARGIN_VERTICAL
   },
   font: {
@@ -62,7 +59,7 @@ class FormQuestion extends Component {
       return <TextField field={this.props.field} question={this.props.question} />;
     }
     case RENDER_TYPES.DATE: {
-      return <DateSelector />;
+      return <DateSelector field={this.props.field} />;
     }
     case RENDER_TYPES.CHECKBOX: {
       return <CheckboxGroup items={this.props.answers} field={this.props.field} />;
@@ -76,7 +73,7 @@ class FormQuestion extends Component {
     const { type, question } = this.props;
     if (type !== 'input') {
       return (
-        <Text style={styles.font}> {question} </Text>
+        <Text style={styles.font}>{question}</Text>
       );
     }
     return null;

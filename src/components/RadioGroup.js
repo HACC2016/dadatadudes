@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 // Actions
 import { addFormField } from '../actions/Form';
 // Compoonents
-import { StyleSheet, View, ListView } from 'react-native';
-import { MKRadioButton, MKSpinner } from 'react-native-material-kit';
+import { StyleSheet, ListView } from 'react-native';
+import { MKRadioButton } from 'react-native-material-kit';
 import RadioButton from './RadioButton.js';
 import { processQuestions } from '../utilities/helpers';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
