@@ -36,7 +36,7 @@ export const BasicQuestions = fromJS({
     { question: 'Gender', type: 'radio', answers: 'gender', field: 'gender' },
     // { type: 'datePicker', field: 'dateOfBirth' },
     { question: 'Age', type: 'input', field: 'age' },
-    { question: 'What Race do you most identify with? (SELECT ONLY ONE)', type: 'radio', answers: 'ethnicity', field: 'ethnicity' },
+    // { question: 'What Race do you most identify with? (SELECT ONLY ONE)', type: 'radio', answers: 'ethnicity', field: 'ethnicity' },
     { question: 'In what language do you feel best able to exprees yourself?', type: 'input', field: 'languages' },
     { question: 'What district are you currently living in?', type: 'dropdown', answers: 'district', field: 'districtId' }
   ]
@@ -94,9 +94,9 @@ export const VispdatWellnessQuestions = fromJS({
     { question: 'FOR FEMALE RESPONDENTS ONLY: Are you currently pregnant?', type: 'radio', answers: 'general', field: 'currentlyPregnant' },
     { question: 'Has your drinking or drug use led you to being kicked out of an apartment or program where you were staying in the past?', type: 'radio', answers: 'general', field: 'forcedFromHousingBecauseAlcoholOrDrugs' },
     { question: 'Will drinking or drug use make it difficult for you to stay housed or afford your housing?', type: 'radio', answers: 'general', field: 'maintainHousingDifficultyAlcoholDrugs' },
-    { question: 'A mental health issue or concern?', type: 'radio', answers: 'general', field: 'maintainHousingDifficultyMentalHealth' },
-    { question: 'A past head injury?', type: 'radio', answers: 'general', field: 'maintainHousingDifficultyHeadInjury' },
-    { question: 'A learning disability, developmental disability, or other impairment?', type: 'radio', answers: 'general', field: 'maintainHousingDifficultyLearningDisability' },
+    { question: 'Have you ever had trouble maintaining your housing, or been kicked out of an apartment, shelter program or other place you were staying, because of a mental health issue or concern?', type: 'radio', answers: 'general', field: 'maintainHousingDifficultyMentalHealth' },
+    { question: 'Have you ever had trouble maintaining your housing, or been kicked out of an apartment, shelter program or other place you were staying, because of a past head injury?', type: 'radio', answers: 'general', field: 'maintainHousingDifficultyHeadInjury' },
+    { question: 'Have you ever had trouble maintaining your housing, or been kicked out of an apartment, shelter program or other place you were staying, because of a learning disability, developmental disability, or other impairment?', type: 'radio', answers: 'general', field: 'maintainHousingDifficultyLearningDisability' },
     { question: 'Do you have any mental health or brain issues that would make it hard for you to live independently because you’d need help?', type: 'radio', answers: 'general', field: 'limitingMentalDisabilities' },
     { question: 'Are there any medications that a doctor said you should be taking that, for whatever reason, you are not taking?', type: 'radio', answers: 'general', field: 'notTakingPrescribedMedications' },
     { question: 'Are there any medications like painkillers that you don’t take the way the doctor prescribed or where you sell the medication?', type: 'radio', answers: 'general', field: 'sellingOrAbusingPrescribedMedications' },
@@ -118,9 +118,6 @@ export const RefuseQuestions = fromJS({
   sectionTitle: 'Description of Person if they Refused to be Surveyed',
   prefaceText: '',
   questions: [
-    // { question: 'Gender', type: 'radio', answers: 'gender', field: 'refuseGender' },
-    // { question: 'Age Range', type: 'input', field: 'refuseAge' },
-    // { question: 'What Race do you think this person might be?', type: 'radio', answers: 'ethnicity', field: 'refuseEthnicity' },
     { question: 'What district are they current living in?', type: 'dropdown', answers: 'district', field: 'districtId' },
     { question: 'When did you see this person?', type: 'date', field: 'reportedAt' }
   ]
