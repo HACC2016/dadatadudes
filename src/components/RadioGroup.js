@@ -1,36 +1,28 @@
 import React, { Component, PropTypes } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+// Actions
+import { addFormField } from '../actions/Form';
 // Compoonents
-import {
-  ListView,
-  InteractionManager,
-  View,
-  StyleSheet
-} from 'react-native';
-import { MKRadioButton, MKSpinner } from 'react-native-material-kit';
+import { StyleSheet, ListView } from 'react-native';
+import { MKRadioButton } from 'react-native-material-kit';
 import RadioButton from './RadioButton.js';
+import { processQuestions } from '../utilities/helpers';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import {
-  processQuestions
-} from '../utilities/helpers';
 
 const styles = Object.assign({}, StyleSheet.create({
-
   listView: {
     flex: 1,
     flexDirection: 'row',
-  },
-  row: {
-    flexDirection: 'row'
-  },
-  col: {
-    flex: 0,
-    flexDirection: 'column'
+    flexWrap: 'wrap',
+    marginTop: 5
   }
-
 }));
 
 class RadioOptions extends Component {
   static propTypes = {
+    addFormField: PropTypes.func,
+    field: PropTypes.string,
     items: PropTypes.array.isRequired
   }
 
@@ -39,50 +31,63 @@ class RadioOptions extends Component {
   constructor(props) {
     super(props);
     this.radioGroup = new MKRadioButton.Group();
-    this.renderRadioGroupItems = this._renderRadioGroupItems.bind(this);
-    this.state = {
-      dataSource: false
-    };
+    this.renderRadioButtons = this._renderRadioButtons.bind(this);
   }
 
-  componentDidMount() {
-    InteractionManager.runAfterInteractions(() => {
-      this.setState({
-        dataSource: processQuestions(this.props.items)
-      });
-    });
-  }
-
-  _renderRadioGroupItems(item) {
+  _renderRadioButtons(item) {
     return (
-      <View style={styles.col}>
-        <RadioButton
-          text={item.text}
-          group={this.radioGroup}
-        />
-      </View>
+      <RadioButton
+        value={item.value}
+        text={item.text}
+        field={this.props.field}
+        onPress={this.props.addFormField}
+        group={this.radioGroup}
+      />
     );
+    // const { items } = this.props;
+    // return items.map((item, key) => {
+    //   return (
+    //     <RadioButton
+    //       key={key}
+    //       value={item.value}
+    //       text={item.text}
+    //       field={this.props.field}
+    //       onPress={this.props.addFormField}
+    //       group={this.radioGroup}
+    //     />
+    //   );
+    // });
   }
 
   render() {
-    if (!this.state.dataSource) {
-      return (
-        <View>
-          <MKSpinner />
-        </View>
-      );
-    }
     return (
       <ListView
-        initialListSize={this.props.items.length}
-        dataSource={this.state.dataSource}
-        scrollRenderAhead={100}
-        renderRow={this.renderRadioGroupItems}
-        horizontal={true}
-        style={styles.listView}
+        style={styles.container}
+        dataSource={processQuestions(this.props.items)}
+        initialListSize={this.props.items.size}
+        scrollRenderAhead={250}
+        renderRow={this.renderRadioButtons}
       />
     );
+    // if (!this.props.items) {
+    //   return (
+    //     <View>
+    //       <MKSpinner />
+    //     </View>
+    //   );
+    // }
+    // return (
+    //   <View style={styles.listView}>
+    //     {this.renderRadioButtons()}
+    //   </View>
+    // );
   }
 }
 
-export default RadioOptions;
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+    addFormField
+  }, dispatch);
+};
+
+export default connect(null, mapDispatchToProps)(RadioOptions);

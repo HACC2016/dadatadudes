@@ -1,35 +1,48 @@
-import { actions } from '../../actions/Form/index.js';
+import { actions } from '../../actions/Form';
+import { Map } from 'immutable';
 /**
  * Dynamically adds form fields to the redux store.
  * This will be necessary when we want to submit dynamic fields
  * to the server.
  */
 const addFormField = (state, { field, value }) => {
-  const newState = {
-    ...state,
-    [ field ]: value
-  };
-  return newState;
+  if (state.has('formFields')) {
+    const formField = state.get('formFields').merge(Map({
+      [ field ]: value
+    }));
+    return state.update('formFields', () => {
+      return formField;
+    });
+  }
+  return state.set('formFields', Map({ [ field ]: value }));
 };
 
-const loadFormAnswers = (state, { field, value }) => {
-  return {
-    ...state,
-    [ field ]: value
-  };
+const loadSection = (state, { questions, answerOptions }) => {
+  return state.merge({
+    questions,
+    answerOptions
+  });
+};
+
+const setCurrentIndex = (state, data) => {
+  return state.merge(Map({
+    currentIndex: data
+  }));
 };
 
 const submitForm = (state, data) => {
-  console.log('Form inputs: ', data);
+  console.log('data', data.toJS());
   return state;
 };
 
-export default function reducer(state = {}, { data, type }) {
+export default function reducer(state = Map(), { data, type }) {
   switch (type) {
   case actions.ADD_FORM_FIELD:
     return addFormField(state, data);
-  case actions.LOAD_FORM_ANSWERS:
-    return loadFormAnswers(state, data);
+  case actions.LOAD_SECTION:
+    return loadSection(state, data);
+  case actions.SET_CURRENT_INDEX:
+    return setCurrentIndex(state, data);
   case actions.SUBMIT_FORM:
     return submitForm(state, data);
   default:

@@ -1,6 +1,6 @@
 import { applyMiddleware, createStore } from 'redux';
 import thunk from 'redux-thunk';
-import reducers from '../reducers/index.js';
+import reducers from '../reducers';
 import { persistStore, autoRehydrate } from 'redux-persist';
 import { AsyncStorage } from 'react-native';
 const createAppStore = applyMiddleware(thunk)(createStore);

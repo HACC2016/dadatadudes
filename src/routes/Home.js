@@ -4,33 +4,28 @@ import {
   Actions
 } from 'react-native-router-flux';
 import {
-  Image,
+  ScrollView,
   StyleSheet,
   Text,
   TouchableHighlight,
   View
 } from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
-const styles = StyleSheet.create({
-  base: {
+const styles = Object.assign({}, StyleSheet.create({
+  container: {
     flex: 1,
     justifyContent: 'space-around',
     alignItems: 'center',
     flexDirection: 'row'
   },
-  image: {
-    height: 250,
-    width: 250
-  },
-  background: {
-    backgroundColor: '#BDBDBD'
-  },
-  centerText: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    textAlign: 'center'
+  route: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'column'
   }
-});
+}));
 
 class Home extends Component {
   static propTypes = {
@@ -43,35 +38,38 @@ class Home extends Component {
 
   render() {
     return (
-      <View style={styles.base}>
-        <TouchableHighlight onPress={Actions.pointInTime}>
-          <View>
-            <Text style={styles.centerText}> Point In Time </Text>
-            <Image
-              style={styles.image}
-              source={{ uri: 'https://avatars2.githubusercontent.com/u/11851392?v=3&s=400' }}
+      <ScrollView contentContainerStyle={styles.container}>
+        <TouchableHighlight onPress={Actions.PointInTimeBasic}>
+          <View style={styles.route} >
+            <Text> Point In Time </Text>
+            <Icon
+              name="hourglass-empty"
+              color={"#0a64a0"}
+              size={150}
             />
           </View>
         </TouchableHighlight>
-        <TouchableHighlight onPress={Actions.vispdat}>
-          <View>
-            <Text style={styles.centerText}> VISPDAT </Text>
-            <Image
-              style={styles.image}
-              source={{ uri: 'https://avatars3.githubusercontent.com/u/11274285?v=3&s=400' }}
+        <TouchableHighlight onPress={Actions.VispdatBasic}>
+          <View style={styles.route} >
+            <Text> VI-SPDAT </Text>
+            <Icon
+              color={"#501eb4"}
+              name="assignment"
+              size={150}
             />
           </View>
         </TouchableHighlight>
-        <TouchableHighlight onPress={Actions.refuse}>
-          <View>
-            <Text style={styles.centerText}> Refuse </Text>
-            <Image
-              style={styles.image}
-              source={{ uri: 'https://avatars0.githubusercontent.com/u/13359917?v=3&s=400' }}
+        <TouchableHighlight onPress={Actions.Refuse}>
+          <View style={styles.route} >
+            <Text> Refuse </Text>
+            <Icon
+              color={"#dc2878"}
+              name="warning"
+              size={150}
             />
           </View>
         </TouchableHighlight>
-      </View>
+      </ScrollView>
     );
   }
 }

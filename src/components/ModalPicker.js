@@ -1,66 +1,79 @@
 import React, { Component, PropTypes } from 'react';
-import ModalPicker from 'react-native-modal-picker';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+// Actions
+import { addFormField } from '../actions/Form';
 import {
-  View,
-  InteractionManager,
+  Picker,
   StyleSheet
 } from 'react-native';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+
+import Style from '../utilities/styles.js';
 
 const styles = Object.assign({}, StyleSheet.create({
-
   container: {
-    flex: 1,
-    flexDirection: 'row',
-    marginTop: 5,
-    marginLeft: 5,
-    marginBottom: 5
+    marginBottom: 20
   },
-  module: {
-    flex: 1,
-    position: 'relative'
+  text: {
+    fontSize: Style.FONT_SIZE
   }
-
 }));
 
 class Dropdown extends Component {
-
   static propTypes = {
-    items: PropTypes.array.isRequired
+    addFormField: PropTypes.func,
+    field: PropTypes.string,
+    items: PropTypes.array
   };
+
+  mixins: [PureRenderMixin];
 
   constructor(props) {
     super(props);
+    /**
+     * Need to remap to fit ModalPicker object schema
+     */
+    this.onChangeHandler = this._onChangeHandler.bind(this);
+    this.renderPickerItems = this._renderPickerItems.bind(this);
     this.state = {
-      textInputValue: '',
-      data: []
+      selected: {}
     };
   }
 
-  componentDidMount() {
-    InteractionManager.runAfterInteractions(() => {
-      if (this.props.items) {
-        this.setState({
-          data: this.props.items.map(({ text: label }, key) => {
-            return { label, key: key++ };
-          })
-        });
-      }
+  _renderPickerItems() {
+    return this.props.items.map((item, key) => {
+      return (
+        <Picker.Item label={item.text} value={item.value} key={key} />
+      );
     });
+  }
+
+  _onChangeHandler(value) {
+    this.props.addFormField({
+      field: this.props.field,
+      value
+    });
+    this.setState({ selected: value });
   }
 
   render() {
     return (
-      <View style={{ flex: 1, justifyContent: 'space-around' }}>
-        <ModalPicker
-          data={this.state.data}
-          initValue="Options"
-          style={styles.container}
-          overlayStyle={styles.module}
-          sectionStyle={styles.module}
-        />
-      </View>
+      <Picker
+        selectedValue={this.state.selected}
+        onValueChange={this.onChangeHandler}
+        style={styles.container}
+      >
+        {this.renderPickerItems()}
+      </Picker>
     );
   }
 }
 
-export default Dropdown;
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+    addFormField
+  }, dispatch);
+};
+
+export default connect(null, mapDispatchToProps)(Dropdown);

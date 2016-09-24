@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
-import routes from './routes.js';
-import formInputs from './Form/index.js';
+import routes from './routes';
+import form from './Form';
 // ... other reducers
 
 export default combineReducers({
-  formInputs,
+  form,
   routes
 });
