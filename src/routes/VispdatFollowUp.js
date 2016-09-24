@@ -11,7 +11,7 @@ import Button from '../components/Button';
 import Header from '../components/Header';
 import Questions from '../components/Questions';
 // Selectors
-import { formInputsSelector, totalVispdatRiskScoreSelector } from '../selectors/Form';
+import { formInputsSelector, totalVispdatRiskScoreSelector, allVispdatRiskScoresSelector } from '../selectors/Form';
 // Questions
 import { VispdatFollowUpQuestions } from '../utilities/questions';
 import { processQuestions } from '../utilities/helpers';
@@ -102,12 +102,13 @@ class VispdatFollowUp extends Component {
 const mapStateToProps = (state) => {
   return {
     fields: formInputsSelector(state),
+    vispdatScores: allVispdatRiskScoresSelector(state),
     vispdatRiskScore: totalVispdatRiskScoreSelector(state)
   };
 };
 
 VispdatFollowUp = graphql(mutation, {
-  props: ({ mutate }) => ({
+  props: ({ mutate, ownProps }) => ({
     submit: (fields) => mutate({
       variables: {
         input: {
@@ -130,7 +131,7 @@ VispdatFollowUp = graphql(mutation, {
             timePassedSincePermanentHousing: fields.timePassedSincePermanentHousing,
             timesHomelessInPastThreeYears: fields.timesHomelessInPastThreeYears
           },
-          risk: {
+          risks: {
             timesReceivedErCareInSixMonths: fields.timesReceivedErCareInSixMonths,
             timesAmbulanceRidesInSixMonths: fields.timesAmbulanceRidesInSixMonths,
             timesHospitalizedAsInpatientInSixMonths: fields.timesHospitalizedAsInpatientInSixMonths,
@@ -144,23 +145,23 @@ VispdatFollowUp = graphql(mutation, {
             beingExploitedForSexOrDrugs: fields.beingExploitedForSexOrDrugs
           },
           scores: {
-            basicDemographicRiskScore: fields.basicDemographicRiskScore,
-            noHousingScore: fields.noHousingScore,
-            consectutiveHomelessnessScore: fields.consectutiveHomelessnessScore,
-            riskOfHarmScore: fields.riskOfHarmScore,
-            emergencyUseRiskScore: fields.emergencyUseRiskScore,
-            legalIssuesScore: fields.legalIssuesScore,
-            riskOfExploitationScore: fields.riskOfExploitationScore,
-            moneyManagementScore: fields.moneyManagementScore,
-            meaningfulDailyActivityScore: fields.meaningfulDailyActivityScore,
-            selfCareScore: fields.selfCareScore,
-            socialRelationshipsScore: fields.socialRelationshipsScore,
-            physicalHealthScore: fields.physicalHealthScore,
-            substanceAbuseScore: fields.substanceAbuseScore,
-            mentalHealthScore: fields.mentalHealthScore,
-            TriMobilityScore: fields.TriMobilityScore,
-            medicationsScore: fields.medicationsScore,
-            abuseAndTraumaScore: fields.abuseAndTraumaScore
+            basicDemographicRiskScore: ownProps.vispdatScores.basicDemographicRiskScore,
+            noHousingScore: ownProps.vispdatScores.noHousingScore,
+            consectutiveHomelessnessScore: ownProps.vispdatScores.consectutiveHomelessnessScore,
+            riskOfHarmScore: ownProps.vispdatScores.riskOfHarmScore,
+            emergencyUseRiskScore: ownProps.vispdatScores.emergencyUseRiskScore,
+            legalIssuesScore: ownProps.vispdatScores.legalIssuesScore,
+            riskOfExploitationScore: ownProps.vispdatScores.riskOfExploitationScore,
+            moneyManagementScore: ownProps.vispdatScores.moneyManagementScore,
+            meaningfulDailyActivityScore: ownProps.vispdatScores.meaningfulDailyActivityScore,
+            selfCareScore: ownProps.vispdatScores.selfCareScore,
+            socialRelationshipsScore: ownProps.vispdatScores.socialRelationshipsScore,
+            physicalHealthScore: ownProps.vispdatScores.physicalHealthScore,
+            substanceAbuseScore: ownProps.vispdatScores.substanceAbuseScore,
+            mentalHealthScore: ownProps.vispdatScores.mentalHealthScore,
+            TriMobilityScore: ownProps.vispdatScores.TriMobilityScore,
+            medicationsScore: ownProps.vispdatScores.medicationsScore,
+            abuseAndTraumaScore: ownProps.vispdatScores.abuseAndTraumaScore
           },
           socializingAndDailyFunctioning: {
             owesMoney: fields.owesMoney,
