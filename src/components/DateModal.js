@@ -1,4 +1,8 @@
 import React, { Component, PropTypes } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+// Actions
+import { addFormField } from '../actions/Form';
 import {
   DatePickerAndroid,
   View,
@@ -13,10 +17,11 @@ const styles = Object.assign({}, StyleSheet.create({
   }
 }));
 
-
 class DatePicker extends Component {
 
   static propTypes = {
+    addFormField: PropTypes.func,
+    field: PropTypes.string,
     text: PropTypes.string.isRequired
   };
 
@@ -41,6 +46,11 @@ class DatePicker extends Component {
         const date = new Date(year, month, day);
         newState[ `${stateKey} Text` ] = date.toLocalDateString();
         newState[ `${stateKey} Date` ] = date;
+        console.log('date', date);
+        this.props.addFormField({
+          field: this.props.field,
+          value: date.toString()
+        });
       }
       this.setState(newState);
     } catch ({ code, message }) {
@@ -62,4 +72,10 @@ class DatePicker extends Component {
   }
 }
 
-export default DatePicker;
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+    addFormField
+  }, dispatch);
+};
+
+export default connect(null, mapDispatchToProps)(DatePicker);

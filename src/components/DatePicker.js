@@ -2,6 +2,14 @@ import React, { Component, ProptTypes } from 'react';
 import {
   TouchableHighlight,
 } from 'react-native';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+
+const styles = Object.assign({}, StyleSheet.create({
+  text: {
+    color: 'black'
+  }
+}));
+
 import DateModal from './DateModal.js';
 
 class DatePicker extends Component {
@@ -9,6 +17,8 @@ class DatePicker extends Component {
   static propTypes = {
     text: ProptTypes.string
   }
+
+  mixins: [PureRenderMixin];
 
   constructor(props) {
     super(props);
